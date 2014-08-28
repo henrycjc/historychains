@@ -1,3 +1,4 @@
+<?php phpversion();?>
 <DOCTYPE html>
 <html>
 <head>
