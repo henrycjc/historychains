@@ -1,15 +1,11 @@
 <?php
-require_once("resources/config/Global_Config.php");
-require_once("resources/config/Mysql_Connection.php");
+require_once("resources/configs/Global_Config.php");
 
-if ($q = file_get_contents("http://api.trove.nla.gov.au/result?key=6giss2nf0mavv6gk&zone=book&q=tangled&encoding=json") !== FALSE) {
-	echo json_decode($q);
-}
+$q =
+file_get_contents("http://api.trove.nla.gov.au/result?key=6giss2nf0mavv6gk&zone=book&q=tangled&encoding=json");
 
-$db = new Mysql_Connection();
-
-echo $db->dbCon->stat;
+d($q);
 
 
-echo phpinfo();
-?>
+
+
