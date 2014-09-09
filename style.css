@@ -1,0 +1,134 @@
+body{
+	background: url(images/agsquare.png);
+	font-family: Souses;
+}
+
+p{
+	font-family: 'Raleway', sans-serif;
+	font-size: 20px; 
+}
+
+.wrap{
+	width: 1200px; 
+	margin: auto; 
+}
+
+.SearchWrap p{
+	color: #000; 
+}
+
+footer{
+	color: #FFFFFF;
+	background: #02A2EF;
+	max-width: 100%; 
+	padding: 20px; 
+	margin-top: 30px;
+	text-align: center; 
+}
+
+.logo{
+	background-color: #000;
+	color: #FFFFFF;
+	padding: 10px; 
+	margin-bottom: 20px; 
+	text-align: center; 
+	font-size: 25px; 
+}
+
+.Search{
+	background-color: #F3FAFE; 
+	border: 2px solid #02A2EF;
+	margin-top: 20px; 
+}
+
+.SearchWrap{
+	padding: 20px;
+	color: #02A2EF; 
+}
+
+.SearchWrap input{
+	border: 2px solid #02A2EF;
+	border-radius: 10px; 
+	height: 30px; 
+	width: 100%; 
+	font-family: Souses; 
+	text-align: center; 
+}
+
+.SearchResults{
+	width: 100%; 
+	height: 300px; 
+	max-height: 500px; 
+	border: 2px solid #02A2EF; 
+	margin-top: 20px; 
+	background-color: #FFFFF; 
+	text-align: center; 
+	background: #FFFFFF; 
+	color: #D3D3D3; 
+	overflow: scroll;
+}
+
+.TopChain{
+	max-width: 100%;
+	border: 2px solid #02A2EF; 
+	margin-top: 40px; 
+	max-height: 100%; 
+	height: 500px; 
+	background-color: #F3FAFE; 
+	padding: 20px; 
+	color: #02A2EF; 
+}
+
+/*Navigation Bar*/
+
+nav{
+	font-family: Souses;
+	font-size: 23px;
+	margin: auto;
+	text-align: center;
+	background-color: #5BC1F2;
+}
+
+nav ul{
+	list-style-type: none; 
+	padding: 0; 
+	margin: 0;
+	border: 2px solid #02A2EF;
+	color: #FFFFFF; 
+}
+
+
+nav ul li{
+	display: inline-block; 
+	color: #FFFFFF; 
+}
+
+nav ul li:hover{
+	background-color: #02A2EF;
+}
+
+nav ul li a,visited{
+	color: #FFFFFF;
+	display: block; 
+	padding: 15px 50px; 
+	text-decoration: none; 
+}
+
+nav ul li a:hover{
+	color: white; 
+	text-decoration: none; 
+}
+
+/*Navigation Bar*/
+
+/*SPLASH PAGE VVVV*/
+
+.Welcome{
+	text-align: center;
+	font-size: 70px; 
+}
+
+/*Profile Page VVVV*/
+
+
+
