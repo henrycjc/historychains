@@ -3,6 +3,21 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$(".CreateNew").hide(); 
+				$(".ListedChains").hide(); 
+				$(".New_Chain_Link").click(function(){
+					$(".CreateNew").toggle("slow");
+					$(".ListedChains").hide("slow");
+				}); 
+				$(".Exist_Link").click(function(){
+					$(".ListedChains").toggle("slow");
+					$(".CreateNew").hide("slow");
+				}); 
+			});
+		</script>
 	</head>
 	
 	<body>
@@ -23,6 +38,9 @@
 			</nav>
 			
 			<div class="CreateChain">
+				<h2>Let's Get Started!</h2>
+				<button type="button" class="New_Chain_Link">Create a Chain</button>
+				<button type="button" class="Exist_Link">Edit a Chain</button>
 				<form class="CreateNew">
 					<h2>Create a New Chain!</h2>
 					<p>Title:</p><input type="text" placeholder="Chain Title" />
