@@ -5,6 +5,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script>
 			$(document).ready(function(){
+			$("#sign_up").hide();
 			  $("#sign_up_link").click(function(){
 				$("#sign_up").toggle("slow");
 			  });
