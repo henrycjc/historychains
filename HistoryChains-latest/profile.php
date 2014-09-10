@@ -8,15 +8,17 @@
 	<body>
 		<div class="wrap">
 			<div class="logo">
-				<h1>History Chains</h1>
+				<h1 id="header_title">History Chains</h1>
+				<img class="lim" src="images/logo.png" width="100px" />
+							<div style="clear:both"></div>
 			</div>
 			
 			<nav>
 				<ul> 
-					<li> <a href="index.html">Home</a> </li>
-					<li> <a href="#">Create Chain</a> </li>
-					<li> <a href="#">Search Chain</a> </li>
-					<li> <a href="#">About</a> </li>
+					<li> <a href="index.php">Home</a> </li>
+					<li> <a href="createchain.php">Create Chain</a> </li>
+					<li class="current_page"> <a href="profile.php">Profile</a> </li>
+					<li> <a href="about.php">About</a> </li>
 				</ul>
 			</nav>
 			

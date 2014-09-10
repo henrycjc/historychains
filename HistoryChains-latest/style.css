@@ -109,6 +109,12 @@ nav ul li:hover{
 	background-color: #02A2EF;
 }
 
+.current_page{
+	background-color: #02A2EF;
+}
+
+
+
 nav ul li a,visited{
 	color: #FFFFFF;
 	display: block; 
@@ -136,6 +142,27 @@ nav ul li a:hover{
 	margin: auto; 
 	width: 1300px; 
 	height: 1000px; 
+}
+
+#sign_up{
+	margin-left :  auto;
+	margin-top: 20px;
+	padding: 10px;
+	background-color: #F3FAFE; 
+	border: 2px solid #02A2EF;
+}
+
+#sign_up input{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding: 5px;
+	width: 200px;
+	display: block;
+	border: 2px solid #02A2EF;
+	font-family: 'Raleway', sans-serif;
+	font-size: 20px;
+	
 }
 
 /*Profile Page VVVV*/
@@ -220,6 +247,9 @@ nav ul li a:hover{
 	color: #02A2EF; 
 }
 
+#header_title{
+	display: inline;
+}
 
 
 
