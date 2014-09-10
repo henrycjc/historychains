@@ -35,6 +35,7 @@
 		</nav>
 		<div id="sign_up">
 			<form>
+				<h2>Sign Up</h2>
 				<input type="text" name="FName" placeholder="First Name"/>
 				<input type="text" name="LName" placeholder="Last Name"/>
 				<input type="date" name="DOB" placeholder="Date of Birth"/>

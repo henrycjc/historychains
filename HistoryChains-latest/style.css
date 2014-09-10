@@ -150,6 +150,9 @@ nav ul li a:hover{
 	padding: 10px;
 	background-color: #F3FAFE; 
 	border: 2px solid #02A2EF;
+	color: #02A2EF;
+	text-align: center; 
+	font-family: 'Raleway', sans-serif;
 }
 
 #sign_up input{
@@ -257,6 +260,9 @@ nav ul li a:hover{
 	padding: 10px;
 	background-color: #F3FAFE; 
 	border: 2px solid #02A2EF;
+	color: #02A2EF;
+	text-align: center; 
+	font-family: 'Raleway', sans-serif;
 }
 
 #login input{
