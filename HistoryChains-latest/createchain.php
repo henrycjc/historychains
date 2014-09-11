@@ -1,6 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 	<head>
+		<link rel="stylesheet" href="vertical-timeline/css/style.css"> <!-- Resource style -->
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -12,7 +13,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 
-		<link rel="stylesheet" href="vertical-timeline/css/style.css"> <!-- Resource style -->
+
 		<script src="verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
 		<!-- This is for the timeline -->
 	
@@ -42,7 +43,7 @@
 							<div style="clear:both"></div>
 			</div>
 			
-			<nav>
+			<nav class="nav1">
 				<ul> 
 					<li> <a href="index.php">Home</a> </li>
 					<li class="current_page"> <a href="createchain.php">Create Chain</a> </li>
