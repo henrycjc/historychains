@@ -18,7 +18,7 @@ p{
 	color: #000; 
 }
 
-footer{
+.footer{
 	color: #FFFFFF;
 	background: #02A2EF;
 	max-width: 100%; 
@@ -79,6 +79,7 @@ footer{
 	background-color: #F3FAFE; 
 	padding: 20px; 
 	color: #02A2EF; 
+	overflow: auto; 
 }
 
 /*Navigation Bar*/
