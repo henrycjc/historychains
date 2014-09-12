@@ -43,7 +43,7 @@
 				<img class="aboutgraphic" src="images/about_page_graphic.png" />
 			</section>
 			
-			<footer>
+			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
 			</footer>

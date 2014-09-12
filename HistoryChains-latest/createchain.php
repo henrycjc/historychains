@@ -14,7 +14,7 @@
 
 
 
-		<script src="verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
+		<script src="vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
 		<!-- This is for the timeline -->
 	
 	
@@ -81,10 +81,14 @@
 					<h2>Search</h2>
 					<form>
 						<input type="text" name="SearchField" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>	
+						<input class="SearchNow" type="submit" value="Search" /> 
 					</form>
 					<article class="SearchResults">
 						<div class="results">
 							<!--This is where the search results reside-->
+							<script type="text/javascript">
+								
+							</script>
 						</div>
 						<p>Start Searching so we can show you some results!</p>
 					</article>
@@ -93,7 +97,7 @@
 			
 					
 	<section class="TopChain">
-		<h2>Your Chain</h2>
+		<h2>Scroll to Navigate Through the Chain!</h2>
 		<section id="cd-timeline" class="cd-container">
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture">
@@ -102,7 +106,12 @@
 
 				<div class="cd-timeline-content">
 					<h2>Australian Politics</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, 
+					dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa 
+					ad debitis unde? Iste voluptatibus minus veritatis qui ut. Lorem ipsum dolor sit amet, 
+					consectetur adipisicing elit. Iusto, optio, 
+					dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa 
+					ad debitis unde? Iste voluptatibus minus veritatis qui ut. </p>
 					<a href="#0" class="cd-read-more">Read more</a>
 					<span class="cd-date">Jan 14</span>
 				</div> <!-- cd-timeline-content -->
@@ -172,7 +181,7 @@
 				</div> <!-- cd-timeline-content -->
 			</div> <!-- cd-timeline-block -->
 		</section> <!-- cd-timeline -->
-		<script src="verticle-timeline/js/main.js"></script> <!-- Resource jQuery -->
+		<script src="vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
 				
 				
 	</section>
