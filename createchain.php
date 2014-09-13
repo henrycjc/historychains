@@ -1,9 +1,13 @@
 <!DOCTYPE html> 
 <html> 
 	<head>
+<<<<<<< HEAD:createchain.php
 <<<<<<< HEAD:HistoryChains-latest/createchain.php
 		<link rel="stylesheet" href="vertical-timeline/css/style.css"> <!-- Resource style -->
 		<link rel="stylesheet" type="text/css" href="style.css" />
+=======
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+>>>>>>> origin/master:createchain.php
 =======
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 >>>>>>> origin/master:createchain.php
@@ -17,9 +21,14 @@
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 
+<<<<<<< HEAD:createchain.php
 <<<<<<< HEAD:HistoryChains-latest/createchain.php
 
 		<script src="vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
+=======
+		<link rel="stylesheet" href="resources/css/vertical-timeline/css/style.css" /> <!-- Resource style -->
+		<script src="resources/vendor/verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
+>>>>>>> origin/master:createchain.php
 =======
 		<link rel="stylesheet" href="resources/css/vertical-timeline/css/style.css" /> <!-- Resource style -->
 		<script src="resources/vendor/verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
