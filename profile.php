@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 	<head>
-		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 	</head>
 	
@@ -9,7 +9,7 @@
 		<div class="wrap">
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
-				<img class="lim" src="images/logo.png" width="100px" />
+				<img class="lim" src="resources/images/logo.png" width="100px" />
 							<div style="clear:both"></div>
 			</div>
 			
@@ -23,7 +23,7 @@
 			</nav>
 			
 			<aside class="UserInfo">
-				<div class="Image"> <img src="images/profile.jpg"/> </div>
+				<div class="Image"> <img src="resources/images/profile.jpg"/> </div>
 				<div class="Info"> 
 					<h1>Info</h1>
 					<p>Angus Payne</p>

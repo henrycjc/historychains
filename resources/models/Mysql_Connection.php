@@ -1,12 +1,20 @@
 <?php
 
-	define("DB_HOST", "127.0.0.1");
-	define("DB_NAME", "historychains");
-	define("DB_USER", "root");
-	define("DB_PWD", "???");
+if ($_SERVER['REMOTE_ADDR'] === "::1") {
+	$sqlUser = "root";
+	$sqlPass = "";
+} else {
+	$sqlUser = "hchains";
+	$sqlPass = "sQHSaLv69eetjefu";
+}
 
-	$dbConn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$sqlHost = "localhost";
+$sqlDatabase = "HISTORY_CHAINS";
+$mysqli = new mysqli($sqlHost, $sqlUser, $sqlPass, $sqlDatabase);
 
-	if (mysqli_connect_error()) {
-		printf("MySQL Connection Failed: %s\n", mysqli_connect_error());
-	}
+if ($mysqli->connect_errno) {
+	printf("Connection failed: %s \n", $mysqli->connect_error);
+	exit();
+}
+$mysqli->set_charset("utf8");
+?>

@@ -1,8 +1,12 @@
 <!DOCTYPE html> 
 <html> 
 	<head>
+<<<<<<< HEAD:HistoryChains-latest/createchain.php
 		<link rel="stylesheet" href="vertical-timeline/css/style.css"> <!-- Resource style -->
 		<link rel="stylesheet" type="text/css" href="style.css" />
+=======
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+>>>>>>> origin/master:createchain.php
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		
@@ -13,8 +17,13 @@
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 
+<<<<<<< HEAD:HistoryChains-latest/createchain.php
 
 		<script src="vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
+=======
+		<link rel="stylesheet" href="resources/css/vertical-timeline/css/style.css" /> <!-- Resource style -->
+		<script src="resources/vendor/verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
+>>>>>>> origin/master:createchain.php
 		<!-- This is for the timeline -->
 	
 	
@@ -39,7 +48,7 @@
 		<div class="wrap">
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
-				<img class="lim" src="images/logo.png" width="100px" />
+				<img class="lim" src="resources/images/logo.png" width="100px" />
 							<div style="clear:both"></div>
 			</div>
 			
@@ -79,13 +88,21 @@
 			<section class="Search">
 				<div class="SearchWrap">
 					<h2>Search</h2>
-					<form>
-						<input type="text" name="SearchField" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>	
-						<input class="SearchNow" type="submit" value="Search" /> 
+					<form action="#" id="searchTrove">
+						<input type="text" id="searchTerm"/>	
+						<button type="submit" id="searchbtn">Search</button>
+						<select id="sortBy">
+							<option>relevance</option>
+							<option>dateasc</option>
+							<option>datedesc</option>
+						</select>
+
+ 
 					</form>
 					<article class="SearchResults">
 						<div class="results">
-							<!--This is where the search results reside-->
+							<div id="output">
+							</div>
 							<script type="text/javascript">
 								
 							</script>
@@ -181,20 +198,70 @@
 				</div> <!-- cd-timeline-content -->
 			</div> <!-- cd-timeline-block -->
 		</section> <!-- cd-timeline -->
-		<script src="vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
-				
-				
-	</section>
-			
-			
-			
-			
+		<script src="vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->			
+	</section>				
 			
 			
 			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
 			</footer>
+			
+		<script type="text/javascript">
+			// http://jsonviewer.stack.hu/
+
+			// Replace the apiKey variable with your own from Trove - required for conducting searches using the Trove API
+			// http://help.nla.gov.au/trove/building-with-trove/api
+			var apiKey = "6giss2nf0mavv6gk";;
+		
+			$(document).ready(function(){
+
+				// There is an issue with TROVE applications where the first search will result in nothing being returned
+				// To get around this, we perform a dummy form submit.
+				$("form#searchTrove").submit();
+
+				// action that occurs when the form is submitted - either through hitting the enter key or by clicking on Search
+				$("form#searchTrove").submit(function() {
+		    		
+		    		// Get the values from our search form
+				    var searchTerm = $("#searchTerm").val();
+				    // Set the search zone - alternatively you can set this using a form input
+				    var searchZone = "newspaper";
+				    var sortBy = $("#sortBy").val();
+			    
+				    /* 
+				    *	Construct the URL for the Trove Search API
+				    * 	http://api.trove.nla.gov.au/result? is the base URL required for accessing the TROVE API
+				    * 	Additional arguments are sent as key/value pairs separated by the & sign
+				    * 	key is the API key needed to access the API
+				    * 	encoding tells the API how to return the results - json or xml (default)
+				    * 	zone tells the API where to perform the search - book, picture, article, music, map, collection, newspaper, list or all can be used
+				    * 	sortby tells the API how to sort the results - datedesc, dateasc, relevance
+				    * 	q is the set of keywords to search on, alternatively you can use Indexes to refine the search terms (see the API documentation for how to use indexes & which zones support each one
+				    *	callback allows you to specify a function to process the response - even if you choose not to set one, you need to include the callback parameter
+				    * 	See the API documentation for other parameters you can use in the search string
+				    */ 
+				    var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&encoding=json&zone=" + searchZone + 
+				    "&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=5&include=articletext,pdf&encoding=json&callback=?";
+				
+				    /*	
+				    * 	Perform the search using jQuery's getJSON method
+				    *	Requires the search URL
+				    */	
+				    console.log(url);
+			    	
+				    $.getJSON(url, function(data) {
+				    	// clear the HTML div that will display the results
+				        $('#output').empty();
+
+				        $.each(data.response.zone[0].records.article, function(index, value) {
+				          	$("#output").append("<h3>" + index + " " + value.heading + "</h3>" + "<p>" + value.articleText +"</p><hr/>");
+				        });
+					});
+				});
+			});
+		</script>
+
 		</div>
 	</body>
 </html> 
