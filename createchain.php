@@ -33,6 +33,12 @@
 			});
 		</script>
 		
+		<script type="text/javascript" /><!-- page redirect-->
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+				window.location.href = "createchain_mobile.php";
+			};
+		</script>
+		
 	</head>
 	
 	<body>
