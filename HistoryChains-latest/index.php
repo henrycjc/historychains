@@ -3,6 +3,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" />
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+				window.location.href = "index_mobile.php";
+			};
+		</script>
 	</head>
 	
 	<body>
