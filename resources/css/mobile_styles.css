@@ -1,0 +1,41 @@
+@font-face{
+	font-family: Souses;
+	src: url( ../fonts/Souses.otf)
+}
+
+body{
+	width: 320px;
+	margin: 0 auto 0 auto;
+	overflow-x: hidden;
+	background: url(../images/agsquare.png);
+}
+
+#content_area{
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	background-color: #99D7F5;
+}
+
+h1{
+	size: 18pt;
+	font-family: Souses;
+}
+
+#content_header{
+	margin: 0 auto;
+	width: 100%;
+	background-color: #000;
+}
+#header_text{
+	margin: 0 auto;
+	float: right;
+	display: inline:
+}
+
+#header_image{
+	margin: 0 auto;
+	float: left;
+	display: inline;
+	width: 50px;
+}
