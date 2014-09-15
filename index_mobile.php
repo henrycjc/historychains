@@ -12,6 +12,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<link href="resources/css/mobile_styles.css" media="all" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css"><!--Jquery Mobile Stylesheet-->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script><!--JQuery-->
+	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script><!--Jquery Mobile-->
 	</head>
 <body>
 	<main class="main_bg">
@@ -21,7 +24,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<select onchange="window.location=this.options[this.selectedIndex].value">
 						<option value="index_mobile.php">Home</option>
 						<option value="profile_mobile.php">Profile</option>
-						<option value="createchain_mobile.php">Create Chain</option>
+						<option value="createchain_mobile.php">Chains</option>
 						<option value="about_mobile.php">About</option>
 					</select>
 				</div>

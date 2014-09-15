@@ -68,6 +68,12 @@ p {
 	font-family: Raleway;
 }
 
+h1 {
+	font-family: Souses;
+	font-size: 20pt;
+	text-align: center;
+}
+
 h2 {
 	font-size: 14pt
 }
@@ -83,6 +89,13 @@ h3 {
 	border-radius: 50%;
 }
 
+.user_picture {
+	width: 10%;
+	border-radius: 50%;
+	display: inline;
+	margin: 10px 10px 0 10px;
+}
+
 .profile_info{
 	width: 100%;
 	background: #99D7F5;
@@ -93,4 +106,36 @@ h3 {
 .profile_info_text {
 	font-family: Raleway;
 	color: #fff;
+}
+
+.button {
+	font-family: Raleway;
+}
+
+.chain_manipulation_div{
+	background: #F3FAFE;
+	width: 100%;
+	padding: 10px 0 10px 0;
+}
+
+.chain_manipulation_div a{
+	font-family: Souses;
+}
+
+.chain_title {
+	font-size: 14pt;
+	font-family: Raleway;
+}
+
+.splash_header {
+	margin-top: 50px;
+}
+
+#splash_page {
+	background: #02A2EF;
+}
+
+.DOB {
+	width: 50%;
+	display: inline;
 }

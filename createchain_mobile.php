@@ -11,7 +11,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<title>Create Chain</title>
 	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<link href="resources/css/mobile_styles.css" media="all" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css"><!--Jquery Mobile Stylesheet-->
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script><!--JQuery-->
 	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script><!--Jquery Mobile-->
@@ -20,6 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href="resources/css/mobile_styles.css" media="all" rel="stylesheet" type="text/css" />
 	<script>
 			$(document).ready(function(){
 				//hide all divs on start up
@@ -70,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					// Get the values from our search form
 					var searchTerm = $("#searchTerm").val();
 					// Set the search zone - alternatively you can set this using a form input
-					var searchZone = "all";
+					var searchZone = "newspaper";
 					var sortBy = $("#sortBy").val();
 					/* 
 					*	Construct the URL for the Trove Search API
@@ -132,7 +132,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<h3>Create a New Chain!</h2>
 							<p>Title:</p><input type="text" placeholder="Chain Title" />
 							<p>Tags:</p><input type="text" placeholder="Tags" />
-							<p><input type="button" value="Start Chain!"></p>
+							<p><input type="button" value="Start Chain!" class="button"></p>
 					</form>
 				</div>
 				<div id="edit_chain" class="chain_manipulation_div">
@@ -153,15 +153,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<option>date asc</option>
 							<option>date desc</option>
 						</select>
-						<button type="submit" id="searchbtn">Search</button>
-						<div id="output">
-						
-						</div>
+						<button type="submit" id="searchbtn" class="button">Search</button>
+						<div id="output"></div>
 				</div>
 			</section>
 			<section>
 				<div id="chain" class="chain_manipulation_div">
-					<h2>Your Chain</h2>
+					<img class="user_picture" src="resources/images/profile.jpg" alt="User Picture">
+					<span class="chain_title">Your Chain</span>
 							<section id="cd-timeline" class="cd-container">
 								<div class="cd-timeline-block">
 									<div class="cd-timeline-img cd-picture">
