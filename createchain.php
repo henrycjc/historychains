@@ -1,16 +1,8 @@
 <!DOCTYPE html> 
 <html> 
 	<head>
-<<<<<<< HEAD:createchain.php
-<<<<<<< HEAD:HistoryChains-latest/createchain.php
-		<link rel="stylesheet" href="vertical-timeline/css/style.css"> <!-- Resource style -->
-		<link rel="stylesheet" type="text/css" href="style.css" />
-=======
+		<link rel="stylesheet" href="resources/plugins/vertical-timeline/css/style.css"> <!-- Resource style -->
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
->>>>>>> origin/master:createchain.php
-=======
-		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
->>>>>>> origin/master:createchain.php
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		
@@ -21,18 +13,8 @@
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 
-<<<<<<< HEAD:createchain.php
-<<<<<<< HEAD:HistoryChains-latest/createchain.php
 
-		<script src="vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
-=======
-		<link rel="stylesheet" href="resources/css/vertical-timeline/css/style.css" /> <!-- Resource style -->
-		<script src="resources/vendor/verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
->>>>>>> origin/master:createchain.php
-=======
-		<link rel="stylesheet" href="resources/css/vertical-timeline/css/style.css" /> <!-- Resource style -->
-		<script src="resources/vendor/verticle-timeline/js/modernizr.js"></script> <!-- Modernizr -->
->>>>>>> origin/master:createchain.php
+		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
 		<!-- This is for the timeline -->
 	
 	
@@ -63,10 +45,10 @@
 			
 			<nav class="nav1">
 				<ul> 
-					<li> <a href="index.php">Home</a> </li>
-					<li class="current_page"> <a href="createchain.php">Create Chain</a> </li>
-					<li> <a href="profile.php">Profile</a> </li>
-					<li> <a href="about.php">About</a> </li>
+					<li> <a href="index.php">Home</a> </li><li class="current_page">
+					 <a href="createchain.php">Create Chain</a> </li><li>
+					<a href="profile.php">Profile</a> </li><li>
+					<a href="about.php">About</a> </li>
 				</ul>
 			</nav>
 			
@@ -98,46 +80,40 @@
 				<div class="SearchWrap">
 					<h2>Search</h2>
 					<form action="#" id="searchTrove">
-						<input type="text" id="searchTerm"/>	
-						<button type="submit" id="searchbtn">Search</button>
+						<input type="text" id="searchTerm" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
 						<select id="sortBy">
 							<option>relevance</option>
 							<option>dateasc</option>
 							<option>datedesc</option>
 						</select>
+						<button type="submit" id="searchbtn">Search</button>
 
- 
+						
 					</form>
 					<article class="SearchResults">
 						<div class="results">
 							<div id="output">
+								<h4>Search Results</h4>
 							</div>
-							<script type="text/javascript">
-								
-							</script>
+
 						</div>
-						<p>Start Searching so we can show you some results!</p>
+						<p class="SearchTitle">Start Searching so we can show you some results!</p>
 					</article>
 				</div>
 			</section>
 			
 					
 	<section class="TopChain">
-		<h2>Scroll to Navigate Through the Chain!</h2>
+		<h2>Your Chain</h2>
 		<section id="cd-timeline" class="cd-container">
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture">
-					<img src="vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+					<img src="resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
 					<h2>Australian Politics</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, 
-					dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa 
-					ad debitis unde? Iste voluptatibus minus veritatis qui ut. Lorem ipsum dolor sit amet, 
-					consectetur adipisicing elit. Iusto, optio, 
-					dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa 
-					ad debitis unde? Iste voluptatibus minus veritatis qui ut. </p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
 					<a href="#0" class="cd-read-more">Read more</a>
 					<span class="cd-date">Jan 14</span>
 				</div> <!-- cd-timeline-content -->
@@ -145,7 +121,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-movie">
-					<img src="vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+					<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -158,7 +134,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture">
-					<img src="vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+					<img src="resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -171,7 +147,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-location">
-					<img src="vertical-timeline/img/cd-icon-location.svg" alt="Location">
+					<img src="resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -184,7 +160,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-location">
-					<img src="vertical-timeline/img/cd-icon-location.svg" alt="Location">
+					<img src="resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -197,7 +173,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-movie">
-					<img src="vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+					<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -207,16 +183,10 @@
 				</div> <!-- cd-timeline-content -->
 			</div> <!-- cd-timeline-block -->
 		</section> <!-- cd-timeline -->
-		<script src="vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->			
-	</section>				
-			
-			
-			<footer class="footer">
-				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
-				<p>All Rights Reserved</p>
-			</footer>
-			
-		<script type="text/javascript">
+		<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->			
+	</section>
+	
+	<script type="text/javascript">
 			// http://jsonviewer.stack.hu/
 
 			// Replace the apiKey variable with your own from Trove - required for conducting searches using the Trove API
@@ -235,7 +205,7 @@
 		    		// Get the values from our search form
 				    var searchTerm = $("#searchTerm").val();
 				    // Set the search zone - alternatively you can set this using a form input
-				    var searchZone = "newspaper";
+				    var searchZone = "all";
 				    var sortBy = $("#sortBy").val();
 			    
 				    /* 
@@ -264,13 +234,24 @@
 				        $('#output').empty();
 
 				        $.each(data.response.zone[0].records.article, function(index, value) {
-				          	$("#output").append("<h3>" + index + " " + value.heading + "</h3>" + "<p>" + value.articleText +"</p><hr/>");
+				          	$("#output").append("<h3>" + index + " " + value.Title + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
+							$('.SearchTitle').text('Your Search Was Successful!');
+							$('.SearchTitle').css('color', '#02A2EF');
 				        });
 					});
 				});
 			});
 		</script>
-
+			
+			
+			
+			
+			
+			
+			<footer class="footer">
+				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
+				<p>All Rights Reserved</p>
+			</footer>
 		</div>
 	</body>
 </html> 

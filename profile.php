@@ -15,10 +15,10 @@
 			
 			<nav>
 				<ul> 
-					<li> <a href="index.php">Home</a> </li>
-					<li> <a href="createchain.php">Create Chain</a> </li>
-					<li class="current_page"> <a href="profile.php">Profile</a> </li>
-					<li> <a href="about.php">About</a> </li>
+					<li> <a href="index.php">Home</a> </li><li>
+					<a href="createchain.php">Create Chain</a> </li><li class="current_page"> 
+					<a href="profile.php">Profile</a> </li><li>
+					<a href="about.php">About</a> </li>
 				</ul>
 			</nav>
 			
