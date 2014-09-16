@@ -1,4 +1,3 @@
-<?php require_once("resources/configs/Global_Config.php"); ?>
 <!DOCTYPE html>
 <html> 
 	<head>
@@ -12,15 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
-
-<<<<<<< HEAD
 		<link rel="stylesheet" href="/resources/vendor/vertical-timeline/css/style.css" /> <!-- Resource style -->
 		<script src="/resources/vendor/vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
-=======
-
-		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 		<!-- This is for the timeline -->
 
 	
@@ -120,11 +112,7 @@
 		<section id="cd-timeline" class="cd-container">
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture">
-<<<<<<< HEAD
 					<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
-=======
-					<img src="resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -137,11 +125,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-movie">
-<<<<<<< HEAD
 					<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
-=======
-					<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -154,11 +138,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-picture">
-<<<<<<< HEAD
 					<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
-=======
-					<img src="resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -171,11 +151,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-location">
-<<<<<<< HEAD
 					<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
-=======
-					<img src="resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -188,11 +164,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-location">
-<<<<<<< HEAD
 					<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
-=======
-					<img src="resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -205,11 +177,7 @@
 
 			<div class="cd-timeline-block">
 				<div class="cd-timeline-img cd-movie">
-<<<<<<< HEAD
 					<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
-=======
-					<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 				</div> <!-- cd-timeline-img -->
 
 				<div class="cd-timeline-content">
@@ -219,13 +187,7 @@
 				</div> <!-- cd-timeline-content -->
 			</div> <!-- cd-timeline-block -->
 		</section> <!-- cd-timeline -->
-<<<<<<< HEAD
 		<script src="/resources/vendor/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
-				
-				
-=======
-		<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->			
->>>>>>> 740635b2ea315874a63fc5a469592c58ecb749fe
 	</section>
 	
 	<script type="text/javascript">
