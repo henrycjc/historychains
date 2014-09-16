@@ -70,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					// Get the values from our search form
 					var searchTerm = $("#searchTerm").val();
 					// Set the search zone - alternatively you can set this using a form input
-					var searchZone = "newspaper";
+					var searchZone = "newspaper,article,book";
 					var sortBy = $("#sortBy").val();
 					/* 
 					*	Construct the URL for the Trove Search API
@@ -84,8 +84,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					*	callback allows you to specify a function to process the response - even if you choose not to set one, you need to include the callback parameter
 					* 	See the API documentation for other parameters you can use in the search string
 					*/ 
-					var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&encoding=json&zone=" + searchZone + 
-						"&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=5&include=articletext,pdf&encoding=json&callback=?";
+					var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&zone=" + searchZone + "&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=10&encoding=json&callback=?";
 					/*	
 					* 	Perform the search using jQuery's getJSON method
 					*	Requires the search URL
@@ -94,8 +93,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$.getJSON(url, function(data) {
 						// clear the HTML div that will display the results
 							$('#output').empty();
-							$.each(data.response.zone[0].records.article, function(index, value) {
-								$("#output").append("<h3>" + index + " " + value.Title + "</h3>" + "<p>" + value.troveUrl +"</p>");
+							$.each(data.response.zone.records, function(index, value) {
+				          	$("#output").append("<h3>" + index + " " + value.heading + "</h3>" + "<p>" + value.articleText +"</p><hr/>");
 								$('.SearchTitle').text('Your Search Was Successful!');
 								$('.SearchTitle').css('color', '#02A2EF');
 							});
