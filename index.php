@@ -1,4 +1,5 @@
-<!DOCTYPE html> 
+<?php require("resources/configs/Global_Config.php"); ?>
+<!DOCTYPE html>
 <html> 
 	<head>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
