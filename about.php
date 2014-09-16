@@ -3,6 +3,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" /><!-- page redirect-->
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+				window.location.href = "about_mobile.php";
+			};
+		</script>
 	</head>
 	
 	<body>
@@ -43,7 +48,7 @@
 				<img class="aboutgraphic" src="resources/images/about_page_graphic.png" />
 			</section>
 			
-			<footer>
+			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
 			</footer>

@@ -4,6 +4,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" />
+			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+				window.location.href = "index_mobile.php";
+			};
+		</script>
 	</head>
 	
 	<body>
@@ -16,10 +21,10 @@
 			
 			<nav>
 				<ul> 
-					<li class="current_page"> <a href="index.php">Home</a> </li>
-					<li> <a href="createchain.php">Create Chain</a> </li>
-					<li> <a href="profile.php">Profile</a> </li>
-					<li> <a href="about.php">About</a> </li>
+					<li class="current_page"> <a href="index.php">Home</a> </li><li>
+					<a href="createchain.php">Create Chain</a> </li> <li>
+					<a href="profile.php">Profile</a> </li> <li>
+					<a href="about.php">About</a> </li>
 				</ul>
 			</nav>
 			
@@ -39,7 +44,7 @@
 				<h2>Top Chains</h2>
 			</section>
 			
-			<footer>
+			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
 			</footer>

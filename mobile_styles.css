@@ -1,0 +1,146 @@
+/*
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+*/
+@font-face {
+    font-family: Souses;
+    src: url(../fonts/Souses.otf);
+}
+
+body {
+	font-family: Raleway, Arial, Geneva,Helvetica, sans-serif;
+	background:#ffffff;
+	font-size: 100%;
+	margin: 0;
+}
+.main_bg{
+font-family: Raleway, Arial, Geneva,Helvetica, sans-serif;
+	background: url(../images/agsquare.png);
+}
+/* start h_menu */
+
+/* start main */
+.basics{
+	padding: 10px;
+}
+/*-- start mobile_nav --*/
+.drp-dwn{
+	margin-bottom: 10px;
+	text-align: center;
+}
+.drp-dwn select {
+	text-align: center;
+	font-family: Souses, Arial, Geneva,Helvetica, sans-serif;
+	padding: 4px;
+	font-size:13px;
+	outline: none;
+	border:none;
+	width: 100%;
+	background: #99D7F5;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+.h1 {
+	border-top: 10px solid #02A2EF;
+	background: #ffffff;
+	padding: 5px;
+	text-align:center;
+	min-height: 250px;
+	font-family: Souses;
+}
+
+.link {
+	text-align: center;
+	font-family: Souses;
+	background-color: #02A2Ef;
+	color: #ffffff;
+	padding: 5px;
+}
+
+figcaption {
+	font-style: italic;
+}
+
+p {
+	font-family: Raleway;
+}
+
+h1 {
+	font-family: Souses;
+	font-size: 20pt;
+	text-align: center;
+}
+
+h2 {
+	font-size: 14pt
+}
+
+h3 {
+	font-size: 8pt;
+	color: #5BC1F2;
+}
+
+.profile_picture {
+	width: 50%;
+	border: solid 2px #02A2EF;
+	border-radius: 50%;
+}
+
+.user_picture {
+	width: 10%;
+	border-radius: 50%;
+	display: inline;
+	margin: 10px 10px 0 10px;
+}
+
+.profile_info{
+	width: 100%;
+	background: #99D7F5;
+	border-radius: 10px;
+	padding: 2px;
+}
+
+.profile_info_text {
+	font-family: Raleway;
+	color: #fff;
+}
+
+.button {
+	font-family: Raleway;
+}
+
+.chain_manipulation_div{
+	background: #F3FAFE;
+	width: 100%;
+	padding: 10px 0 10px 0;
+}
+
+.chain_manipulation_div a{
+	font-family: Souses;
+}
+
+.chain_title {
+	font-size: 14pt;
+	font-family: Raleway;
+}
+
+.splash_header {
+	margin-top: 50px;
+}
+
+#splash_page {
+	background: #02A2EF;
+}
+
+.DOB {
+	width: 50%;
+	display: inline;
+}
+
+#output {
+	word-wrap: break-word;
+		max-width: auto;
+}

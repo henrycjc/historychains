@@ -1,3 +1,7 @@
+@fontface{
+	font-family: 'Souses';
+	src: url(../fonts/Souses.otf)
+}
 
 body{
 	background: url(../images/agsquare.png);
@@ -90,6 +94,11 @@ nav{
 	margin: auto;
 	text-align: center;
 	background-color: #5BC1F2;
+}
+
+nav.nav1 ul li a {
+	font-family: Souses;
+	font-size: 23px;
 }
 
 nav ul{
@@ -307,6 +316,19 @@ nav ul li a:hover{
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
 	
+}
+
+#searchbtn, #sortBy{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding: 5px;
+	width: 200px;
+	display: block;
+	border: 2px solid #02A2EF;
+	font-family: 'Raleway', sans-serif;
+	font-size: 20px;
+	text-align: center; 
 }
 
 
