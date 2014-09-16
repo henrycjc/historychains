@@ -95,7 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						// clear the HTML div that will display the results
 							$('#output').empty();
 							$.each(data.response.zone[0].records.article, function(index, value) {
-								$("#output").append("<h3>" + index + " " + value.Title + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
+								$("#output").append("<h3>" + index + " " + value.Title + "</h3>" + "<p>" + value.troveUrl +"</p>");
 								$('.SearchTitle').text('Your Search Was Successful!');
 								$('.SearchTitle').css('color', '#02A2EF');
 							});
