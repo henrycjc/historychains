@@ -1,4 +1,4 @@
-<?php require("resources/configs/Global_Config.php"); ?>
+<?php require("app/configs/Global_Config.php"); ?>
 <!DOCTYPE html>
 <html> 
 	<head>
