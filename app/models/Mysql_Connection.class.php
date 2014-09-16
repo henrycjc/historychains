@@ -5,7 +5,7 @@ class Mysql_Connection {
 	protected $usr;
 	protected $pass;
 	protected $host = "localhost";
-	protected $db = "HISTORY_CHAINS";
+	protected $db = "history_chains";
 	public $connected = FALSE;
 	public $dbConn;
 
@@ -63,16 +63,3 @@ class Mysql_Connection {
 	}
 	
 }
-
-/* TESTS */
-
-$sqlConnection = new Mysql_Connection();
-
-var_dump($sqlConnection->getConn());
-echo "<br>";
-var_dump($sqlConnection);
-echo "<br>";
-$sqlConnection->closeConn();
-echo "<br>";
-var_dump($sqlConnection);
-
