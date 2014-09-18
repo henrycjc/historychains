@@ -1,10 +1,17 @@
-<?php require("app/configs/Global_Config.php"); ?>
+<?php
+require("app/configs/Global_Config.php");
+$mysqli = new Mysql_Connection();
+$model = new Model($mysqli->getConn());
+$view = new View($model);
+$controller = new Controller($model, $view);
+
+?>
 <!DOCTYPE html>
 <html> 
 	<head>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<script type="text/javascript" />
+		<script type="text/javascript">
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "index_mobile.php";
 			};
@@ -32,10 +39,23 @@
 				<div class="SearchWrap">
 					<h2>Search</h2>
 					<form>
-						<input type="text" name="SearchField" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>	
+						<input id="q" type="text" name="q" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
 					</form>
 					<article class="SearchResults">
-						<p>Start Searching so we can show you some results!</p>
+                        <?php
+                            if (isset($_GET['q'])) {
+                                if ($_GET['q'] === "") {
+                                    printf("<p>%s</p>", $view::BLANK_ENTRY);
+                                } else {
+                                    $controller->handleSearch($_GET['q']);
+                                }
+
+                            } else {
+                                printf("<p>%s</p>\n", $view::NO_ENTRY_YET);
+                            }
+
+                        ?>
+
 					</article>
 				</div>
 			</section>

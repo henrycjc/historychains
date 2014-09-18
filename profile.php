@@ -3,7 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<script type="text/javascript" /><!-- page redirect-->
+		<script type="text/javascript"><!-- page redirect-->
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "profile_mobile.php";
 			};

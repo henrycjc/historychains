@@ -3,10 +3,21 @@
 class Model {
 	
 	protected $mysqli;
+    protected $API_KEY = "6giss2nf0mavv6gk";
 
 	public function __construct(mysqli $mysqli) {
 		$this->mysqli = $mysqli;
 	}
+
+    public function getTroveResults($q, $zone) {
+        $str = "http://api.trove.nla.gov.au/result?key=".$this->API_KEY."&zone=".$zone."&q=".urlencode(strip_tags(trim($q)))."&encoding=json";
+        $file = file_get_contents($str);
+        $result = json_decode($file, TRUE);
+        if ($file !== NULL) {
+            return $result['response']['zone'][0]['records']['work'];
+        }
+        return NULL;
+    }
 
     private function getChainsById($userid) {
 
@@ -26,7 +37,7 @@ class Model {
         $result->close();
         return chains;
     }
-	
+
 	private function getUserCount() {
 
 		$count = -1;
