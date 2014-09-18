@@ -209,7 +209,7 @@
 		    		// Get the values from our search form
 				    var searchTerm = $("#searchTerm").val();
 				    // Set the search zone - alternatively you can set this using a form input
-				    var searchZone = "all";
+				    var searchZone = 'newspaper';
 				    var sortBy = $("#sortBy").val();
 			    
 				    /* 
@@ -238,7 +238,7 @@
 				        $('#output').empty();
 
 				        $.each(data.response.zone[0].records.article, function(index, value) {
-				          	$("#output").append("<h3>" + index + " " + value.Title + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
+				          	$("#output").append("<button type='submit' id='addtochain'>Add to Chain</button>" + "<h3>" + index + " " + value.work + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
 							$('.SearchTitle').text('Your Search Was Successful!');
 							$('.SearchTitle').css('color', '#02A2EF');
 				        });
