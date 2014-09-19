@@ -232,15 +232,16 @@
 				    *	Requires the search URL
 				    */	
 				    console.log(url);
-			    	
+			    	var counter = 1;
 				    $.getJSON(url, function(data) {
 				    	// clear the HTML div that will display the results
 				        $('#output').empty();
 
 				        $.each(data.response.zone[0].records.article, function(index, value) {
-				          	$("#output").append("<button type='submit' id='addtochain'>Add to Chain</button>" + "<h3>" + index + " " + value.work + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
+				          	$("#output").append("<button class='addtochain' type='submit' id='addtochain" + counter + "'"  + ">Add to Chain</button>" + "<h3>" + index + " " + value.work + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
 							$('.SearchTitle').text('Your Search Was Successful!');
 							$('.SearchTitle').css('color', '#02A2EF');
+							counter += 1;
 				        });
 					});
 				});
