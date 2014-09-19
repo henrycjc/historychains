@@ -136,7 +136,7 @@ h3 {
 #splash_page {
 	background: #02A2EF;
 }
-
+ 
 .DOB {
 	width: 50%;
 	display: inline;
@@ -144,5 +144,5 @@ h3 {
 
 #output {
 	word-wrap: break-word;
-		max-width: auto;
+	max-width: auto;
 }

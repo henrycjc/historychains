@@ -62,46 +62,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					// Replace the apiKey variable with your own from Trove - required for conducting searches using the Trove API
 					// http://help.nla.gov.au/trove/building-with-trove/api
 					var apiKey = "6giss2nf0mavv6gk";;
-					// There is an issue with TROVE applications where the first search will result in nothing being returned
-					// To get around this, we perform a dummy form submit.
-					$("form#searchTrove").submit();
-					// action that occurs when the form is submitted - either through hitting the enter key or by clicking on Search
-					$("form#searchTrove").submit(function() {
-					// Get the values from our search form
-					var searchTerm = $("#searchTerm").val();
-					// Set the search zone - alternatively you can set this using a form input
-					var searchZone = "newspaper,article,book";
-					var sortBy = $("#sortBy").val();
-					/* 
-					*	Construct the URL for the Trove Search API
-					* 	http://api.trove.nla.gov.au/result? is the base URL required for accessing the TROVE API
-					* 	Additional arguments are sent as key/value pairs separated by the & sign
-					* 	key is the API key needed to access the API
-					* 	encoding tells the API how to return the results - json or xml (default)
-					* 	zone tells the API where to perform the search - book, picture, article, music, map, collection, newspaper, list or all can be used
-					* 	sortby tells the API how to sort the results - datedesc, dateasc, relevance
-					* 	q is the set of keywords to search on, alternatively you can use Indexes to refine the search terms (see the API documentation for how to use indexes & which zones support each one
-					*	callback allows you to specify a function to process the response - even if you choose not to set one, you need to include the callback parameter
-					* 	See the API documentation for other parameters you can use in the search string
-					*/ 
-					var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&zone=" + searchZone + "&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=10&encoding=json&callback=?";
-					/*	
-					* 	Perform the search using jQuery's getJSON method
-					*	Requires the search URL
-					*/	
-					console.log(url);
-					$.getJSON(url, function(data) {
-						// clear the HTML div that will display the results
-							$('#output').empty();
-							$.each(data.response.zone.records, function(index, value) {
-				          	$("#output").append("<h3>" + index + " " + value.heading + "</h3>" + "<p>" + value.articleText +"</p><hr/>");
-								$('.SearchTitle').text('Your Search Was Successful!');
-								$('.SearchTitle').css('color', '#02A2EF');
+					$(document).ready(function(){
+						// There is an issue with TROVE applications where the first search will result in nothing being returned
+						// To get around this, we perform a dummy form submit.
+						$("form#searchTrove").submit();
+						// action that occurs when the form is submitted - either through hitting the enter key or by clicking on Search
+						$("form#searchTrove").submit(function() {
+							// Get the values from our search form
+							var searchTerm = $("#searchTerm").val();
+							// Set the search zone - alternatively you can set this using a form input
+							var searchZone = 'newspaper';
+							var sortBy = $("#sortBy").val();
+							/* 
+							*	Construct the URL for the Trove Search API
+							* 	http://api.trove.nla.gov.au/result? is the base URL required for accessing the TROVE API
+							* 	Additional arguments are sent as key/value pairs separated by the & sign
+							* 	key is the API key needed to access the API
+							* 	encoding tells the API how to return the results - json or xml (default)
+							* 	zone tells the API where to perform the search - book, picture, article, music, map, collection, newspaper, list or all can be used
+							* 	sortby tells the API how to sort the results - datedesc, dateasc, relevance
+							* 	q is the set of keywords to search on, alternatively you can use Indexes to refine the search terms (see the API documentation for how to use indexes & which zones support each one
+							*	callback allows you to specify a function to process the response - even if you choose not to set one, you need to include the callback parameter
+							* 	See the API documentation for other parameters you can use in the search string
+							*/ 
+							var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&encoding=json&zone=" + searchZone + 
+							"&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=10&include=articletext,pdf&encoding=json&callback=?";
+						
+							/*	
+							* 	Perform the search using jQuery's getJSON method
+							*	Requires the search URL
+							*/	
+							console.log(url);
+							var counter = 1;
+							$.getJSON(url, function(data) {
+								// clear the HTML div that will display the results
+								$('#output').empty();
+
+								$.each(data.response.zone[0].records.article, function(index, value) {
+									$("#output").append("<button class='addtochain' type='submit' id='addtochain" + counter + "'"  + ">Add to Chain</button>" + "<h3>" + index + " " + value.work + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
+									$('.SearchTitle').text('Your Search Was Successful!');
+									$('.SearchTitle').css('color', '#02A2EF');
+									$( ".ui-icon-loading" ).hide();
+									counter += 1;
+								});
 							});
-					});
+						});
 					});
 				});
-			});	
+			});
 		</script>
 	</head>
 <body>
