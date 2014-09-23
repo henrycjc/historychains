@@ -45,12 +45,14 @@ $controller = new Controller($model, $view);
                         <?php
                             if (isset($_GET['q'])) {
                                 if ($_GET['q'] === "") {
+                                	$view->blankEntry();
                                     printf("<p>%s</p>", $view::BLANK_ENTRY);
                                 } else {
                                     $controller->handleSearch($_GET['q']);
                                 }
 
                             } else {
+                            	
                                 printf("<p>%s</p>\n", $view::NO_ENTRY_YET);
                             }
 

@@ -1,3 +1,16 @@
+<?php
+require("app/configs/Global_Config.php");
+$mysqli = new Mysql_Connection();
+$model = new Model($mysqli->getConn());
+$view = new View($model);
+$controller = new Controller($model, $view);
+
+
+d($_POST);
+
+
+?>
+
 <!DOCTYPE html>
 <html> 
 	<head>
@@ -60,20 +73,24 @@
 				<h2>Let's Get Started!</h2>
 				<button type="button" class="New_Chain_Link">Create a Chain</button>
 				<button type="button" class="Exist_Link">Edit a Chain</button>
-				<form class="CreateNew">
+				<form class="CreateNew" action="createchain.php" method="post">
 					<h2>Create a New Chain!</h2>
 					<p>Title:</p><input type="text" placeholder="Chain Title" />
 					<p>Tags:</p><input type="text" placeholder="Tags" />
-					<p><input type="button" value="Create Chain!"></p>
+					<p><input name="mkChain" id="mkChain" type="submit" value="Create Chain!" ></p>
 				</form>
 				
 				<div class="ListedChains">
 					<h2>Edit Your Chains</h2>
 					<select name="Chains">
+						<?php
+							$controller->handleEditChains(1);  // hard coded for now 
+						?>
+						<!--
 						<option value="Chain1">Chain 1</option>
 						<option value="Chain2">Chain 2</option>
 						<option value="Chain3">Chain 3</option>
-						<option value="Chain4">Chain 4</option>
+						<option value="Chain4">Chain 4</option> -->
 					</select>
 				</div>
 			</div>
@@ -191,10 +208,7 @@
 	</section>
 	
 	<script type="text/javascript">
-			// http://jsonviewer.stack.hu/
-
-			// Replace the apiKey variable with your own from Trove - required for conducting searches using the Trove API
-			// http://help.nla.gov.au/trove/building-with-trove/api
+			/*
 			var apiKey = "6giss2nf0mavv6gk";;
 		
 			$(document).ready(function(){
@@ -212,25 +226,8 @@
 				    var searchZone = 'newspaper';
 				    var sortBy = $("#sortBy").val();
 			    
-				    /* 
-				    *	Construct the URL for the Trove Search API
-				    * 	http://api.trove.nla.gov.au/result? is the base URL required for accessing the TROVE API
-				    * 	Additional arguments are sent as key/value pairs separated by the & sign
-				    * 	key is the API key needed to access the API
-				    * 	encoding tells the API how to return the results - json or xml (default)
-				    * 	zone tells the API where to perform the search - book, picture, article, music, map, collection, newspaper, list or all can be used
-				    * 	sortby tells the API how to sort the results - datedesc, dateasc, relevance
-				    * 	q is the set of keywords to search on, alternatively you can use Indexes to refine the search terms (see the API documentation for how to use indexes & which zones support each one
-				    *	callback allows you to specify a function to process the response - even if you choose not to set one, you need to include the callback parameter
-				    * 	See the API documentation for other parameters you can use in the search string
-				    */ 
 				    var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&encoding=json&zone=" + searchZone + 
 				    "&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=5&include=articletext,pdf&encoding=json&callback=?";
-				
-				    /*	
-				    * 	Perform the search using jQuery's getJSON method
-				    *	Requires the search URL
-				    */	
 				    console.log(url);
 			    	var counter = 1;
 				    $.getJSON(url, function(data) {
@@ -245,7 +242,7 @@
 				        });
 					});
 				});
-			});
+			}); */
 		</script>
 			
 			

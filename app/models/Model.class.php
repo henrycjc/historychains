@@ -19,23 +19,27 @@ class Model {
         return NULL;
     }
 
-    private function getChainsById($userid) {
+    public function getChainsById($userid) {
 
         $queryStr = "SELECT *
-                     FROM `chain`
-                     WHERE `uid` = ".$userid;
+                     FROM `user_chain`
+                     WHERE `id` = ".$userid;
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
+        d($result);
+        if ($result === FALSE) {
+            return NULL;
+        }
         while ($row = $result->fetch_assoc()) {
-            $chains[] = $row['chainid'];
+            $chains[] = $row;
             $count++;
         }
-        if (count === 0) {
+        if ($count === 0) {
             return NULL;
         }
         $result->close();
-        return chains;
+        return $chains;
     }
 
 	private function getUserCount() {

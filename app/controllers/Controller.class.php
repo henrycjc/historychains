@@ -16,6 +16,13 @@ class Controller {
         $this->view->showTroveResults($bookResults);
     }
 
-
+    public function handleEditChains($user) {
+        $chains = $this->model->getChainsById($user);
+        if ($chains === NULL) {
+            return NULL;
+        } else {
+            $this->view->showUsersChains($chains);
+        }
+    }
 	
 }
