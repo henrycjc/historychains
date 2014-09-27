@@ -11,6 +11,7 @@ d($_POST);
 
 ?>
 
+
 <!DOCTYPE html>
 <html> 
 	<head>
@@ -97,116 +98,118 @@ d($_POST);
 			
 						<div style="clear:both"></div>
 			
-			<section class="Search">
-				<div class="SearchWrap">
-					<h2>Search</h2>
-					<form action="#" id="searchTrove">
-						<input type="text" id="searchTerm" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
-						<select id="sortBy">
-							<option>relevance</option>
-							<option>dateasc</option>
-							<option>datedesc</option>
-						</select>
-						<button type="submit" id="searchbtn">Search</button>
+			<div class="app">
+				<section class="Search">
+					<div class="SearchWrap">
+						<h2>Search</h2>
+						<form action="#" id="searchTrove">
+							<input type="text" id="searchTerm" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
+							<select id="sortBy">
+								<option>relevance</option>
+								<option>dateasc</option>
+								<option>datedesc</option>
+							</select>
+							<button type="submit" id="searchbtn">Search</button>
 
-						
-					</form>
-					<article class="SearchResults">
-						<div class="results">
-							<div id="output">
-								<h4>Search Results</h4>
+							
+						</form>
+						<article class="SearchResults">
+							<div class="results">
+								<div id="output">
+									<h4>Search Results</h4>
+								</div>
+
 							</div>
+							<p class="SearchTitle">Start Searching so we can show you some results!</p>
+						</article>
+					</div>
+				</section>
+				
+						
+		<section class="TopChain">
+			<h2>Your Chain</h2>
+			<section id="cd-timeline" class="cd-container">
+				<div class="cd-timeline-block">
+					<div class="cd-timeline-img cd-picture">
+						<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+					</div> <!-- cd-timeline-img -->
 
-						</div>
-						<p class="SearchTitle">Start Searching so we can show you some results!</p>
-					</article>
-				</div>
-			</section>
-			
-					
-	<section class="TopChain">
-		<h2>Your Chain</h2>
-		<section id="cd-timeline" class="cd-container">
-			<div class="cd-timeline-block">
-				<div class="cd-timeline-img cd-picture">
-					<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
-				</div> <!-- cd-timeline-img -->
+					<div class="cd-timeline-content">
+						<h2>Australian Politics</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+						<a href="#0" class="cd-read-more">Read more</a>
+						<span class="cd-date">Jan 14</span>
+					</div> <!-- cd-timeline-content -->
+				</div> <!-- cd-timeline-block -->
 
-				<div class="cd-timeline-content">
-					<h2>Australian Politics</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-					<a href="#0" class="cd-read-more">Read more</a>
-					<span class="cd-date">Jan 14</span>
-				</div> <!-- cd-timeline-content -->
-			</div> <!-- cd-timeline-block -->
+				<div class="cd-timeline-block">
+					<div class="cd-timeline-img cd-movie">
+						<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+					</div> <!-- cd-timeline-img -->
 
-			<div class="cd-timeline-block">
-				<div class="cd-timeline-img cd-movie">
-					<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
-				</div> <!-- cd-timeline-img -->
+					<div class="cd-timeline-content">
+						<h2>Title of section 2</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+						<a href="#0" class="cd-read-more">Read more</a>
+						<span class="cd-date">Jan 18</span>
+					</div> <!-- cd-timeline-content -->
+				</div> <!-- cd-timeline-block -->
 
-				<div class="cd-timeline-content">
-					<h2>Title of section 2</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-					<a href="#0" class="cd-read-more">Read more</a>
-					<span class="cd-date">Jan 18</span>
-				</div> <!-- cd-timeline-content -->
-			</div> <!-- cd-timeline-block -->
+				<div class="cd-timeline-block">
+					<div class="cd-timeline-img cd-picture">
+						<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+					</div> <!-- cd-timeline-img -->
 
-			<div class="cd-timeline-block">
-				<div class="cd-timeline-img cd-picture">
-					<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
-				</div> <!-- cd-timeline-img -->
+					<div class="cd-timeline-content">
+						<h2>Title of section 3</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+						<a href="#0" class="cd-read-more">Read more</a>
+						<span class="cd-date">Jan 24</span>
+					</div> <!-- cd-timeline-content -->
+				</div> <!-- cd-timeline-block -->
 
-				<div class="cd-timeline-content">
-					<h2>Title of section 3</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
-					<a href="#0" class="cd-read-more">Read more</a>
-					<span class="cd-date">Jan 24</span>
-				</div> <!-- cd-timeline-content -->
-			</div> <!-- cd-timeline-block -->
+				<div class="cd-timeline-block">
+					<div class="cd-timeline-img cd-location">
+						<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
+					</div> <!-- cd-timeline-img -->
 
-			<div class="cd-timeline-block">
-				<div class="cd-timeline-img cd-location">
-					<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
-				</div> <!-- cd-timeline-img -->
+					<div class="cd-timeline-content">
+						<h2>Title of section 4</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+						<a href="#0" class="cd-read-more">Read more</a>
+						<span class="cd-date">Feb 14</span>
+					</div> <!-- cd-timeline-content -->
+				</div> <!-- cd-timeline-block -->
 
-				<div class="cd-timeline-content">
-					<h2>Title of section 4</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-					<a href="#0" class="cd-read-more">Read more</a>
-					<span class="cd-date">Feb 14</span>
-				</div> <!-- cd-timeline-content -->
-			</div> <!-- cd-timeline-block -->
+				<div class="cd-timeline-block">
+					<div class="cd-timeline-img cd-location">
+						<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
+					</div> <!-- cd-timeline-img -->
 
-			<div class="cd-timeline-block">
-				<div class="cd-timeline-img cd-location">
-					<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
-				</div> <!-- cd-timeline-img -->
+					<div class="cd-timeline-content">
+						<h2>Title of section 5</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+						<a href="#0" class="cd-read-more">Read more</a>
+						<span class="cd-date">Feb 18</span>
+					</div> <!-- cd-timeline-content -->
+				</div> <!-- cd-timeline-block -->
 
-				<div class="cd-timeline-content">
-					<h2>Title of section 5</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
-					<a href="#0" class="cd-read-more">Read more</a>
-					<span class="cd-date">Feb 18</span>
-				</div> <!-- cd-timeline-content -->
-			</div> <!-- cd-timeline-block -->
+				<div class="cd-timeline-block">
+					<div class="cd-timeline-img cd-movie">
+						<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+					</div> <!-- cd-timeline-img -->
 
-			<div class="cd-timeline-block">
-				<div class="cd-timeline-img cd-movie">
-					<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
-				</div> <!-- cd-timeline-img -->
-
-				<div class="cd-timeline-content">
-					<h2>Final Section</h2>
-					<p>This is the content of the last section</p>
-					<span class="cd-date">Feb 26</span>
-				</div> <!-- cd-timeline-content -->
-			</div> <!-- cd-timeline-block -->
-		</section> <!-- cd-timeline -->
-		<script src="/resources/vendor/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
-	</section>
-	
+					<div class="cd-timeline-content">
+						<h2>Final Section</h2>
+						<p>This is the content of the last section</p>
+						<span class="cd-date">Feb 26</span>
+					</div> <!-- cd-timeline-content -->
+				</div> <!-- cd-timeline-block -->
+			</section> <!-- cd-timeline -->
+			<script src="/resources/vendor/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
+		</section>
+	</div>
+	<div style="clear:both"></div>
 	<script type="text/javascript">
 			/*
 			var apiKey = "6giss2nf0mavv6gk";;
