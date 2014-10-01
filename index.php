@@ -50,9 +50,7 @@ $controller = new Controller($model, $view);
                                 } else {
                                     $controller->handleSearch($_GET['q']);
                                 }
-
                             } else {
-                            	
                                 printf("<p>%s</p>\n", $view::NO_ENTRY_YET);
                             }
 

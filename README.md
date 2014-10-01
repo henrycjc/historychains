@@ -12,6 +12,25 @@
 * 6. If not finished go to 5. If finished, go to 7..
 * 7. Publish chain.
 
+## TO DO
+* Home page splash screen
+* Redirection for login
+* Home page top chains
+* “Create Chain” functionality
+* Adding source to chain
+* Drawing the chain
+* Saving state of chain
+* Load an existing chain
+* Edit an existing chain
+* Visually pleasing chain workflow
+* Visually appealing search results
+* User System
+* Profile page
+* Logging In/Out (cookies)
+* Rating/Rep System
+* Simple tutorial / infographic
+
+
 
 
 ##Live Site
