@@ -19,11 +19,22 @@ class Model {
         return NULL;
     }
 
-    public function getChainsById($userid) {
+    public function createNewChain($user, $title, $topic) {
+
+        $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`)
+                     VALUES ('".$user."', '".$title."', '".$topic."')";
+        if ($this->mysqli->query($queryStr) !== TRUE) {
+            return $this->mysqli-error;
+        } else {
+            return TRUE;
+        }
+    }
+
+    public function getChainsById($user) {
 
         $queryStr = "SELECT *
                      FROM `user_chain`
-                     WHERE `id` = ".$userid;
+                     WHERE `id` = ".$user;
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);

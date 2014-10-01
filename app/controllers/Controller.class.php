@@ -24,5 +24,15 @@ class Controller {
             $this->view->showUsersChains($chains);
         }
     }
-	
+
+    public function handleCreateChain($user, $title, $topic) {
+        if ($title === "" || $topic === "") {
+            return FALSE;
+        }
+        if ($this->model->createNewChain($user, $title, $topic) === TRUE) {
+
+        } else {
+
+        }
+    }
 }

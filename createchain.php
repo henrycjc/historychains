@@ -4,10 +4,13 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
+$user = new User();
 
+//d($_POST);
 
-d($_POST);
-
+if (isset($_POST['mkChain'])) {
+    $controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
+}
 
 ?>
 
@@ -19,7 +22,7 @@ d($_POST);
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		
+		<script src="resources/plugins/validation/jquery.validate.js"></script>
 		<!-- This is for the timeline -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,11 +77,14 @@ d($_POST);
 				<h2>Let's Get Started!</h2>
 				<button type="button" class="New_Chain_Link">Create a Chain</button>
 				<button type="button" class="Exist_Link">Edit a Chain</button>
-				<form class="CreateNew" action="createchain.php" method="post">
+				<form id="mkChainForm" class="CreateNew" action="createchain.php" method="post">
 					<h2>Create a New Chain!</h2>
-					<p>Title:</p><input type="text" placeholder="Chain Title" />
-					<p>Tags:</p><input type="text" placeholder="Tags" />
+					<p>Title:</p><input id="title" name="title" type="text" placeholder="Chain Title" />
+					<p>Tags:</p><input id="topic" name="topic" type="text" placeholder="Tags" />
 					<p><input name="mkChain" id="mkChain" type="submit" value="Create Chain!" ></p>
+                    <script>
+                        $('#mkChainForm').validate();
+                    </script>
 				</form>
 				
 				<div class="ListedChains">
@@ -131,7 +137,7 @@ d($_POST);
 			<section id="cd-timeline" class="cd-container">
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-picture">
-						<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+						<img src="/resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">
@@ -144,7 +150,7 @@ d($_POST);
 
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-movie">
-						<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+						<img src="/resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">
@@ -157,7 +163,7 @@ d($_POST);
 
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-picture">
-						<img src="/resources/vendor/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+						<img src="/resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">
@@ -170,7 +176,7 @@ d($_POST);
 
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-location">
-						<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
+						<img src="/resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">
@@ -183,7 +189,7 @@ d($_POST);
 
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-location">
-						<img src="/resources/vendor/vertical-timeline/img/cd-icon-location.svg" alt="Location">
+						<img src="/resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">
@@ -196,7 +202,7 @@ d($_POST);
 
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-movie">
-						<img src="/resources/vendor/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+						<img src="/resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">
@@ -206,53 +212,11 @@ d($_POST);
 					</div> <!-- cd-timeline-content -->
 				</div> <!-- cd-timeline-block -->
 			</section> <!-- cd-timeline -->
-			<script src="/resources/vendor/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
+			<script src="/resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
 		</section>
 	</div>
 	<div style="clear:both"></div>
-	<script type="text/javascript">
-			/*
-			var apiKey = "6giss2nf0mavv6gk";;
-		
-			$(document).ready(function(){
 
-				// There is an issue with TROVE applications where the first search will result in nothing being returned
-				// To get around this, we perform a dummy form submit.
-				$("form#searchTrove").submit();
-
-				// action that occurs when the form is submitted - either through hitting the enter key or by clicking on Search
-				$("form#searchTrove").submit(function() {
-		    		
-		    		// Get the values from our search form
-				    var searchTerm = $("#searchTerm").val();
-				    // Set the search zone - alternatively you can set this using a form input
-				    var searchZone = 'newspaper';
-				    var sortBy = $("#sortBy").val();
-			    
-				    var url = "http://api.trove.nla.gov.au/result?key=" + apiKey + "&encoding=json&zone=" + searchZone + 
-				    "&sortby=" + sortBy + "&q=" + searchTerm + "&s=0&n=5&include=articletext,pdf&encoding=json&callback=?";
-				    console.log(url);
-			    	var counter = 1;
-				    $.getJSON(url, function(data) {
-				    	// clear the HTML div that will display the results
-				        $('#output').empty();
-
-				        $.each(data.response.zone[0].records.article, function(index, value) {
-				          	$("#output").append("<button class='addtochain' type='submit' id='addtochain" + counter + "'"  + ">Add to Chain</button>" + "<h3>" + index + " " + value.work + "</h3>" + "<p>" + value.troveUrl +"</p><hr/>");
-							$('.SearchTitle').text('Your Search Was Successful!');
-							$('.SearchTitle').css('color', '#02A2EF');
-							counter += 1;
-				        });
-					});
-				});
-			}); */
-		</script>
-			
-			
-			
-			
-			
-			
 			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
