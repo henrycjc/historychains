@@ -34,7 +34,22 @@ $user = new User();
 				$(".Exist_Link").click(function(){
 					$(".ListedChains").toggle("slow");
 					$(".CreateNew").hide("slow");
-				}); 
+				});
+
+				$("#mkChain").click(function(){
+					valid = true;
+					if($("#title").val() =="") {
+						alert ("That is not a valid title for a chain.");
+						event.preventDefault();
+					}
+					else if ($("#topic").val() ==""){					
+						alert ("They are not valid tags for a chain.");
+						event.preventDefault();
+					}
+					else {
+						$("#mkChainForm").submit()
+					}
+				});
 			});
 		</script>	
 		<script>
@@ -115,6 +130,40 @@ $user = new User();
 			                            	$view->printMessage("Start searching so we can show you some results!");
 			                            }
 		                        	?>
+									<table id="results_table">
+										<tr>
+											<th class="result_cell">Title</td>
+											<th class="result_cell">Relevance</td>
+											<th class="result_cell">Year</td>
+											<th class="result_cell">Author</td>
+											<th class="result_cell">View</td>
+											<th class="result_cell"> </td>
+										</tr>
+										<tr id="result1" class="results_dark">
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"><button id="addtochain1" class="TableButton">View</button></td>
+											<td class="result_cell"><button id="ViewSource1" class="TableButton">Add to Chain</button></td>
+										</tr>
+										<tr id="result2" class="results_light">
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"><button id="addtochain1" class="TableButton">View</button></td>
+											<td class="result_cell"><button id="ViewSource2" class="TableButton">Add to Chain</button></td>
+										</tr>
+										<tr id="result3" class="results_dark">
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"> </td>
+											<td class="result_cell"><button id="addtochain1" class="TableButton">View</button></td>
+											<td class="result_cell"><button id="ViewSource1" class="TableButton">Add to Chain</button></td>
+										</tr>
+									</table>
                         		</div>
 							</div>
 						</article>

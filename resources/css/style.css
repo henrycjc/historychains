@@ -289,6 +289,18 @@ nav ul li a:hover{
 	
 }
 
+.ErrorInput {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	padding: 5px;
+	width: 200px;
+	display: block;
+	border: 2px solid #FF0000;
+	font-family: 'Raleway', sans-serif;
+	font-size: 20px;
+}
+
 .CreateChain button{
 	margin-left: auto;
 	margin-right: auto;
@@ -356,6 +368,37 @@ nav ul li a:hover{
 	text-align: center; 
 }
 
+#results_table{
+	width: 100%;
+	padding: 5%;
+}
+
+.results_dark{
+	text-align: center;
+	width: 100%;
+	background-color:#99D7F5;
+	height: 25px;
+	margin: 5px 0 5px 0;
+}
+
+.results_light{
+	text-align: center;
+	width: 100%;
+	background-color:#F3FAFE;
+	height: 25px;
+}
+
+.TableButton{
+	padding: 5px;
+	border: 2px solid #02A2EF;
+	font-family: 'Raleway', sans-serif;
+	font-size: 20px;
+	text-align: center; 
+}
+
+.result_cell{
+	width: 16%;
+}
 
 
 
