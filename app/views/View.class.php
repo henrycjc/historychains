@@ -2,9 +2,6 @@
 
 class View {
 
-    const BLANK_ENTRY = "Please enter a valid search term!\n";
-    const NO_ENTRY_YET = "Start searching so we can show you some results!\n";
-
     private $model;
 
     function __construct($model) {
@@ -14,8 +11,10 @@ class View {
     public function showTroveResults($results) {
         // TODO: Print them out as list elements
         foreach($results as $book) {
-            printf("<p>%s<br>%s<br> %s<br>%s<br></p>", $book['title'], $book['contributor'][0], $book['issued'], $book['relevance']['value']);
-            printf("<p>~~~</p>\n");
+            if (isset($book['contributor'][0])) {
+                printf("<p>%s<br>%s<br> %s<br>%s<br></p>", $book['title'], $book['contributor'][0], $book['issued'], $book['relevance']['value']);
+                $this->printMessage("=====");
+            }  
         }
 
     }
@@ -31,5 +30,15 @@ class View {
             }
         }
     }
+    public function printMessage($message) {
+        printf("<p>%s</p>", $message);
+    }
+    public function showCreateChainSuccess() {
+        printf("<p>Created Chain!</p>");
+    }
 
+    public function showCreateChainFailure($result) {
+        printf("<p>Could not create chain.</p>");
+        d($result);
+    }
 }

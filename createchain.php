@@ -6,33 +6,23 @@ $view = new View($model);
 $controller = new Controller($model, $view);
 $user = new User();
 
-//d($_POST);
-
-if (isset($_POST['mkChain'])) {
-    $controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
-}
-
 ?>
 
 
 <!DOCTYPE html>
 <html> 
 	<head>
-		<link rel="stylesheet" href="resources/plugins/vertical-timeline/css/style.css"> <!-- Resource style -->
-		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="resources/plugins/validation/jquery.validate.js"></script>
-		<!-- This is for the timeline -->
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="/resources/plugins/vertical-timeline/css/style.css" /> <!-- Resource style -->
-		<script src="/resources/plugins/vertical-timeline/js/modernizr.js"></script> <!-- Modernizr -->
-		<!-- This is for the timeline -->
-
-	
+		<title>History Chains > Create Chain</title>
+		<link rel="stylesheet" type="text/css" href="resources/plugins/vertical-timeline/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700" />
+		<link rel="stylesheet" type="text/css" href="/resources/plugins/vertical-timeline/css/style.css" />
+		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="resources/plugins/validation/jquery.validate.js"></script>
 		<script>
 			$(document).ready(function(){
 				$(".CreateNew").hide(); 
@@ -46,14 +36,12 @@ if (isset($_POST['mkChain'])) {
 					$(".CreateNew").hide("slow");
 				}); 
 			});
-		</script>
-		
-		<script type="text/javascript"><!-- page redirect-->
+		</script>	
+		<script>
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "createchain_mobile.php";
 			};
 		</script>
-		
 	</head>
 	
 	<body>
@@ -66,10 +54,10 @@ if (isset($_POST['mkChain'])) {
 			
 			<nav class="nav1">
 				<ul> 
-					<li> <a href="index.php">Home</a> </li><li class="current_page">
-					 <a href="createchain.php">Create Chain</a> </li><li>
-					<a href="profile.php">Profile</a> </li><li>
-					<a href="about.php">About</a> </li>
+					<li><a href="index.php">Home</a> </li>
+					<li class="current_page"><a href="createchain.php">Create Chain</a> </li>
+					<li><a href="profile.php">Profile</a> </li>
+					<li><a href="about.php">About</a> </li>
 				</ul>
 			</nav>
 			
@@ -82,22 +70,18 @@ if (isset($_POST['mkChain'])) {
 					<p>Title:</p><input id="title" name="title" type="text" placeholder="Chain Title" />
 					<p>Tags:</p><input id="topic" name="topic" type="text" placeholder="Tags" />
 					<p><input name="mkChain" id="mkChain" type="submit" value="Create Chain!" ></p>
-                    <script>
-                        $('#mkChainForm').validate();
-                    </script>
 				</form>
-				
+				<?php
+				if (isset($_POST['mkChain'])) {
+    				$controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
+				}
+				?>
 				<div class="ListedChains">
 					<h2>Edit Your Chains</h2>
 					<select name="Chains">
 						<?php
-							$controller->handleEditChains(1);  // hard coded for now 
+							$controller->handleEditChains($user->getId());
 						?>
-						<!--
-						<option value="Chain1">Chain 1</option>
-						<option value="Chain2">Chain 2</option>
-						<option value="Chain3">Chain 3</option>
-						<option value="Chain4">Chain 4</option> -->
 					</select>
 				</div>
 			</div>
@@ -108,25 +92,31 @@ if (isset($_POST['mkChain'])) {
 				<section class="Search">
 					<div class="SearchWrap">
 						<h2>Search</h2>
-						<form action="#" id="searchTrove">
-							<input type="text" id="searchTerm" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
-							<select id="sortBy">
+						<form action="createchain.php" method="GET" id="searchTrove">
+							<input type="text" id="q" name="q" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
+							<select id="sortBy" name="sort">
 								<option>relevance</option>
 								<option>dateasc</option>
 								<option>datedesc</option>
 							</select>
 							<button type="submit" id="searchbtn">Search</button>
-
-							
 						</form>
 						<article class="SearchResults">
 							<div class="results">
 								<div id="output">
-									<h4>Search Results</h4>
-								</div>
-
+									<?php
+			                            if (isset($_GET['q'])) {
+			                                if ($_GET['q'] === "") {
+			                                	$view->printMessage("Please enter a valid search term!");
+			                                } else {
+			                                    $controller->handleSearch($_GET['q'], $_GET['sort']);
+			                                }
+			                            } else {
+			                            	$view->printMessage("Start searching so we can show you some results!");
+			                            }
+		                        	?>
+                        		</div>
 							</div>
-							<p class="SearchTitle">Start Searching so we can show you some results!</p>
 						</article>
 					</div>
 				</section>
@@ -137,7 +127,7 @@ if (isset($_POST['mkChain'])) {
 			<section id="cd-timeline" class="cd-container">
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-picture">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+						<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">
 					</div> <!-- cd-timeline-img -->
 
 					<div class="cd-timeline-content">

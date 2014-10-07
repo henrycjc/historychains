@@ -10,7 +10,7 @@ class Controller {
         $this->view = $view;
     }
 
-    public function handleSearch($q) {
+    public function handleSearch($q, $sort) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');
         $this->view->showTroveResults($bookResults);
@@ -26,13 +26,18 @@ class Controller {
     }
 
     public function handleCreateChain($user, $title, $topic) {
+
         if ($title === "" || $topic === "") {
             return FALSE;
         }
-        if ($this->model->createNewChain($user, $title, $topic) === TRUE) {
-
+        $result = $this->model->createNewChain($user, $title, $topic);
+        
+        if ($result === TRUE) {
+            $this->view->printMessage("Created Chain: %s!", $title);
         } else {
-
+            d($result);
+            $this->view->showCreateChainFailure($result);
         }
+        return TRUE;
     }
 }
