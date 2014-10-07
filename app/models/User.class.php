@@ -2,7 +2,7 @@
 
 class User {
 
-    private $id;
+    private $id = 1; // hard coded for now
     private $username;
     private $password;
     private $fname;
@@ -11,8 +11,16 @@ class User {
     private $dob;
     private $displayImage;
     private $reputation;
+    private $activeChain;
 
+    public function setActiveChain($activeChain) {
+        $this->activeChain = $activeChain;
+    }
 
+    public function getActiveChain($activeChain) {
+
+    }
+    
     public function setDisplayImage($displayImage) {
         $this->displayImage = $displayImage;
     }

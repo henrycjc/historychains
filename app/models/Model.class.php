@@ -24,7 +24,7 @@ class Model {
         $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`)
                      VALUES ('".$user."', '".$title."', '".$topic."')";
         if ($this->mysqli->query($queryStr) !== TRUE) {
-            return $this->mysqli-error;
+            return $this->mysqli->error;
         } else {
             return TRUE;
         }
@@ -35,6 +35,7 @@ class Model {
         $queryStr = "SELECT *
                      FROM `user_chain`
                      WHERE `id` = ".$user;
+                     
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
