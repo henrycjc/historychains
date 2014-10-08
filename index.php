@@ -53,14 +53,13 @@ $controller = new Controller($model, $view);
                             if (isset($_GET['q'])) {
                                 if ($_GET['q'] === "") {
                                 	$view->blankEntry();
-                                    printf("<p>%s</p>", $view::BLANK_ENTRY);
+                                    $view->printMessage("swag");
                                 } else {
                                     $controller->handleSearch($_GET['q']);
                                 }
                             } else {
-                                printf("<p>%s</p>\n", $view::NO_ENTRY_YET);
+                                $view->printMessage("Please enter a valid search term!");
                             }
-
                         ?>
 
 					</article>

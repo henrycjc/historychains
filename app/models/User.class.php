@@ -20,7 +20,7 @@ class User {
     public function getActiveChain($activeChain) {
 
     }
-    
+
     public function setDisplayImage($displayImage) {
         $this->displayImage = $displayImage;
     }
@@ -46,13 +46,7 @@ class User {
         return $this->fname;
     }
 
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 

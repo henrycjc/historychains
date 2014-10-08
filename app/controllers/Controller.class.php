@@ -33,7 +33,7 @@ class Controller {
         $result = $this->model->createNewChain($user, $title, $topic);
         
         if ($result === TRUE) {
-            $this->view->printMessage("Created Chain: %s!", $title);
+            printf("Created Chain: %s!", $title);
         } else {
             d($result);
             $this->view->showCreateChainFailure($result);

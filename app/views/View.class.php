@@ -10,9 +10,10 @@ class View {
 
     public function showTroveResults($results) {
         // TODO: Print them out as list elements
+        d($results);
         foreach($results as $book) {
             if (isset($book['contributor'][0])) {
-                printf("<p>%s<br>%s<br> %s<br>%s<br></p>", $book['title'], $book['contributor'][0], $book['issued'], $book['relevance']['value']);
+                printf("<p>%s<br>%s<br>%s<br> %s<br>%s<br></p>", $book['id'], $book['title'], $book['contributor'][0], $book['issued'], $book['relevance']['value']);
                 $this->printMessage("=====");
             }  
         }
