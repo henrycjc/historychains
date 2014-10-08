@@ -37,7 +37,7 @@ Modules - reusable parts of our design
 -------------------------------- */
 .cd-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
-  width: 90%;
+  width: 99%;
   max-width: 1170px;
   margin: 0 auto;
 }
@@ -119,11 +119,11 @@ Main components
 }
 .cd-timeline-img img {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   position: relative;
-  left: 50%;
-  top: 50%;
+  left: 59%;
+  top: 59%;
   margin-left: -12px;
   margin-top: -12px;
 }
@@ -138,9 +138,9 @@ Main components
 }
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
-    width: 60px;
-    height: 60px;
-    left: 50%;
+    width: 30px;
+    height: 30px;
+    left: 52.5%;
     margin-left: -30px;
     /* Force Hardware Acceleration in WebKit */
     -webkit-transform: translateZ(0);
@@ -216,11 +216,11 @@ Main components
 }
 .cd-timeline-content {
   position: relative;
-  margin-left: 60px;
+  margin-left: 30px;
   background: white;
   border-radius: 0.25em;
-  padding: 1em;
   box-shadow: 0 3px 0 #d7e4ed;
+  padding: 5px;
 }
 .cd-timeline-content:after {
   content: "";
@@ -229,9 +229,10 @@ Main components
 }
 .cd-timeline-content h2 {
   color: #303e49;
+  font-size: 10px;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-  font-size: 13px;
+  font-size: 10px;
   font-size: 0.8125rem;
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
@@ -239,7 +240,7 @@ Main components
 }
 .cd-timeline-content p {
   margin: 1em 0;
-  line-height: 1.6;
+  line-height: 1S;
 }
 .cd-timeline-content .cd-read-more {
   float: right;
@@ -268,11 +269,11 @@ Main components
 }
 @media only screen and (min-width: 768px) {
   .cd-timeline-content h2 {
-    font-size: 20px;
+    font-size: 14px;
     font-size: 1.25rem;
   }
   .cd-timeline-content p {
-    font-size: 16px;
+    font-size: 9px;
     font-size: 1rem;
   }
   .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
@@ -283,7 +284,6 @@ Main components
 @media only screen and (min-width: 1170px) {
   .cd-timeline-content {
     margin-left: 0;
-    padding: 1.6em;
     width: 45%;
   }
   .cd-timeline-content::before {

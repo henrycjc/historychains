@@ -104,7 +104,7 @@ $user = new User();
 						<div style="clear:both"></div>
 			
 			<div class="app">
-				<section class="Search">
+				<section class="Search CreateChainSearch">
 					<div class="SearchWrap">
 						<h2>Search</h2>
 						<form action="createchain.php" method="GET" id="searchTrove">
@@ -171,7 +171,7 @@ $user = new User();
 				</section>
 				
 						
-		<section class="TopChain">
+		<section class="TopChain CreateChainTimeline">
 			<h2>Your Chain</h2>
 			<section id="cd-timeline" class="cd-container">
 				<div class="cd-timeline-block">
