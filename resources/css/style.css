@@ -365,7 +365,8 @@ nav ul li a:hover{
 
 #results_table{
 	width: 100%;
-	padding: 5%;
+	padding: 2.5%;
+	overflow: auto;
 }
 
 .results_dark{

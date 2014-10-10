@@ -117,7 +117,6 @@ $user = new User();
 							<button type="submit" id="searchbtn">Search</button>
 						</form>
 						<article class="SearchResults">
-							<div class="results">
 								<div id="output">
 									<?php
 			                            if (isset($_GET['q'])) {
@@ -165,7 +164,6 @@ $user = new User();
 										</tr>
 									</table>
                         		</div>
-							</div>
 						</article>
 					</div>
 				</section>
