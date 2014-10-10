@@ -1,8 +1,11 @@
 <!DOCTYPE html> 
 <html> 
 	<head>
-		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- Jquery Library-->
+		<link rel="stylesheet" href="resources/plugins/jquery-popup-form/css/jquery_popup.css" /><!-- Popup Window Stlyesheet-->
+        <script src="resources/plugins/jquery-popup-form/jquery_popup.js"></script><!-- Popup Window JS File-->
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<script type="text/javascript"><!-- page redirect-->
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "profile_mobile.php";
@@ -11,6 +14,44 @@
 	</head>
 	
 	<body>
+		<!-- JQUERY POPUP FORM STARTS HERE-->
+		<div id="InfoDiv">
+			<form class="form" action="#" id="info">	
+				<h3>Edit Your Details</h3>
+				<hr/><br/>
+				<label>Name</label>
+				<br/>
+				<input type="text" id="name" placeholder="Name"/><br/>
+				<br/>
+				<label>Email</label>
+				<br/>
+				<input type="text" id="email" placeholder="Email"/><br/>
+				<br/>
+				<label>DOB</label>
+				<br/>
+				<input type="date" id="DOB" /><br/>
+				<br/>
+				<label>Subjects</label>
+				<br/>
+				<input type="text" id="Subjects" placeholder="Enter your current subjects" /><br/>
+				<br/>
+				<input type="button" id="apply" value="Apply"/>
+				<input type="button" id="cancel" value="Cancel"/>
+				<br/>
+			</form>
+		</div>
+		<div id="PicDiv">
+			<form class="form" action="app/content/upload_profile_picture.php" id="profile_pic">
+				<h3>Edit Your Profile Picture</h3>
+				<input type="file" id="File" /><br/>
+				<br/>
+				<input type="submit" id="upload" value="Apply"/><br/>
+				<br/>
+				<input type="button" id="cancel" value="Cancel"/>
+				<br/>
+			</form>
+		</div>		
+		<!-- JQUERY POPUP FORM ENDS HERE -->
 		<div class="wrap">
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
@@ -30,6 +71,8 @@
 			<aside class="UserInfo">
 				<div class="Image"> <img src="resources/images/profile.jpg"/> </div>
 				<div class="Info"> 
+					<button id="edit_picture">Edit Profile Picture</button>
+					<button id="edit_profile">Edit Profile</button>
 					<h1>Info</h1>
 					<p>Angus Payne</p>
 					<p>28/04/96</p>
