@@ -4,9 +4,15 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+
 @font-face {
-    font-family: Souses;
-    src: url(../fonts/Souses.otf);
+    font-family: 'sousesregular';
+    src: url('../fonts/souses-webfont.eot');
+    src: url('..//fonts/souses-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/souses-webfont.woff2') format('woff2'),
+         url('../fonts/souses-webfont.woff') format('woff'),
+         url('../fonts/souses-webfont.ttf') format('truetype'),
+         url('../fonts/souses-webfont.svg#sousesregular') format('svg');
 }
 
 body {
@@ -32,7 +38,7 @@ font-family: Raleway, Arial, Geneva,Helvetica, sans-serif;
 }
 .drp-dwn select {
 	text-align: center;
-	font-family: Souses, Arial, Geneva,Helvetica, sans-serif;
+	font-family: 'sousesregular', Arial, Geneva,Helvetica, sans-serif;
 	padding: 4px;
 	font-size:13px;
 	outline: none;
@@ -49,12 +55,12 @@ font-family: Raleway, Arial, Geneva,Helvetica, sans-serif;
 	padding: 5px;
 	text-align:center;
 	min-height: 250px;
-	font-family: Souses;
+	font-family: 'sousesregular';
 }
 
 .link {
 	text-align: center;
-	font-family: Souses;
+	font-family: 'sousesregular';
 	background-color: #02A2Ef;
 	color: #ffffff;
 	padding: 5px;
@@ -69,7 +75,7 @@ p {
 }
 
 h1 {
-	font-family: Souses;
+	font-family: 'sousesregular';
 	font-size: 20pt;
 	text-align: center;
 }
@@ -119,7 +125,7 @@ h3 {
 }
 
 .chain_manipulation_div a{
-	font-family: Souses;
+	font-family: 'sousesregular';
 }
 
 .chain_title {
@@ -138,4 +144,26 @@ h3 {
 .DOB {
 	width: 50%;
 	display: inline;
+}
+
+#header {
+	width: 95%;
+	background: #000;
+	border-radius: 5px;
+	display: block;
+	padding: 10px;
+	color: white;
+}
+
+}
+#header h1{
+	float: right;
+	display: inline;
+
+}
+
+#header img{
+	float: left;
+	display: inline;
+	width: 70px
 }

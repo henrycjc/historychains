@@ -20,6 +20,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<main class="main_bg">
 		<div class="basics">
 			<header>
+			<div id="header">
+					<img src="resources/images/logo.png"" alt="History Chains Logo" />
+					<h1>History Chains</h1>
+					<div style="clear:both"></div>
+			</div>
 				<div class="drp-dwn">
 					<select onchange="window.location=this.options[this.selectedIndex].value">
 						<option value="profile_mobile.php">Profile</option>
