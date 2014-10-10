@@ -22,7 +22,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
       echo $_FILES["file"]["name"] . " already exists. ";
     } else {
       move_uploaded_file($_FILES["file"]["tmp_name"],
-      "upload/" . $_FILES["file"]["name"]);
+      "../../resources/images/user_profile_pics/" . $_FILES["file"]["name"]);
       echo "Stored in: " . "../../resources/images/user_profile_pics" . $_FILES["file"]["name"];
     }
   }
