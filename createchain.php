@@ -93,11 +93,13 @@ $user = new User();
 				?>
 				<div class="ListedChains">
 					<h2>Edit Your Chains</h2>
-					<select name="Chains">
+					<select name="Chains", id='sortBy'>
 						<?php
 							$controller->handleEditChains($user->getId());
 						?>
 					</select>
+					<button type="submit" id="searchbtn">Edit</button>
+					<button type="submit" id="searchbtn">Delete</button>
 				</div>
 			</div>
 			
@@ -109,11 +111,6 @@ $user = new User();
 						<h2>Search</h2>
 						<form action="createchain.php" method="GET" id="searchTrove">
 							<input type="text" id="q" name="q" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
-							<select id="sortBy" name="sort">
-								<option>relevance</option>
-								<option>dateasc</option>
-								<option>datedesc</option>
-							</select>
 							<button type="submit" id="searchbtn">Search</button>
 						</form>
 						<article class="SearchResults">
