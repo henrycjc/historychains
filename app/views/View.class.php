@@ -10,12 +10,25 @@ class View {
 
     public function showTroveResults($results) {
         // TODO: Print them out as list elements
-        d($results);
+        //d($results);
+        $colour = 0;
         foreach($results as $book) {
+
             if (isset($book['contributor'][0])) {
-                printf("<p>%s<br>%s<br>%s<br> %s<br>%s<br></p>", $book['id'], $book['title'], $book['contributor'][0], $book['issued'], $book['relevance']['value']);
-                $this->printMessage("=====");
-            }  
+                if ($colour) {
+                    echo '<tr id="result1" class="results_dark">';
+                    $colour = 0;
+                } else {
+                    echo '<tr id="result1" class="results_light">';
+                    $colour = 1;
+                }
+                echo '<td class="result_cell">'.$book["title"].'</td>';
+                echo '<td class="result_cell">'.$book['issued'].'</td>';
+                echo '<td class="result_cell">'.$book["contributor"][0].'</td>';
+                echo '<td class="result_cell"><form action="'.stripslashes($book["troveUrl"]).'" target="_blank"><button id="addtochain1" class="TableButton">View</button></form></td>';
+                echo '<td class="result_cell"><button id="ViewSource1" class="TableButton">Add to Chain</button></td>';
+                echo '</tr>';
+            }
         }
 
     }
@@ -34,12 +47,15 @@ class View {
     public function printMessage($message) {
         printf("<p>%s</p>", $message);
     }
-    public function showCreateChainSuccess() {
-        printf("<p>Created Chain!</p>");
-    }
 
     public function showCreateChainFailure($result) {
-        printf("<p>Could not create chain.</p>");
-        d($result);
+
+        if (strpos($result,'Duplicate entry') !== false) {
+            $this->printMessage("Error: could not create chain, '".$_POST['title']."' already exists");
+        } else {
+            $this->printMessage("Could not create chain!");
+            d($result);
+        }
+
     }
 }

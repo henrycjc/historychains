@@ -35,8 +35,9 @@ class Controller {
         if ($result === TRUE) {
             printf("Created Chain: %s!", $title);
         } else {
-            d($result);
+            //d($result);
             $this->view->showCreateChainFailure($result);
+
         }
         return TRUE;
     }
