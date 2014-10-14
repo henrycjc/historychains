@@ -26,7 +26,7 @@ class View {
                 echo '<td class="result_cell">'.$book['issued'].'</td>';
                 echo '<td class="result_cell">'.$book["contributor"][0].'</td>';
                 echo '<td class="result_cell"><form action="'.stripslashes($book["troveUrl"]).'" target="_blank"><button id="addtochain1" class="TableButton">View</button></form></td>';
-                echo '<td class="result_cell"><button id="ViewSource1" class="TableButton">Add to Chain</button></td>';
+                echo '<td class="result_cell"><form action="createchain.php"><button id="ViewSource1" class="TableButton">Add to Chain</button></form></td>';
                 echo '</tr>';
             }
         }
@@ -39,8 +39,8 @@ class View {
             printf("<p>No chiains exist :( - create one!</p>");
         } else {
             foreach($results as $chain) {
-                printf($chain);
-                printf('<option value="%s">%s</option>', $chain['id'], $chain['title']);
+                //printf($chain);
+                printf('<option value="%s">%s</option>', $chain['title'], $chain['title']);
             }
         }
     }

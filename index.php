@@ -55,7 +55,7 @@ $controller = new Controller($model, $view);
                                 	$view->blankEntry();
                                     $view->printMessage("swag");
                                 } else {
-                                    $controller->handleSearch($_GET['q']);
+                                    $controller->handleChainSearch($_GET['q']);
                                 }
                             } else {
                                 $view->printMessage("Please enter a valid search term!");

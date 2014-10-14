@@ -10,10 +10,20 @@ class Controller {
         $this->view = $view;
     }
 
-    public function handleSearch($q, $sort) {
+    public function getActiveChain($user) {
+        /* REMEMBER TO DO THIS PROPERLY NEXT TIME */
+        printf("Chain Name");
+    }
+
+    public function handleSearch($q) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');
         $this->view->showTroveResults($bookResults);
+    }
+
+    public funciton handleChainSearch($q) {
+        $chainResults = $this->model->getChainResults($q);
+        $this->view->showChainResults($chainResults);
     }
 
     public function handleEditChains($user) {
@@ -40,5 +50,14 @@ class Controller {
 
         }
         return TRUE;
+    }
+
+    public function handleDeleteChain($chain) {
+        $result = $this->model->deleteChain($chain);
+        if ($result === TRUE) {
+            $this->view->printMessage("Chain successfully deleted.");
+        } else {
+            $this->view->printMessage($result);
+        }
     }
 }

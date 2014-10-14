@@ -93,13 +93,15 @@ $user = new User();
 				?>
 				<div class="ListedChains">
 					<h2>Edit Your Chains</h2>
-					<select name="Chains", id='sortBy'>
-						<?php
-							$controller->handleEditChains($user->getId());
-						?>
-					</select>
-					<button type="submit" id="searchbtn">Edit</button>
-					<button type="submit" id="searchbtn">Delete</button>
+					<form action="createchain.php" method="post">
+						<select name="Chains" id="sortBy">
+							<?php
+								$controller->handleEditChains($user->getId());
+							?>
+						</select>
+						<button type="submit" id="edit">Edit</button>
+						<button type="submit" id="del" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
+					</form>
 				</div>
 			</div>
 			
@@ -128,7 +130,7 @@ $user = new User();
 			                                if ($_GET['q'] === "") {
 			                                	$view->printMessage("Please enter a valid search term!");
 			                                } else {
-			                                    $controller->handleSearch($_GET['q'], $_GET['sort']);
+			                                    $controller->handleSearch($_GET['q']);
 			                                }
 			                            } else {
 			                            	$view->printMessage("Start searching so we can show you some results!");
@@ -143,7 +145,7 @@ $user = new User();
 				
 						
 		<section class="TopChain CreateChainTimeline">
-			<h2>Your Chain</h2>
+			<h2><?php $controller->getActiveChain($user); ?></h2>
 			<section id="cd-timeline" class="cd-container">
 				<div class="cd-timeline-block">
 					<div class="cd-timeline-img cd-picture">

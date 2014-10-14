@@ -30,6 +30,16 @@ class Model {
         }
     }
 
+    public function deleteChain($chain) {
+        $queryStr = "DELETE FROM user_chain
+                     WHERE title = ".$chain;
+        if ($this->mysqli->query($queryStr) !== TRUE) {
+            return $this->mysqli->error;
+        } else {
+            return TRUE;
+        }
+    }
+    
     public function getChainsById($user) {
 
         $queryStr = "SELECT *
@@ -39,7 +49,7 @@ class Model {
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
-        d($result);
+        //d($result);
         if ($result === FALSE) {
             return NULL;
         }
