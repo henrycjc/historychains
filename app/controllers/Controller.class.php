@@ -21,7 +21,7 @@ class Controller {
         $this->view->showTroveResults($bookResults);
     }
 
-    public funciton handleChainSearch($q) {
+    public function handleChainSearch($q) {
         $chainResults = $this->model->getChainResults($q);
         $this->view->showChainResults($chainResults);
     }
