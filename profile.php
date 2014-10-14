@@ -1,3 +1,12 @@
+<?php
+	require("app/configs/Global_Config.php");
+	$mysqli = new Mysql_Connection();
+	$model = new Model($mysqli->getConn());
+	$view = new View($model);
+	$controller = new Controller($model, $view);
+	$user = new User("angus", "payne", "20/04/1996", "angus", "password");
+	$user->checkUserLoggedIn();
+?>
 <!DOCTYPE html> 
 <html> 
 	<head>

@@ -1,16 +1,30 @@
 <?php
-//$model->checkUserLoggedIn();
-require("app/configs/Global_Config.php");
-//d($_POST);
-
-$mysqli = new Mysql_Connection();
-$model = new Model($mysqli->getConn());
-$view = new View($model);
-$controller = new Controller($model, $view);
-			if (isset($_POST['Submit'])) {
-				$user = new User($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
-				$model->addUserToDB($user);
+ 
+        require_once("../models/Mysql_Connection.class.php");
+        require_once("../models/Model.class.php");
+        require_once("../controllers/Controller.class.php");
+        require_once("../views/View.class.php");
+        require_once("../models/User.class.php");
+        $mysqli = new Mysql_Connection();
+        $model = new Model($mysqli->getConn());
+        $view = new View($model);
+        $controller = new Controller($model, $view);
+        $user = new User("angus", "payne", "20/04/1996", "angus", "password");
+       
+        if (isset($_POST['UName']) && isset($_POST['Password'])) {
+			$correctUName = $model->checkIfUserExists('UName'); // checks username
+			if ($correctUName == TRUE){
+				$correctPassword = $model->checkIfValidPassword('Password'); // checks password
+				if ($correctPassword == TRUE){
+					printf("It worked"); // correct login
+					d($_POST);
+				} else {
+						printf("It didn't work"); // incorrect login
+						d($_POST);
+						}
 			}
+			d($_POST);
+        }
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,28 +69,26 @@ $controller = new Controller($model, $view);
 			</ul>
 		</nav>
 		<div id="sign_up">
-			<form action="splash.php" method="POST">
-				<h2>Sign Up</h2>
-				<input type="text" name="FName" id="FName" placeholder="First Name"/>
-				<input type="text" name="LName" id="LName" placeholder="Last Name"/>
-				<input type="date" name="DOB" id="DOB" placeholder="Date of Birth"/>
-				<input type="text" name="UName" id="UName" placeholder="Username"/>
-				<input type="password" name="Password" id="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" name="Submit" id="Submit"/>
-			</form>
-		</div>
-		<?php
-
-		?>
-		
-		<div id="login">
 			<form>
-				<h2>Login</h2>
+				<h2>Sign Up</h2>
+				<input type="text" name="FName" placeholder="First Name"/>
+				<input type="text" name="LName" placeholder="Last Name"/>
+				<input type="date" name="DOB" placeholder="Date of Birth"/>
 				<input type="text" name="UName" placeholder="Username"/>
 				<input type="text" name="Password" placeholder="Password"/>
 				<input type="submit" value="Submit" />
 			</form>
 		</div>
+		
+		<div id="login">
+			<form>
+				<h2>Login</h2>
+				<input type="text" id="UName" placeholder="Username"/>
+				<input type="text" id="Password" placeholder="Password"/>
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+		
 		<section class="Search">
 			<div class="SearchWrap">
 				<h2>About Us</h2>
@@ -88,7 +100,7 @@ $controller = new Controller($model, $view);
 					you through your research stage of your assignments.</p>
 					<p>To create a chain, simply sign up and follow the instructions, it's as easy as that! If you don't want to sign up then feel free to 
 					browse through our extensive database of already existing History Chains. By signing up, you can have access to collaborative chains, your own 
-					profile and most importantly the privilege to access and modify your own history chains!</p>
+					profile and most importantly the privelage to access and modify your own history chains!</p>
 					<p>So what are you waiting for? Let's start Chaining!</p>
 			</div>
 		</section>
