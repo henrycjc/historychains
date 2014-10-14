@@ -6,6 +6,7 @@ $view = new View($model);
 $controller = new Controller($model, $view);
 $user = new User();
 
+
 ?>
 
 
@@ -90,6 +91,9 @@ $user = new User();
 				if (isset($_POST['mkChain'])) {
     				$controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
 				}
+				if (isset($_POST['Chains']) && isset($_POST['del'])) {
+					$controller->handleDeleteChain($_POST['Chains']);
+				}
 				?>
 				<div class="ListedChains">
 					<h2>Edit Your Chains</h2>
@@ -100,7 +104,8 @@ $user = new User();
 							?>
 						</select>
 						<button type="submit" id="edit">Edit</button>
-						<button type="submit" id="del" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
+						<button name="del" type="submit" id="del" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
+
 					</form>
 				</div>
 			</div>

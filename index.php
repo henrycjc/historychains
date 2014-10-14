@@ -53,7 +53,6 @@ $controller = new Controller($model, $view);
                             if (isset($_GET['q'])) {
                                 if ($_GET['q'] === "") {
                                 	$view->blankEntry();
-                                    $view->printMessage("swag");
                                 } else {
                                     $controller->handleChainSearch($_GET['q']);
                                 }

@@ -32,7 +32,11 @@ class View {
         }
 
     }
-
+    public function showChainResults($results) {
+        foreach($results as $chain) {
+            echo $chain['title'] . "<br>";
+        }
+    }
     public function showUsersChains($results) {
         
         if ($results === NULL) {

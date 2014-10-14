@@ -22,8 +22,13 @@ class Controller {
     }
 
     public function handleChainSearch($q) {
-        $chainResults = $this->model->getChainResults($q);
-        $this->view->showChainResults($chainResults);
+        $chainResults = $this->model->getChainsByTitle($q);
+        if ($chainResults !== FALSE) {
+            $this->view->showChainResults($chainResults);
+        } else {
+            printf("No chains lmao");
+        }
+        
     }
 
     public function handleEditChains($user) {

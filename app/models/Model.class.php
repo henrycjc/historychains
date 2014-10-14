@@ -32,14 +32,59 @@ class Model {
 
     public function deleteChain($chain) {
         $queryStr = "DELETE FROM user_chain
-                     WHERE title = ".$chain;
+                     WHERE title = '".$chain."'";
         if ($this->mysqli->query($queryStr) !== TRUE) {
             return $this->mysqli->error;
         } else {
             return TRUE;
         }
     }
-    
+
+    public function getChainsByTitle($q) {
+        $queryStr = "SELECT * 
+                     FROM `user_chain`";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        if ($result === FALSE) {
+            return FALSE;
+        } else {
+            while ($row = $result->fetch_assoc()) {
+                if (strpos($row['title'], $q) !== FALSE) {
+                    $chains[] = $row;
+                    $count++;  
+                }
+
+            }
+        }
+        if ($count === 0 ) {
+            return FALSE;
+        }
+        $result->close();
+        return $chains;
+    }
+
+    public function getAllChains($q) {
+        $queryStr = "SELECT * 
+                     FROM `user_chain`";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        if ($result === FALSE) {
+            return FALSE;
+        } else {
+            while ($row = $result->fetch_assoc()) {
+                $chains[] = $row;
+                $count++;
+            }
+        }
+        if ($count === 0 ) {
+            return FALSE;
+        }
+        $result->close();
+        return $result;
+    }
+
     public function getChainsById($user) {
 
         $queryStr = "SELECT *
