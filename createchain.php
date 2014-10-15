@@ -5,11 +5,7 @@ $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
 $user = new User();
-
-
 ?>
-
-
 <!DOCTYPE html>
 <html> 
 	<head>
