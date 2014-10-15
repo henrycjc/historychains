@@ -4,8 +4,11 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-$user = new User();
+$user = new User("angus", "payne", "20/04/1996", "angus", "password");
+
+//$model->checkUserLoggedIn();
 ?>
+
 <!DOCTYPE html>
 <html> 
 	<head>
@@ -62,6 +65,7 @@ $user = new User();
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 							<div style="clear:both"></div>
+				<span id="users_name">Logged in as Angus Payne</span>
 			</div>
 			
 			<nav class="nav1">

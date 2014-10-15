@@ -1,5 +1,4 @@
 <?php
-
 class User {
 
     private $id = 1; // hard coded for now
@@ -12,6 +11,7 @@ class User {
     private $displayImage;
     private $reputation;
     private $activeChain;
+	
 
     public function setActiveChain($activeChain) {
         $this->activeChain = $activeChain;
@@ -98,8 +98,19 @@ class User {
     {
         return $this->username;
     }
+	
 
-    function __construct() {
-
-    }
+    function __construct($fname, $lname, $dob, $username, $password)
+	{
+		// Creating a User Logged In Cookie
+		setcookie("user_logged_in", "false", time() + (86400 * 30), "/");  // extends cookies life by a month
+		// Creating Which User Logged In Cookie
+		setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
+		$this->fname = $fname;
+		$this->lname = $lname;
+		$this->dob = $dob;
+		$this->username = $username;
+		$this->password = $password;
+		
+	}
 }

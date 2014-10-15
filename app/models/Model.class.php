@@ -30,61 +30,6 @@ class Model {
         }
     }
 
-    public function deleteChain($chain) {
-        $queryStr = "DELETE FROM user_chain
-                     WHERE title = '".$chain."'";
-        if ($this->mysqli->query($queryStr) !== TRUE) {
-            return $this->mysqli->error;
-        } else {
-            return TRUE;
-        }
-    }
-
-    public function getChainsByTitle($q) {
-        $queryStr = "SELECT * 
-                     FROM `user_chain`";
-        $chains = array();
-        $count = 0;
-        $result = $this->mysqli->query($queryStr);
-        if ($result === FALSE) {
-            return FALSE;
-        } else {
-            while ($row = $result->fetch_assoc()) {
-                if (strpos($row['title'], $q) !== FALSE) {
-                    $chains[] = $row;
-                    $count++;  
-                }
-
-            }
-        }
-        if ($count === 0 ) {
-            return FALSE;
-        }
-        $result->close();
-        return $chains;
-    }
-
-    public function getAllChains($q) {
-        $queryStr = "SELECT * 
-                     FROM `user_chain`";
-        $chains = array();
-        $count = 0;
-        $result = $this->mysqli->query($queryStr);
-        if ($result === FALSE) {
-            return FALSE;
-        } else {
-            while ($row = $result->fetch_assoc()) {
-                $chains[] = $row;
-                $count++;
-            }
-        }
-        if ($count === 0 ) {
-            return FALSE;
-        }
-        $result->close();
-        return $result;
-    }
-
     public function getChainsById($user) {
 
         $queryStr = "SELECT *
@@ -94,7 +39,7 @@ class Model {
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
-        //d($result);
+        d($result);
         if ($result === FALSE) {
             return NULL;
         }
@@ -127,5 +72,52 @@ class Model {
 	public function closeMysqli() {
 		$this->mysqli->close();
 	}
+	
+	public function checkIfUserExists($username) {
+		$queryStr = "SELECT username 
+					FROM user;";
+        $result = $this->mysqli->query($queryStr);
+		if (in_array($username, $result)) {
+			return TRUE;
+		} else {
+		return FALSE;
+		}
+	}
+	
+	public function checkIfValidPassword($username, $password) {
+		$queryStr = "SELECT password
+						FROM user
+						WHERE 'username' = " .$username;
+			$result = $this->mysqli->query($queryStr);
+			if ($result == $password) {
+				return TRUE;
+			} else {
+				return FALSE;
+			}
+	}
 
+	public function checkUserLoggedIn() {
+		$cookie_name = "user_logged_in";
+		if ($_COOKIE[$cookie_name] != "true") {
+			header('Location: splash.php');
+		}
+	}
+		
+	public function getUserLoggedIN() {
+		return  $_COOKIE[$cookie_name] ;
+	}
+	
+	public function addUserToDB($user) {
+		$queryStr = "INSERT INTO user (`username`, `password`, `fname`, `lname`, `dob`)
+					VALUES ('".$user->getUserName()."','".$user->getPassword()."','".$user->getFname()."','".$user->getLname()."','".$user->getDob()."')";
+		d($queryStr);
+		if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Unsuccessful registration, please try again");
+		} else {
+			echo("Successful registration!");
+			setcookie("user_logged_in", "false", time() + (86400 * 30), "/"); // extends cookies life by a month
+			setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
+			return TRUE;
+		}
+	}
 }

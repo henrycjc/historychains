@@ -5,12 +5,7 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-
-?>
-<?php
-	if (!TRUE) {
-		header("Location: splash.php");	
-	}
+$user = new User("angus", "payne", "20/04/1996", "angus", "password");
 
 ?>
 <!DOCTYPE html>
@@ -53,8 +48,9 @@ $controller = new Controller($model, $view);
                             if (isset($_GET['q'])) {
                                 if ($_GET['q'] === "") {
                                 	$view->blankEntry();
+                                    $view->printMessage("swag");
                                 } else {
-                                    $controller->handleChainSearch($_GET['q']);
+                                    $controller->handleSearch($_GET['q']);
                                 }
                             } else {
                                 $view->printMessage("Please enter a valid search term!");

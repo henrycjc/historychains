@@ -12,4 +12,4 @@ require_once("app/models/User.class.php");
 
 
 
-include("app/views/DebugMode.php");
+//include("app/views/DebugMode.php");
