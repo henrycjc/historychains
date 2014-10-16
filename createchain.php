@@ -29,6 +29,9 @@ $chain->setTitle("world war 2");
 		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="resources/plugins/validation/jquery.validate.js"></script>
+		<link rel="stylesheet" href="resources/plugins/jquery-popup-form/css/jquery_popup.css" /><!-- Popup Window Stlyesheet-->
+        <script src="resources/plugins/jquery-popup-form/jquery_popup.js"></script><!-- Popup Window JS File-->
+
         <style>
 
         </style>
@@ -68,8 +71,28 @@ $chain->setTitle("world war 2");
 		</script>
 	</head>
 	<body>
+	
+		<div id="InfoDiv">
+			<form class="form" action="#" id="info">	
+				<h3>Add Comment</h3>
+				<hr/><br/>
+				<p>Make sure to comment on reliability and how it helped you!</p>
+				<br/>
+				<input type="text" id="name" placeholder="Tags"/><br/>
+				<br/>
+				<h3>Your Comment</h3><br/>
+				<br/>
+				<textarea rows="6" cols="36"></textarea><br/>
+				<br/>
+				<input type="button" id="apply" value="Apply"/>
+				<input type="button" id="cancel" value="Cancel"/>
+				<br/>
+			</form>
+		</div>
+	
     <div class="wrap">
 			<div class="logo">
+			<button id='add_comment'>Add</button>
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>

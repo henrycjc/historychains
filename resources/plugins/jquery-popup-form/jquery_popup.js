@@ -6,6 +6,10 @@ $(document).ready(function() {
 	$("#edit_picture").click(function() {
         $("#PicDiv").css({"display": "block", "height" : $( document ).height()});
     });
+	
+	$("#add_comment").click(function() {
+        $("#InfoDiv").css({"display": "block", "height" : $( document ).height()});
+    });
 
     $("#info #cancel").click(function() {
         $(this).parent().parent().hide();
