@@ -71,24 +71,7 @@ $chain->setTitle("world war 2");
 		</script>
 	</head>
 	<body>
-	
-		<div id="InfoDiv">
-			<form class="form" action="#" id="info">	
-				<h3>Add Comment</h3>
-				<hr/><br/>
-				<p>Make sure to comment on reliability and how it helped you!</p>
-				<br/>
-				<input type="text" id="name" placeholder="Tags"/><br/>
-				<br/>
-				<h3>Your Comment</h3><br/>
-				<br/>
-				<textarea rows="6" cols="36"></textarea><br/>
-				<br/>
-				<input type="button" id="apply" value="Apply"/>
-				<input type="button" id="cancel" value="Cancel"/>
-				<br/>
-			</form>
-		</div>
+
 	
     <div class="wrap">
 			<div class="logo">
@@ -186,6 +169,25 @@ $chain->setTitle("world war 2");
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
 			</footer>
+		</div>
+		
+			
+		<div id="Comment">
+			<form class="form" action="#" id="info">	
+				<h3>Add Comment</h3>
+				<hr/><br/>
+				<p>Make sure to comment on reliability and how it helped you!</p>
+				<br/>
+				<input type="text" id="Tags" placeholder="Tags"/><br/>
+				<br/>
+				<h3>Your Comment</h3><br/>
+				<br/>
+				<textarea rows="6" cols="36"></textarea><br/>
+				<br/>
+				<input type="button" id="apply" value="Apply"/>
+				<input type="button" id="cancel" value="Cancel"/>
+				<br/>
+			</form>
 		</div>
 	</body>
 </html> 

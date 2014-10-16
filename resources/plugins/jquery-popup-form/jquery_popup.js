@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 	
 	$("#add_comment").click(function() {
-        $("#InfoDiv").css({"display": "block", "height" : $( document ).height()});
+        $("#Comment").css({"display": "block", "height" : $( document ).height()});
     });
 
     $("#info #cancel").click(function() {

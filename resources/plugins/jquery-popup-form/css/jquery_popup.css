@@ -53,7 +53,7 @@ input{
 }	
 
 
-#InfoDiv, #PicDiv{ 
+#InfoDiv, #PicDiv , #Comment{ 
     position: absolute;
     top: 0px;
     left: 0px;

@@ -337,7 +337,7 @@ nav ul li a:hover{
 	
 }
 
-#searchbtn, #sortBy, #edit_profile, #edit_picture{
+#Tags, #apply_btn ,#searchbtn, #sortBy, #edit_profile, #edit_picture{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
