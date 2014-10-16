@@ -13,10 +13,12 @@ class Model {
         $str = "http://api.trove.nla.gov.au/result?key=".$this->API_KEY."&zone=".$zone."&q=".urlencode(strip_tags(trim($q)))."&encoding=json";
         $file = file_get_contents($str);
         $result = json_decode($file, TRUE);
-        if ($file !== NULL) {
-            return $result['response']['zone'][0]['records']['work'];
+        if ($result !== NULL) {
+            if (isset($result['response']['zone'][0]['records']['work'])) {
+                return $result['response']['zone'][0]['records']['work'];
+            }
         }
-        return NULL;
+        return FALSE;
     }
 
     public function createNewChain($user, $title, $topic) {
@@ -28,6 +30,40 @@ class Model {
         } else {
             return TRUE;
         }
+    }
+
+    public function deleteChain($chain) {
+        $queryStr = "DELETE FROM user_chain
+                     WHERE title = '".$chain."'";
+        if ($this->mysqli->query($queryStr) !== TRUE) {
+            return $this->mysqli->error;
+        } else {
+            return TRUE;
+        }
+
+    }
+
+    public function getChainsByTitle($title) {
+        $queryStr = "SELECT *
+                     FROM `user_chain`";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        d($result);
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+            if (strpos($row['title'], $title) !== FALSE) {
+                $chains[] = $row;
+                $count++;
+            }
+        }
+        if ($count === 0) {
+            return FALSE;
+        }
+        $result->close();
+        return $chains;
     }
 
     public function getChainsById($user) {
@@ -68,6 +104,10 @@ class Model {
 		$result->close();
 		return $count;
 	}
+
+    public function getMysqli() {
+        return $this->mysqli;
+    }
 
 	public function closeMysqli() {
 		$this->mysqli->close();

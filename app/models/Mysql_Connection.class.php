@@ -20,15 +20,16 @@ class Mysql_Connection {
 		
 		$this->dbConn = new mysqli($this->host, $this->usr, $this->pass, $this->db);
 		if ($this->dbConn->connect_errno) {
-   			echo "<h1>dbConn Error: ".$dbConn->connect_errno." ".$dbConn->connect_error;
+   			echo "<h2>dbConn Error: ".$this->dbConn->connect_errno." ".$this->dbConn->connect_error."</h2>";
    			exit(1);
 		}
 		$this->connected = TRUE;
 		$this->setCharset();
-
-		return $this->dbConn;
 	}
 
+    public function query($string) {
+        return $this->dbConn($string);
+    }
 	public function getConn() {
 		return $this->dbConn;
 	}

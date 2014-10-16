@@ -10,7 +10,23 @@ class Controller {
         $this->view = $view;
     }
 
-    public function handleSearch($q, $sort) {
+    public function handleShowTopChains() {
+
+    }
+
+    public function handleDeleteChain($chain) {
+        $result = $this->model->deleteChain($chain);
+        if ($result !== TRUE) {
+            $this->view->printMessage($result);
+        } else {
+            $this->view->printMessage("Chain ".$chain." successfully deleted.");
+        }
+    }
+
+    public function getActiveChain($user) {
+        $this->view->printMessage($user->getActiveChain());
+    }
+    public function handleSearch($q) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');
         $this->view->showTroveResults($bookResults);
@@ -35,9 +51,14 @@ class Controller {
         if ($result === TRUE) {
             printf("Created Chain: %s!", $title);
         } else {
-            d($result);
-            $this->view->showCreateChainFailure($result);
+            $this->view->printMessage($result);
         }
         return TRUE;
+    }
+
+
+    public function updateCurrentChain($user, $chainObj) {
+        $sources = $chainObj->getChainSources($user->getActiveChain());
+        $this->view->showChain($sources);
     }
 }

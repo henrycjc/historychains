@@ -5,7 +5,7 @@
 	$view = new View($model);
 	$controller = new Controller($model, $view);
 	$user = new User("angus", "payne", "20/04/1996", "angus", "password");
-	$user->checkUserLoggedIn();
+	//$user->checkUserLoggedIn();
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -49,6 +49,7 @@
 				<br/>
 			</form>
 		</div>
+
 		<div id="PicDiv">
 			<form class="form" action="app/content/upload_profile_picture.php" id="profile_pic">
 				<h3>Edit Your Profile Picture</h3>

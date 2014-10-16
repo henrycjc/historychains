@@ -2,7 +2,7 @@
 @font-face {
     font-family: 'sousesregular';
     src: url('../fonts/souses-webfont.eot');
-    src: url('..//fonts/souses-webfont.eot?#iefix') format('embedded-opentype'),
+    src: url('../fonts/souses-webfont.eot?#iefix') format('embedded-opentype'),
          url('../fonts/souses-webfont.woff2') format('woff2'),
          url('../fonts/souses-webfont.woff') format('woff'),
          url('../fonts/souses-webfont.ttf') format('truetype'),
@@ -10,7 +10,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 
 h2{
     margin-left: 65px;

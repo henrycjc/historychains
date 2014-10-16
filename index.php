@@ -6,7 +6,6 @@ $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
 $user = new User("angus", "payne", "20/04/1996", "angus", "password");
-
 ?>
 <!DOCTYPE html>
 <html> 

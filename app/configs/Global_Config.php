@@ -9,7 +9,7 @@ require_once("app/models/Model.class.php");
 require_once("app/controllers/Controller.class.php");
 require_once("app/views/View.class.php");
 require_once("app/models/User.class.php");
-
+require_once("app/models/Chain.class.php");
 
 
 //include("app/views/DebugMode.php");

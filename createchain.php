@@ -6,7 +6,11 @@ $view = new View($model);
 $controller = new Controller($model, $view);
 $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 
+$chain = new Chain($mysqli->getConn());
 //$model->checkUserLoggedIn();
+
+// TODO: check cookie for current chain / last used chain
+$chain->setTitle("world war 2");
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +23,15 @@ $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700" />
-		<link rel="stylesheet" type="text/css" href="/resources/plugins/vertical-timeline/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="resources/plugins/vertical-timeline/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+        <script src="resources/js/addchain.js"></script>
 		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="resources/plugins/validation/jquery.validate.js"></script>
+        <style>
+
+        </style>
 		<script>
 			$(document).ready(function(){
 				$(".CreateNew").hide(); 
@@ -55,16 +64,15 @@ $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 		<script>
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "createchain_mobile.php";
-			};
+			}
 		</script>
 	</head>
-	
 	<body>
-		<div class="wrap">
+    <div class="wrap">
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
-							<div style="clear:both"></div>
+				<div style="clear:both"></div>
 				<span id="users_name">Logged in as Angus Payne</span>
 			</div>
 			
@@ -103,9 +111,8 @@ $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 								$controller->handleEditChains($user->getId());
 							?>
 						</select>
-						<button type="submit" id="edit">Edit</button>
+						<button name="edit" type="submit" id="edit">Edit</button>
 						<button name="del" type="submit" id="del" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
-
 					</form>
 				</div>
 			</div>
@@ -123,13 +130,6 @@ $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 						<article class="SearchResults">
 								<div id="output">
 									<table id="results_table">
-										<tr>
-											<th class="result_cell">Title</td>
-											<th class="result_cell">Year</td>
-											<th class="result_cell">Author</td>
-											<th class="result_cell"> </td>
-											<th class="result_cell"> </td>
-										</tr>
 									<?php
 			                            if (isset($_GET['q'])) {
 			                                if ($_GET['q'] === "") {
@@ -152,82 +152,7 @@ $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 		<section class="TopChain CreateChainTimeline">
 			<h2><?php $controller->getActiveChain($user); ?></h2>
 			<section id="cd-timeline" class="cd-container">
-				<div class="cd-timeline-block">
-					<div class="cd-timeline-img cd-picture">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">
-					</div> <!-- cd-timeline-img -->
-
-					<div class="cd-timeline-content">
-						<h2>Australian Politics</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-						<a href="#0" class="cd-read-more">Read more</a>
-						<span class="cd-date">Jan 14</span>
-					</div> <!-- cd-timeline-content -->
-				</div> <!-- cd-timeline-block -->
-
-				<div class="cd-timeline-block">
-					<div class="cd-timeline-img cd-movie">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
-					</div> <!-- cd-timeline-img -->
-
-					<div class="cd-timeline-content">
-						<h2>Title of section 2</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-						<a href="#0" class="cd-read-more">Read more</a>
-						<span class="cd-date">Jan 18</span>
-					</div> <!-- cd-timeline-content -->
-				</div> <!-- cd-timeline-block -->
-
-				<div class="cd-timeline-block">
-					<div class="cd-timeline-img cd-picture">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
-					</div> <!-- cd-timeline-img -->
-
-					<div class="cd-timeline-content">
-						<h2>Title of section 3</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
-						<a href="#0" class="cd-read-more">Read more</a>
-						<span class="cd-date">Jan 24</span>
-					</div> <!-- cd-timeline-content -->
-				</div> <!-- cd-timeline-block -->
-
-				<div class="cd-timeline-block">
-					<div class="cd-timeline-img cd-location">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
-					</div> <!-- cd-timeline-img -->
-
-					<div class="cd-timeline-content">
-						<h2>Title of section 4</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-						<a href="#0" class="cd-read-more">Read more</a>
-						<span class="cd-date">Feb 14</span>
-					</div> <!-- cd-timeline-content -->
-				</div> <!-- cd-timeline-block -->
-
-				<div class="cd-timeline-block">
-					<div class="cd-timeline-img cd-location">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-location.svg" alt="Location">
-					</div> <!-- cd-timeline-img -->
-
-					<div class="cd-timeline-content">
-						<h2>Title of section 5</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
-						<a href="#0" class="cd-read-more">Read more</a>
-						<span class="cd-date">Feb 18</span>
-					</div> <!-- cd-timeline-content -->
-				</div> <!-- cd-timeline-block -->
-
-				<div class="cd-timeline-block">
-					<div class="cd-timeline-img cd-movie">
-						<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
-					</div> <!-- cd-timeline-img -->
-
-					<div class="cd-timeline-content">
-						<h2>Final Section</h2>
-						<p>This is the content of the last section</p>
-						<span class="cd-date">Feb 26</span>
-					</div> <!-- cd-timeline-content -->
-				</div> <!-- cd-timeline-block -->
+                <?php $controller->updateCurrentChain($user, $chain); ?>
 			</section> <!-- cd-timeline -->
 			<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
 		</section>

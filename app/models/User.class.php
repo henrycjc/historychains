@@ -10,15 +10,29 @@ class User {
     private $dob;
     private $displayImage;
     private $reputation;
-    private $activeChain;
-	
+    private $activeChain = "world war 2";
+
+    function __construct($fname, $lname, $dob, $username, $password) {
+        /*
+        // Creating a User Logged In Cookie
+        setcookie("user_logged_in", "false", time() + (86400 * 30), "/");  // extends cookies life by a month
+        // Creating Which User Logged In Cookie
+        setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
+        $this->fname = $fname;
+        $this->lname = $lname;
+        $this->dob = $dob;
+        $this->username = $username;
+        $this->password = $password;
+        */
+
+    }
 
     public function setActiveChain($activeChain) {
         $this->activeChain = $activeChain;
     }
 
-    public function getActiveChain($activeChain) {
-
+    public function getActiveChain() {
+        return $this->activeChain;
     }
 
     public function setDisplayImage($displayImage) {
@@ -100,17 +114,5 @@ class User {
     }
 	
 
-    function __construct($fname, $lname, $dob, $username, $password)
-	{
-		// Creating a User Logged In Cookie
-		setcookie("user_logged_in", "false", time() + (86400 * 30), "/");  // extends cookies life by a month
-		// Creating Which User Logged In Cookie
-		setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
-		$this->fname = $fname;
-		$this->lname = $lname;
-		$this->dob = $dob;
-		$this->username = $username;
-		$this->password = $password;
-		
-	}
+
 }
