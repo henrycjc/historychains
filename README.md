@@ -16,14 +16,14 @@
 * Home page splash screen
 * Redirection for login
 * Home page top chains
-* “Create Chain” functionality
+* ~~“Create Chain” functionality~~
 * Adding source to chain
 * Drawing the chain
 * Saving state of chain
 * Load an existing chain
 * Edit an existing chain
-* Visually pleasing chain workflow
-* Visually appealing search results
+* ~~Visually pleasing chain workflow~~
+* ~~Visually appealing search results~~
 * User System
 * Profile page
 * Logging In/Out (cookies)
