@@ -80,6 +80,7 @@ class Model {
 		if (in_array($username, $result)) {
 			return TRUE;
 		} else {
+		echo("invalid user");
 		return FALSE;
 		}
 	}
@@ -92,8 +93,30 @@ class Model {
 			if ($result == $password) {
 				return TRUE;
 			} else {
+				echo("invalid password");
 				return FALSE;
 			}
+	}
+	
+	public function logUserIn($user) {
+		if ($this->checkIfUserExists($username) === TRUE) {
+			if ($this->checkIfValidPassword($username, $password) == TRUE) {
+				$queryStrFName = "SELECT fname
+								  FROM user
+								  WHERE 'username = " .$username;
+				$queryStrLName = "SELECT lname
+								  FROM user
+								  WHERE 'username = " .$username;
+				$name = "'".$this->mysqli->query($queryStrFName)." ".$this->mysqli->query($queryStrLName)."'";
+				setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
+				setcookie("user", $name, time() + (86400 * 30), "/");  // extends cookies life by a month
+				$_GET['index.php'];
+			} else {
+				echo("invalid password");
+			}
+		} else {
+			echo("invalid username");
+		}
 	}
 
 	public function checkUserLoggedIn() {
@@ -110,14 +133,13 @@ class Model {
 	public function addUserToDB($user) {
 		$queryStr = "INSERT INTO user (`username`, `password`, `fname`, `lname`, `dob`)
 					VALUES ('".$user->getUserName()."','".$user->getPassword()."','".$user->getFname()."','".$user->getLname()."','".$user->getDob()."')";
-		d($queryStr);
+		$name = "'".$user->getFname()." ".$user->getLname()."'";
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unsuccessful registration, please try again");
 		} else {
-			echo("Successful registration!");
 			setcookie("user_logged_in", "false", time() + (86400 * 30), "/"); // extends cookies life by a month
-			setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
-			return TRUE;
+			setcookie("user", $name, time() + (86400 * 30), "/");  // extends cookies life by a month
+			$_GET['index.php'];
 		}
 	}
 }

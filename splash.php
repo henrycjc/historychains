@@ -1,16 +1,24 @@
 <?php
 //$model->checkUserLoggedIn();
 require("app/configs/Global_Config.php");
-//d($_POST);
+d($_POST);
+d($_COOKIE);
+d($_GET);
 
 $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-			if (isset($_POST['Submit'])) {
-				$user = new User($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
-				$model->addUserToDB($user);
-			}
+
+if (isset($_POST['SubmitSU'])) {
+	$user = new User($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
+	$model->addUserToDB($user);
+}
+
+if (isset($_POST['SubmitSI'])) {
+	$user = new User( $_POST['UName'], $_POST['Password']);
+	$model->logUserIn($user);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +70,7 @@ $controller = new Controller($model, $view);
 				<input type="date" name="DOB" id="DOB" placeholder="Date of Birth"/>
 				<input type="text" name="UName" id="UName" placeholder="Username"/>
 				<input type="password" name="Password" id="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" name="Submit" id="Submit"/>
+				<input type="submit" value="Submit" name="SubmitSU" id="Submit"/>
 			</form>
 		</div>
 		<?php
@@ -70,11 +78,11 @@ $controller = new Controller($model, $view);
 		?>
 		
 		<div id="login">
-			<form>
+			<form action="splash.php" method="POST">
 				<h2>Login</h2>
 				<input type="text" name="UName" placeholder="Username"/>
 				<input type="text" name="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" />
+				<input type="submit" value="Submit" name="SubmitSI/>
 			</form>
 		</div>
 		<section class="Search">
