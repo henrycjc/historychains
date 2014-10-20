@@ -33,15 +33,16 @@ class View {
                 echo '<td class="result_cell">'.$book["contributor"][0].'</td>';
                 echo '<td class="result_cell">
                     <form action="'.stripslashes($book["troveUrl"]).'" target="_blank">
-                        <button id="ViewSource'.$book['id'].'" class="ViewSource" class="TableButton">View</button>
+                        <button id="ViewSource'.$book['id'].'" class="TableButton">View</button>
                     </form>
                 </td>';
                 echo '<td class="result_cell">
                     <form id="AddToChainForm'.$count.'" class="AddToChain">
-                        <input type="hidden" class="SourceIds" id="SourceId'.$count.'" value="'.$book['id'].'">
-                        <button id="AddToChainBtn'.$book['id'].'" class="TableButton">Add to Chain</button>
+                        <input type="hidden" class="TableButton" id="SourceId'.$count.'" value="'.$book['id'].'">
+                        <button id="add_comment'.$count.'" class="TableButton">Add</button>
                     </form>
                 </td>';
+                // <button id="AddToChainBtn'.$book['id'].'" class="TableButton">Add to Chain</button>
                 echo '</tr>';
             }
             $count++;

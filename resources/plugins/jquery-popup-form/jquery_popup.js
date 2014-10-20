@@ -7,7 +7,8 @@ $(document).ready(function() {
         $("#PicDiv").css({"display": "block", "height" : $( document ).height()});
     });
 	
-	$("#add_comment").click(function() {
+	$("[id^=add_comment]").click(function() {
+        console.log("add comment button");
         $("#Comment").css({"display": "block", "height" : $( document ).height()});
     });
 

@@ -25,7 +25,6 @@ $chain->setTitle("world war 2");
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700" />
 		<link rel="stylesheet" type="text/css" href="resources/plugins/vertical-timeline/css/style.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-        <script src="resources/js/addchain.js"></script>
 		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="resources/plugins/validation/jquery.validate.js"></script>
@@ -75,7 +74,7 @@ $chain->setTitle("world war 2");
 	
     <div class="wrap">
 			<div class="logo">
-			<button id='add_comment'>Add</button>
+
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
