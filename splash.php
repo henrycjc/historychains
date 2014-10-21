@@ -1,5 +1,6 @@
 <?php
 //$model->checkUserLoggedIn();
+ob_start();
 require("app/configs/Global_Config.php");
 d($_POST);
 d($_COOKIE);
@@ -16,8 +17,8 @@ if (isset($_POST['SubmitSU'])) {
 }
 
 if (isset($_POST['SubmitSI'])) {
-	$user = new User( $_POST['UName'], $_POST['Password']);
-	$model->logUserIn($user);
+	$model->logUserIn($_POST['UName'], $_POST['Password']);
+	$model->getUserInfo();
 }
 ?>
 <!DOCTYPE html>
@@ -39,6 +40,33 @@ if (isset($_POST['SubmitSI'])) {
 					$("#login").toggle("slow");
 					$("#sign_up").hide("slow");
 			  });
+			  
+			  $("#SubmitSU").click(function(){
+					valid = true;
+					if($("#FName").val() =="") {
+						alert ("Please enter your First Name");
+						event.preventDefault();
+					}
+					else if ($("#LName").val() ==""){					
+						alert ("Please enter your Last Name");
+						event.preventDefault();
+					}
+					else if ($("#DOB").val() ==""){					
+						alert ("Please enter your Date of Birth");
+						event.preventDefault();
+					}
+					else if ($("#UName").val() ==""){					
+						alert ("Please enter a username");
+						event.preventDefault();
+					}
+					else if ($("#Password").val() ==""){					
+						alert ("Please enter a password");
+						event.preventDefault();
+					}
+					else {
+						$("#mkChainForm").submit()
+					}
+				});
 			});
 		</script>
 		
@@ -70,7 +98,7 @@ if (isset($_POST['SubmitSI'])) {
 				<input type="date" name="DOB" id="DOB" placeholder="Date of Birth"/>
 				<input type="text" name="UName" id="UName" placeholder="Username"/>
 				<input type="password" name="Password" id="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" name="SubmitSU" id="Submit"/>
+				<input type="submit" value="Submit" name="SubmitSU" id="SubmitSU"/>
 			</form>
 		</div>
 		<?php
@@ -82,7 +110,7 @@ if (isset($_POST['SubmitSI'])) {
 				<h2>Login</h2>
 				<input type="text" name="UName" placeholder="Username"/>
 				<input type="text" name="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" name="SubmitSI/>
+				<input type="submit" value="Submit" name="SubmitSI"/>
 			</form>
 		</div>
 		<section class="Search">
