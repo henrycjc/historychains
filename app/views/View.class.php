@@ -51,6 +51,9 @@ class View {
 
     public function showChain($sources) {
 
+        if ($sources == NULL) {
+            echo "fix me lmao";
+        }
         echo '<section id="cd-timeline" class="cd-container">';
         foreach($sources as $source) {
             echo '<div class="cd-timeline-block">';

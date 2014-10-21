@@ -4,7 +4,18 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-$user = new User("angus", "payne", "20/04/1996", "angus", "password");
+
+$userData = $model->getUserInfo($_COOKIE['user']);
+
+
+if ($_COOKIE['user_logged_in'] === "true") {
+
+	$user = new User($_COOKIE['user']);
+	d($user);
+} 
+d($userData);
+d($_COOKIE);
+//$user = new User("angus", "payne", "20/04/1996", "angus", "password");
 
 $chain = new Chain($mysqli->getConn());
 //$model->checkUserLoggedIn();
@@ -84,7 +95,8 @@ $chain->setTitle("world war 2");
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
-				<span id="users_name">Logged in as Angus Payne</span>
+				<span id="users_name">Logged in as <? if ($_COOKIE['user_logged_in'] == "true") { echo $user->getFname() . " " . $user->getLname();}?>
+				</span>
 			</div>
 			
 			<nav class="nav1">

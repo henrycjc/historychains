@@ -140,13 +140,25 @@ class Model {
 			}
 	}
 	
-	public function getUserInfo() {
-			$user_Array[1] = "'".$this->mysqli->query("SELECT username FROM user WHERE username =".$_COOKIE['user'])."'";
-			$user_Array[2] = "'".$this->mysqli->query("SELECT fname FROM user WHERE username =".$_COOKIE['user'])."'";
-			$user_Array[3] = "'".$this->mysqli->query("SELECT lname FROM user WHERE username =".$_COOKIE['user'])."'";
-			$user_Array[4] = "'".$this->mysqli->query("SELECT dob FROM user WHERE username =".$_COOKIE['user'])."'";
-			$user_Array[5] = "'".$this->mysqli->query("SELECT password FROM user WHERE username =".$_COOKIE['user'])."'";
-			return $user_Array;
+	public function getUserInfo($username) {
+		$queryStr = "SELECT * 
+					 FROM user 
+					 WHERE `username`= '".$username."'";
+		$result = $this->mysqli->query($queryStr);
+		if ($result === FALSE) {
+			return NULL;
+		} else {
+    		$user = $result->fetch_assoc();
+    	}
+    	$result->close();
+		/*
+		$user_Array[1] = "'".$this->mysqli->query("SELECT username FROM user WHERE username =".$_COOKIE['user'])."'";
+		$user_Array[2] = "'".$this->mysqli->query("SELECT fname FROM user WHERE username =".$_COOKIE['user'])."'";
+		$user_Array[3] = "'".$this->mysqli->query("SELECT lname FROM user WHERE username =".$_COOKIE['user'])."'";
+		$user_Array[4] = "'".$this->mysqli->query("SELECT dob FROM user WHERE username =".$_COOKIE['user'])."'";
+		$user_Array[5] = "'".$this->mysqli->query("SELECT password FROM user WHERE username =".$_COOKIE['user'])."'";
+		*/
+		return $user;
 	}
 	
 	public function logUserIn($username, $password) {
@@ -164,8 +176,8 @@ class Model {
 	}
 
 	public function checkUserLoggedIn() {
-		$cookie_name = "user_logged_in";
-		if ($_COOKIE[$cookie_name] != "true") {
+
+		if ($_COOKIE["user_logged_in"] !== "TRUE") {
 			header('Location: splash.php');
 		}
 	}

@@ -18,7 +18,7 @@ if (isset($_POST['SubmitSU'])) {
 
 if (isset($_POST['SubmitSI'])) {
 	$model->logUserIn($_POST['UName'], $_POST['Password']);
-	$model->getUserInfo();
+	$model->getUserInfo($_POST['UName']);
 }
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,7 @@
 <?php
-class User {
+
+require_once("Model.class.php");
+class User extends Model {
 
     private $id = 1; // hard coded for now
     private $username;
@@ -40,32 +42,27 @@ class User {
         $this->fname = $fname;
     }
 
-    public function getFname()
-    {
-        return $this->fname;
+    public function getFname() {
+        return ucfirst($this->fname);
     }
 
     public function getId() {
         return $this->id;
     }
 
-    public function setLname($lname)
-    {
+    public function setLname($lname) {
         $this->lname = $lname;
     }
 
-    public function getLname()
-    {
-        return $this->lname;
+    public function getLname() {
+        return ucfirst($this->lname);
     }
 
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
     }
 
-    public function getPassword()
-    {
+    public function getPassword() {
         return $this->password;
     }
 
@@ -73,43 +70,44 @@ class User {
         $this->reputation = $reputation;
     }
 
-    public function getReputation()
-    {
+    public function getReputation() {
         return $this->reputation;
     }
 
-    public function setSchool($school)
-    {
+    public function setSchool($school) {
         $this->school = $school;
     }
 
-    public function getSchool()
-    {
+    public function getSchool() {
         return $this->school;
     }
 
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
     }
 
-    public function getUsername()
-    {
+    public function getUsername() {
         return $this->username;
     }
 	
 
-    function __construct($fname, $lname, $dob, $username, $password)
-	{
+    function __construct($username) {
+
+        /*
+            // get all the users info from the database
+
+        */
 		// Creating a User Logged In Cookie
-		setcookie("user_logged_in", FALSE, time() + (86400 * 30), "/");  // extends cookies life by a month
+		setcookie("user_logged_in", "true", time() + (86400 * 30), "/");  // extends cookies life by a month
 		// Creating Which User Logged In Cookie
-		setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
-		$this->fname = $fname;
-		$this->lname = $lname;
-		$this->dob = $dob;
-		$this->username = $username;
-		$this->password = $password;
-		
+		setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+
+        $data = parent::getUserInfo($username);
+        
+		$this->fname = $data['fname'];
+		$this->lname = $data['lname'];
+		$this->dob = $data['dob'];
+		$this->username = $data['username'];
+		$this->password = $data['password'];
 	}
 }
