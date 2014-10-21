@@ -39,7 +39,7 @@ class View {
                 echo '<td class="result_cell">
                     <form id="AddToChainForm'.$count.'" class="AddToChain">
                         <input type="hidden" class="TableButton" id="SourceId'.$count.'" value="'.$book['id'].'">
-                        <button id="add_comment'.$count.'" class="TableButton">Add</button>
+                        <button type="button" id="add_comment'.$count.'" class="TableButton">Add</button>
                     </form>
                 </td>';
                 // <button id="AddToChainBtn'.$book['id'].'" class="TableButton">Add to Chain</button>

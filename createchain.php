@@ -61,6 +61,12 @@ $chain->setTitle("world war 2");
 						$("#mkChainForm").submit()
 					}
 				});
+				
+				$(".apply").click(function(){
+					$('.buffer').html($("#beskeder_vis").html());
+				}); 
+
+					
 			});
 		</script>	
 		<script>
@@ -188,5 +194,10 @@ $chain->setTitle("world war 2");
 				<br/>
 			</form>
 		</div>
+		
+		<div class="Output"> 
+			<p class="tags"></p>
+		</div>
+		
 	</body>
 </html> 
