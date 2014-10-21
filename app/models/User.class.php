@@ -114,5 +114,17 @@ class User {
     }
 	
 
-
+    function __construct($fname, $lname, $dob, $username, $password)
+	{
+		// Creating a User Logged In Cookie
+		setcookie("user_logged_in", FALSE, time() + (86400 * 30), "/");  // extends cookies life by a month
+		// Creating Which User Logged In Cookie
+		setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
+		$this->fname = $fname;
+		$this->lname = $lname;
+		$this->dob = $dob;
+		$this->username = $username;
+		$this->password = $password;
+		
+	}
 }

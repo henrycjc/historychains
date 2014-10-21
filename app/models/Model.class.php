@@ -1,5 +1,8 @@
 <?php
 
+
+	
+
 class Model {
 	
 	protected $mysqli;
@@ -115,31 +118,62 @@ class Model {
 	
 	public function checkIfUserExists($username) {
 		$queryStr = "SELECT username 
-					FROM user;";
-        $result = $this->mysqli->query($queryStr);
-		if (in_array($username, $result)) {
+					FROM user
+					WHERE username ="."'".$username."';";
+		if ($this->mysqli->query($queryStr) !== TRUE) {
 			return TRUE;
 		} else {
-		return FALSE;
+			echo("invalid user");
+			return FALSE;
 		}
 	}
 	
 	public function checkIfValidPassword($username, $password) {
 		$queryStr = "SELECT password
 						FROM user
-						WHERE 'username' = " .$username;
-			$result = $this->mysqli->query($queryStr);
-			if ($result == $password) {
+						WHERE 'username' =".$username. "AND 'password =".$password;
+			if ($this->mysqli->query($queryStr) !== TRUE) {
 				return TRUE;
 			} else {
+				echo("invalid password");
 				return FALSE;
 			}
+	}
+	
+	public function getUserInfo() {
+			$user_Array[1] = "'".$this->mysqli->query("SELECT username FROM user WHERE username =".$_COOKIE['user'])."'";
+			$user_Array[2] = "'".$this->mysqli->query("SELECT fname FROM user WHERE username =".$_COOKIE['user'])."'";
+			$user_Array[3] = "'".$this->mysqli->query("SELECT lname FROM user WHERE username =".$_COOKIE['user'])."'";
+			$user_Array[4] = "'".$this->mysqli->query("SELECT dob FROM user WHERE username =".$_COOKIE['user'])."'";
+			$user_Array[5] = "'".$this->mysqli->query("SELECT password FROM user WHERE username =".$_COOKIE['user'])."'";
+			return $user_Array;
+	}
+	
+	public function logUserIn($username, $password) {
+		if ($this->checkIfUserExists($username) === TRUE) {
+			if ($this->checkIfValidPassword($username, $password) == TRUE) {
+				header('Location : index.php');
+				setcookie("user_logged_in", 'true', time() + (86400 * 30), "/"); // extends cookies life by a month
+				setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+			} else {
+				echo("invalid password");
+			}
+		} else {
+			echo("invalid username");
+		}
 	}
 
 	public function checkUserLoggedIn() {
 		$cookie_name = "user_logged_in";
 		if ($_COOKIE[$cookie_name] != "true") {
 			header('Location: splash.php');
+		}
+	}
+	
+	public function splashCheckUserLoggedIn() {
+		$cookie_name = "user_logged_in";
+		if ($_COOKIE[$cookie_name] == "true") {
+			header('Location: index.php');
 		}
 	}
 		
@@ -150,14 +184,52 @@ class Model {
 	public function addUserToDB($user) {
 		$queryStr = "INSERT INTO user (`username`, `password`, `fname`, `lname`, `dob`)
 					VALUES ('".$user->getUserName()."','".$user->getPassword()."','".$user->getFname()."','".$user->getLname()."','".$user->getDob()."')";
-		d($queryStr);
+		$username = $user->getUsername();
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unsuccessful registration, please try again");
 		} else {
-			echo("Successful registration!");
-			setcookie("user_logged_in", "false", time() + (86400 * 30), "/"); // extends cookies life by a month
-			setcookie("user", "name", time() + (86400 * 30), "/");  // extends cookies life by a month
-			return TRUE;
+			setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
+			setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+		}
+	}
+	
+	public function updateUserFName($username, $fname) {
+		$queryStr = "UPDATE user
+					SET fname= '". $fname."'
+					 WHERE username ='".$username."'";
+		echo($fname);
+		if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Unable to change data, please try again");
+		}
+	}
+	
+	public function updateUserLName($username, $lname) {
+		$queryStr = "UPDATE user
+					SET lname= '". $lname."'
+					 WHERE username ='".$username."'";
+		echo($lname);
+		if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Unable to change data, please try again");
+		}
+	}
+	
+	public function updateUserDOB($username, $dob) {
+		$queryStr = "UPDATE user
+					SET dob= '". $dob."'
+					 WHERE username ='".$username."'";
+		echo($dob);
+		if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Unable to change data, please try again");
+		}
+	}
+	
+	public function updateUserInsitution($username, $institution) {
+		$queryStr = "UPDATE user
+					SET institution= '". $institution."'
+					 WHERE username ='".$username."'";
+		echo($institution);
+		if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Unable to change data, please try again");
 		}
 	}
 }

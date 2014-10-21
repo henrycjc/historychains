@@ -4,8 +4,26 @@
 	$model = new Model($mysqli->getConn());
 	$view = new View($model);
 	$controller = new Controller($model, $view);
-	$user = new User("angus", "payne", "20/04/1996", "angus", "password");
-	//$user->checkUserLoggedIn();
+	$model->checkUserLoggedIn();
+	d($_COOKIE);
+	d($_POST);
+	$name = (string)$_COOKIE['user'];
+	d($name);
+	
+	if (isset($_POST['apply'])) {
+		if (empty($_POST['Fname']) === FALSE) {
+		$model->updateUserFName((string)$_COOKIE['user'], $_POST['Fname']);
+		}
+		if (empty($_POST['Lname']) === FALSE) {
+		$model->updateUserLName((string)$_COOKIE['user'], $_POST['Lname']);
+		}
+		if (empty($_POST['DOB']) === FALSE) {
+		$model->updateUserDOB((string)$_COOKIE['user'], $_POST['DOB']);
+		}
+		if (empty($_POST['Institution']) === FALSE) {
+		$model->updateUserInsitution((string)$_COOKIE['user'], $_POST['Institution']);
+		}
+	}	
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -25,26 +43,26 @@
 	<body>
 		<!-- JQUERY POPUP FORM STARTS HERE-->
 		<div id="InfoDiv">
-			<form class="form" action="#" id="info">	
+			<form class="form" action="profile.php" method="POST" id="info">	
 				<h3>Edit Your Details</h3>
 				<hr/><br/>
-				<label>Name</label>
+				<label>First Name</label>
 				<br/>
-				<input type="text" id="name" placeholder="Name"/><br/>
+				<input type="text" id="Fname" name="Fname" placeholder="Frist Name"/><br/>
 				<br/>
-				<label>Email</label>
+				<label>Last Name</label>
 				<br/>
-				<input type="text" id="email" placeholder="Email"/><br/>
+				<input type="text" id="Lname" name="Lname" placeholder="Last Name"/><br/>
 				<br/>
 				<label>DOB</label>
 				<br/>
-				<input type="date" id="DOB" /><br/>
+				<input type="date" id="DOB" name="DOB" /><br/>
 				<br/>
-				<label>Subjects</label>
+				<label>Institution</label>
 				<br/>
-				<input type="text" id="Subjects" placeholder="Enter your current subjects" /><br/>
+				<input type="text" id="Institution" name="Institution" placeholder="Institution You Attend" /><br/>
 				<br/>
-				<input type="button" id="apply" value="Apply"/>
+				<input type="submit" id="apply" name="apply" value="Apply"/>
 				<input type="button" id="cancel" value="Cancel"/>
 				<br/>
 			</form>
@@ -86,11 +104,9 @@
 					<h1>Info</h1>
 					<p>Angus Payne</p>
 					<p>28/04/96</p>
+					<p>University of Queensland</p>
 					<p>Rep: 9001</p>
 					<p>Chains: 10</p>
-					<p>Subjects:</p>
-					<p>Maths B</p>
-					<p>English</p>
 				</div>
 			</aside>
 			
