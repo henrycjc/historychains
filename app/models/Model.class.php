@@ -193,15 +193,22 @@ class Model {
 		return  $_COOKIE[$cookie_name] ;
 	}
 	
-	public function addUserToDB($user) {
+	public function addUserToDB($userData) {
+
+		foreach($userData as $item) {
+			$item = stripslashes(trim($item));
+		}
 		$queryStr = "INSERT INTO user (`username`, `password`, `fname`, `lname`, `dob`)
-					VALUES ('".$user->getUserName()."','".$user->getPassword()."','".$user->getFname()."','".$user->getLname()."','".$user->getDob()."')";
-		$username = $user->getUsername();
+					VALUES ('".$userData['username']."','".$userData['password']."','".$userData['fname']."','".
+						$userData['lname']."','".$userData['dob']."')";
+		//$username = $user->getUsername();
 		if ($this->mysqli->query($queryStr) !== TRUE) {
-			echo("Unsuccessful registration, please try again");
-		} else {
+			return FALSE;
+			//echo("Unsuccessful registration, please try again");
+		} else {		
 			setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
-			setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+			setcookie("user", $userData, time() + (86400 * 30), "/");  // extends cookies life by a month
+			return TRUE;
 		}
 	}
 	

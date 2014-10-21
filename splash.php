@@ -1,25 +1,31 @@
 <?php
-//$model->checkUserLoggedIn();
-ob_start();
+//ob_start();
 require("app/configs/Global_Config.php");
-d($_POST);
-d($_COOKIE);
-d($_GET);
+
 
 $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
 
+//$model->checkUserLoggedIn();
+
+
 if (isset($_POST['SubmitSU'])) {
-	$user = new User($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
-	$model->addUserToDB($user);
+	$success = $controller->handleLogin($_POST);
+	
+	//$model->addUserToDB($_POST[], );
+	//TODO: user feedback if their sign up was successful
 }
 
 if (isset($_POST['SubmitSI'])) {
 	$model->logUserIn($_POST['UName'], $_POST['Password']);
 	$model->getUserInfo($_POST['UName']);
 }
+
+d($_POST);
+d($_COOKIE);
+d($_GET);
 ?>
 <!DOCTYPE html>
 <html>

@@ -14,6 +14,8 @@ class Controller {
 
     }
 
+
+
     public function handleDeleteChain($chain) {
         $result = $this->model->deleteChain($chain);
         if ($result !== TRUE) {
@@ -61,4 +63,21 @@ class Controller {
         $sources = $chainObj->getChainSources($user->getActiveChain());
         $this->view->showChain($sources);
     }
+
+    public function handleLogin($post) {
+
+        $userData = array();
+        $userData['username'] = $post['Username'];
+        $userData['fname'] = $post['FName'];
+        $userData['lname'] = $post['LName'];
+        $userData['dob'] = $post['DOB'];
+        $userData['password'] = $post['Password'];
+        if ($response = $model->addUserToDB($userData)) {
+            $this->view->printMessage("Successfully signed up you better fucking properly implement me.");
+        } else {
+            $this->view->printMessage($response);
+        }
+
+    }
+
 }
