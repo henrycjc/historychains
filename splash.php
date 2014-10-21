@@ -1,16 +1,25 @@
 <?php
 //$model->checkUserLoggedIn();
+ob_start();
 require("app/configs/Global_Config.php");
-//d($_POST);
+d($_POST);
+d($_COOKIE);
+d($_GET);
 
 $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-			if (isset($_POST['Submit'])) {
-				$user = new User($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
-				$model->addUserToDB($user);
-			}
+
+if (isset($_POST['SubmitSU'])) {
+	$user = new User($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
+	$model->addUserToDB($user);
+}
+
+if (isset($_POST['SubmitSI'])) {
+	$model->logUserIn($_POST['UName'], $_POST['Password']);
+	$model->getUserInfo();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +40,33 @@ $controller = new Controller($model, $view);
 					$("#login").toggle("slow");
 					$("#sign_up").hide("slow");
 			  });
+			  
+			  $("#SubmitSU").click(function(){
+					valid = true;
+					if($("#FName").val() =="") {
+						alert ("Please enter your First Name");
+						event.preventDefault();
+					}
+					else if ($("#LName").val() ==""){					
+						alert ("Please enter your Last Name");
+						event.preventDefault();
+					}
+					else if ($("#DOB").val() ==""){					
+						alert ("Please enter your Date of Birth");
+						event.preventDefault();
+					}
+					else if ($("#UName").val() ==""){					
+						alert ("Please enter a username");
+						event.preventDefault();
+					}
+					else if ($("#Password").val() ==""){					
+						alert ("Please enter a password");
+						event.preventDefault();
+					}
+					else {
+						$("#mkChainForm").submit()
+					}
+				});
 			});
 		</script>
 		
@@ -62,7 +98,7 @@ $controller = new Controller($model, $view);
 				<input type="date" name="DOB" id="DOB" placeholder="Date of Birth"/>
 				<input type="text" name="UName" id="UName" placeholder="Username"/>
 				<input type="password" name="Password" id="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" name="Submit" id="Submit"/>
+				<input type="submit" value="Submit" name="SubmitSU" id="SubmitSU"/>
 			</form>
 		</div>
 		<?php
@@ -70,11 +106,11 @@ $controller = new Controller($model, $view);
 		?>
 		
 		<div id="login">
-			<form>
+			<form action="splash.php" method="POST">
 				<h2>Login</h2>
 				<input type="text" name="UName" placeholder="Username"/>
 				<input type="text" name="Password" placeholder="Password"/>
-				<input type="submit" value="Submit" />
+				<input type="submit" value="Submit" name="SubmitSI"/>
 			</form>
 		</div>
 		<section class="Search">
