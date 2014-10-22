@@ -1,14 +1,13 @@
 <?php
+	//HTTP Header Info
 	require("app/configs/Global_Config.php");
 	$mysqli = new Mysql_Connection();
 	$model = new Model($mysqli->getConn());
 	$view = new View($model);
 	$controller = new Controller($model, $view);
 	$model->checkUserLoggedIn();
-	d($_COOKIE);
-	d($_POST);
-	$name = (string)$_COOKIE['user'];
-	d($name);
+
+	$img = $model->getUserProfileImage((string)$_COOKIE['user']);
 	
 	if (isset($_POST['apply'])) {
 		if (empty($_POST['Fname']) === FALSE) {
@@ -23,7 +22,18 @@
 		if (empty($_POST['Institution']) === FALSE) {
 		$model->updateUserInsitution((string)$_COOKIE['user'], $_POST['Institution']);
 		}
-	}	
+	}
+	
+	if (isset($_POST['upload'])) {
+		$model->uploadImage((string)$_COOKIE['user']);
+	}
+	
+	//Output starts Here
+	d($_COOKIE);
+	d($_FILES);
+	d($_POST);
+	$name = (string)$_COOKIE['user'];
+	d($name);
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -69,11 +79,11 @@
 		</div>
 
 		<div id="PicDiv">
-			<form class="form" action="app/content/upload_profile_picture.php" id="profile_pic">
+			<form class="form" action="profile.php" id="profile_pic" method="POST" enctype="multipart/form-data">
 				<h3>Edit Your Profile Picture</h3>
-				<input type="file" id="File" /><br/>
+				<input type="file" name="file" id="File" accept=".jpg, .png, .gif" /><br/>
 				<br/>
-				<input type="submit" id="upload" value="Apply"/><br/>
+				<input type="submit" id="upload" name="upload" value="Apply"/><br/>
 				<br/>
 				<input type="button" id="cancel" value="Cancel"/>
 				<br/>
@@ -97,16 +107,16 @@
 			</nav>
 			
 			<aside class="UserInfo">
-				<div class="Image"> <img src="resources/images/profile.jpg"/> </div>
+				<div class="Image"> <img src="<?php printf(substr($img, 0, -3))?>"/> </div>
 				<div class="Info"> 
 					<button id="edit_picture">Edit Profile Picture</button>
 					<button id="edit_profile">Edit Profile</button>
 					<h1>Info</h1>
-					<p>Angus Payne</p>
-					<p>28/04/96</p>
-					<p>University of Queensland</p>
-					<p>Rep: 9001</p>
-					<p>Chains: 10</p>
+					<p><?php ?></p>
+					<p><?php ?></p>
+					<p><?php ?></p>
+					<p><?php ?></p>
+					<p><?php ?></p>
 				</div>
 			</aside>
 			

@@ -1,7 +1,4 @@
-<?php
-
-
-	
+<?php	
 
 class Model {
 	
@@ -177,7 +174,7 @@ class Model {
 
 	public function checkUserLoggedIn() {
 
-		if ($_COOKIE["user_logged_in"] !== "TRUE") {
+		if ($_COOKIE["user_logged_in"] !== "true") {
 			header('Location: splash.php');
 		}
 	}
@@ -250,5 +247,42 @@ class Model {
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unable to change data, please try again");
 		}
+	}
+	
+	public function checkUpload($username) {
+		$target = "resources/images/user_profile_pics/";
+		$target = $target . basename($_FILES['file']['name']);
+		
+		if ((file_exists($target. $_FILES['file']["name"])=== TRUE) && ($_FILES['file']["size"] > 500000)) {
+		echo "Sorry there was a problem with your upload.
+				Either your file already exists, is too larger
+				or it's not in the right format (GIF, JPEG or PNG) ";
+		} else {
+			return TRUE;
+		}
+	}
+	
+	public function uploadImage($username) {
+		$target = "resources/images/user_profile_pics/";
+		$target = $target . basename($_FILES['file']['name']);
+		if($this->checkUpload($username) === TRUE && (move_uploaded_file($_FILES['file']['tmp_name'], $target))) {
+			$queryStr = "UPDATE user
+					SET img= '".$target.basename($_FILES['file']['name'])."'
+					 WHERE username ='".$username."'";
+			header("Refresh:0");
+			if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Something is wrong with the query");
+		}
+		} else {
+			echo "Sorry, there was a problem uploading your file.";
+		}
+	}
+	
+	public function getUserProfileImage($username) {
+		$queryStr = "SELECT img
+					FROM user
+					WHERE username= '".$username."'";
+		$link = $this->mysqli->query($queryStr)->fetch_assoc();
+		return $link['img'];
 	}
 }
