@@ -13,7 +13,6 @@
 						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
 						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
 					  );
-	d($userData);
 	
 	if (isset($_POST['apply'])) {
 		if (empty($_POST['Fname']) === FALSE) {
@@ -28,11 +27,15 @@
 		if (empty($_POST['Institution']) === FALSE) {
 		$model->updateUserInsitution((string)$_COOKIE['user'], $_POST['Institution']);
 		}
-		//header("Refresh:0"); -------------------- ONCE KINT HAS BEEN REMOVED UNCOMMENT THIS!
+		header("Refresh:0");
 	}
 	
 	if (isset($_POST['upload'])) {
 		$model->uploadImage((string)$_COOKIE['user']);
+	}
+	if( isset($_POST['Logout'])) {
+	$model->logUserOut();
+	header('Refresh :0');
 	}
 	//Output starts Here
 	d($_COOKIE);
@@ -40,6 +43,7 @@
 	d($_POST);
 	$name = (string)$_COOKIE['user'];
 	d($name);
+	d($userData);
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -102,6 +106,9 @@
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
 				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
+				<form id="logout" method="POST" action="profile.php">
+					<input type="submit" value="Logout" name="Logout" />
+				</form>
 			</div>
 			
 			<nav>

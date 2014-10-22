@@ -14,6 +14,10 @@ $userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE[
 					  );
 
 $chain = new Chain($mysqli->getConn());
+if( isset($_POST['Logout'])) {
+	$model->logUserOut();
+	header('Refresh :0');
+}
 
 
 // TODO: check cookie for current chain / last used chain
@@ -95,8 +99,10 @@ d($userData);
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
-				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?>
-				</span>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
+				<form id="logout" method="POST" action="createchain.php">
+					<input type="submit" value="Logout" name="Logout" />
+				</form>
 			</div>
 			
 			<nav class="nav1">

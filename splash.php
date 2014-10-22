@@ -107,7 +107,7 @@ d($_COOKIE);
 			<form action="splash.php" method="POST">
 				<h2>Login</h2>
 				<input type="text" name="UName" placeholder="Username"/>
-				<input type="text" name="Password" placeholder="Password"/>
+				<input type="password" name="Password" placeholder="Password"/>
 				<input type="submit" value="Submit" name="SubmitSI"/>
 			</form>
 		</div>

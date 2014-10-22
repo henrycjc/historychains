@@ -198,6 +198,12 @@ class Model {
 			echo("invalid username");
 		}
 	}
+	
+	public function logUserOut() {
+		header('Location : splash.php');
+		setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
+		setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
+	}
 
 	public function checkUserLoggedIn() {
 

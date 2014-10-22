@@ -13,6 +13,10 @@ $userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE[
 						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
 						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
 					  );
+if( isset($_POST['Logout'])) {
+	$model->logUserOut();
+	header('Refresh :0');
+}
 
 //Output
 d($_COOKIE);
@@ -36,7 +40,10 @@ d($userData);
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
-				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
+				<form id="logout" method="POST" action="index.php">
+					<input type="submit" value="Logout" name="Logout" />
+				</form>
 			</div>
 			
 			<nav>
