@@ -6,8 +6,14 @@
 	$view = new View($model);
 	$controller = new Controller($model, $view);
 	$model->checkUserLoggedIn();
-
-	$img = $model->getUserProfileImage((string)$_COOKIE['user']);
+	$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
+						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
+						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
+						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
+						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
+					  );
+	d($userData);
 	
 	if (isset($_POST['apply'])) {
 		if (empty($_POST['Fname']) === FALSE) {
@@ -22,12 +28,12 @@
 		if (empty($_POST['Institution']) === FALSE) {
 		$model->updateUserInsitution((string)$_COOKIE['user'], $_POST['Institution']);
 		}
+		//header("Refresh:0"); -------------------- ONCE KINT HAS BEEN REMOVED UNCOMMENT THIS!
 	}
 	
 	if (isset($_POST['upload'])) {
 		$model->uploadImage((string)$_COOKIE['user']);
 	}
-	
 	//Output starts Here
 	d($_COOKIE);
 	d($_FILES);
@@ -94,7 +100,8 @@
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
-							<div style="clear:both"></div>
+				<div style="clear:both"></div>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
 			</div>
 			
 			<nav>
@@ -107,16 +114,15 @@
 			</nav>
 			
 			<aside class="UserInfo">
-				<div class="Image"> <img src="<?php printf(substr($img, 0, -3))?>"/> </div>
+				<div class="Image"> <img src="<?php printf($userData['userProfilePic'])?>"/> </div>
 				<div class="Info"> 
 					<button id="edit_picture">Edit Profile Picture</button>
 					<button id="edit_profile">Edit Profile</button>
 					<h1>Info</h1>
-					<p><?php ?></p>
-					<p><?php ?></p>
-					<p><?php ?></p>
-					<p><?php ?></p>
-					<p><?php ?></p>
+					<p><?php printf($userData['userFName']." ".$userData['userLName'] )?></p>
+					<p><?php printf($userData['userDOB'])?></p>
+					<p><?php printf($userData['userInstitution'])?></p>
+					<p><?php printf($userData['userRep']) ?></p>
 				</div>
 			</aside>
 			

@@ -5,7 +5,18 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-$user = new User("angus", "payne", "20/04/1996", "angus", "password");
+$model->checkUserLoggedIn();
+$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
+						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
+						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
+						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
+						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
+					  );
+
+//Output
+d($_COOKIE);
+d($userData);
 ?>
 <!DOCTYPE html>
 <html> 
@@ -24,7 +35,8 @@ $user = new User("angus", "payne", "20/04/1996", "angus", "password");
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
-							<div style="clear:both"></div>
+				<div style="clear:both"></div>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?>
 			</div>
 			
 			<nav>

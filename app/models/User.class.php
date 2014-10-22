@@ -91,23 +91,16 @@ class User extends Model {
     }
 	
 
-    function __construct($username) {
-
-        /*
-            // get all the users info from the database
-
-        */
+    function __construct($username, $password, $fname, $lname, $dob) {
 		// Creating a User Logged In Cookie
-		setcookie("user_logged_in", "true", time() + (86400 * 30), "/");  // extends cookies life by a month
+		//setcookie("user_logged_in", "true", time() + (86400 * 30), "/");  // extends cookies life by a month
 		// Creating Which User Logged In Cookie
-		setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
-
-        $data = parent::getUserInfo($username);
+		//setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
         
-		$this->fname = $data['fname'];
-		$this->lname = $data['lname'];
-		$this->dob = $data['dob'];
-		$this->username = $data['username'];
-		$this->password = $data['password'];
+		$this->fname = $fname;
+		$this->lname = $lname;
+		$this->dob = $dob;
+		$this->username = $username;
+		$this->password = $password;
 	}
 }
