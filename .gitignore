@@ -105,3 +105,8 @@ Temporary Items
 
 # sftp configuration file
 sftp-config.json
+app/tests/imageUpload.php
+resources/images/user_profile_pics/IMG_0135.JPG
+resources/images/user_profile_pics/IMG_1321.JPG
+resources/images/user_profile_pics/Iphone Background.png
+resources/images/user_profile_pics/header_image.png
