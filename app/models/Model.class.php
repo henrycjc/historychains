@@ -113,28 +113,36 @@ class Model {
 		$this->mysqli->close();
 	}
 	
-	public function checkIfUserExists($username) {
-		$queryStr = "SELECT username 
-					FROM user
-					WHERE username ="."'".$username."';";
-		if ($this->mysqli->query($queryStr) !== TRUE) {
-			return TRUE;
-		} else {
-			echo("invalid user");
-			return FALSE;
+	public function checkUserLoggedIn() {
+		if ($_COOKIE["user_logged_in"] !== "true") {
+			setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
+			setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
+			header('Location: splash.php');
 		}
 	}
 	
-	public function checkIfValidPassword($username, $password) {
-		$queryStr = "SELECT password
-						FROM user
-						WHERE 'username' =".$username. "AND 'password =".$password;
-			if ($this->mysqli->query($queryStr) !== TRUE) {
-				return TRUE;
-			} else {
-				echo("invalid password");
-				return FALSE;
-			}
+	public function checkUserCredentials($username, $password) {
+		$queryStr = "SELECT username, password
+					 FROM user
+					 WHERE username ='".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		if ($result['username'] === $username && $result['password'] === $password) {
+			$this->logUserIn($username);
+			header('Refresh:0');
+		} else {
+			echo('invalid username or password');
+		}
+	}
+	
+	public function logUserIn($username) {
+		setcookie("user_logged_in", 'true', time() + (86400 * 30), "/"); // extends cookies life by a month
+		setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+	}
+	
+	public function logUserOut() {
+		setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
+		setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
+		header('Location : splash.php');
 	}
 	
 	public function getUserFName($username) {
@@ -142,7 +150,11 @@ class Model {
 					FROM user
 					WHERE username= '".$username."'";
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
-		return $result['fname'];
+		if ($result['fname'] === NULL) {
+			return 'There is no first name';
+		} else {
+			return $result['fname'];
+		}
 	}
 	
 	public function getUserLName($username) {
@@ -166,7 +178,11 @@ class Model {
 					FROM user
 					WHERE username= '".$username."'";
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
-		return $result['institution'];
+		if ($result['institution'] === NULL){
+			return "Appranently you don't go to a school... what a pleb!";
+		} else {
+			return $result['institution'];
+		}
 	}
 	
 	public function getUserRep($username) {
@@ -174,7 +190,11 @@ class Model {
 					FROM user
 					WHERE username= '".$username."'";
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
-		return $result['rep'];
+		if ($result['rep'] === NULL){
+			return 'You have no reputation';
+		} else {
+			return $result['rep'];
+		}
 	}
 	
 		public function getUserProfileImage($username) {
@@ -182,40 +202,10 @@ class Model {
 					FROM user
 					WHERE username= '".$username."'";
 		$link = $this->mysqli->query($queryStr)->fetch_assoc();
-		return $link['img'];
-	}
-	
-	public function logUserIn($username, $password) {
-		if ($this->checkIfUserExists($username) === TRUE) {
-			if ($this->checkIfValidPassword($username, $password) == TRUE) {
-				header('Location : index.php');
-				setcookie("user_logged_in", 'true', time() + (86400 * 30), "/"); // extends cookies life by a month
-				setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
-			} else {
-				echo("invalid password");
-			}
+		if ($link['img'] === NULL){
+			return "resources/images/profile.jpg";
 		} else {
-			echo("invalid username");
-		}
-	}
-	
-	public function logUserOut() {
-		header('Location : splash.php');
-		setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
-		setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
-	}
-
-	public function checkUserLoggedIn() {
-
-		if ($_COOKIE["user_logged_in"] !== "true") {
-			header('Location: splash.php');
-		}
-	}
-	
-	public function splashCheckUserLoggedIn() {
-		$cookie_name = "user_logged_in";
-		if ($_COOKIE[$cookie_name] == "true") {
-			header('Location: index.php');
+			return $link['img'];
 		}
 	}
 		
@@ -291,9 +281,10 @@ class Model {
 		$target = $target . basename($_FILES['file']['name']);
 		if($this->checkUpload($username) === TRUE && (move_uploaded_file($_FILES['file']['tmp_name'], $target))) {
 			$queryStr = "UPDATE user
-					SET img= '".$target.basename($_FILES['file']['name'])."'
+					SET img= '".$target."'
 					 WHERE username ='".$username."'";
 			header("Refresh:0");
+			echo($target);
 			if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Something is wrong with the query");
 		}

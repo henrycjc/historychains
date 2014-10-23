@@ -11,7 +11,7 @@
 						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
 						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
 						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
-						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
+						'userProfilePic' => ($model->getUserProfileImage((string)$_COOKIE['user']))
 					  );
 	
 	if (isset($_POST['apply'])) {
@@ -129,7 +129,7 @@
 					<p><?php printf($userData['userFName']." ".$userData['userLName'] )?></p>
 					<p><?php printf($userData['userDOB'])?></p>
 					<p><?php printf($userData['userInstitution'])?></p>
-					<p><?php printf($userData['userRep']) ?></p>
+					<p>Reputation: <?php printf($userData['userRep']) ?></p>
 				</div>
 			</aside>
 			
