@@ -1,3 +1,26 @@
+<?php
+require("app/configs/Global_Config.php");
+$mysqli = new Mysql_Connection();
+$model = new Model($mysqli->getConn());
+$view = new View($model);
+$controller = new Controller($model, $view);
+$model->checkUserLoggedIn();
+$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
+						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
+						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
+						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
+						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
+					  );
+if( isset($_POST['Logout'])) {
+	$model->logUserOut();
+	header('Refresh :0');
+}
+
+//Output
+d($_COOKIE);
+d($userData);
+?>
 <!DOCTYPE html> 
 <html> 
 	<head>
@@ -15,7 +38,11 @@
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
-							<div style="clear:both"></div>
+				<div style="clear:both"></div>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
+				<form id="logout" method="POST" action="about.php">
+					<input type="submit" value="Logout" name="Logout" />
+				</form>
 			</div>
 			
 			<nav>

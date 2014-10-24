@@ -4,24 +4,28 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-
-$userData = $model->getUserInfo($_COOKIE['user']);
-
-
-if ($_COOKIE['user_logged_in'] === "true") {
-
-	$user = new User($_COOKIE['user']);
-	d($user);
-} 
-d($userData);
-d($_COOKIE);
-//$user = new User("angus", "payne", "20/04/1996", "angus", "password");
+$model->checkUserLoggedIn();
+$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
+						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
+						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
+						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
+						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
+					  );
 
 $chain = new Chain($mysqli->getConn());
-//$model->checkUserLoggedIn();
+if( isset($_POST['Logout'])) {
+	$model->logUserOut();
+	header('Refresh :0');
+}
+
 
 // TODO: check cookie for current chain / last used chain
 $chain->setTitle("world war 2");
+
+//OUTPUT STARTS HERE
+d($_COOKIE);
+d($userData);
 ?>
 
 <!DOCTYPE html>
@@ -89,8 +93,10 @@ $chain->setTitle("world war 2");
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
-				<span id="users_name">Logged in as <?php if ($_COOKIE['user_logged_in'] == "true") { echo $user->getFname() . " " . $user->getLname(); }?>
-				</span>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
+				<form id="logout" method="POST" action="createchain.php">
+					<input type="submit" value="Logout" name="Logout" />
+				</form>
 			</div>
 			<nav class="nav1">
 				<ul> 

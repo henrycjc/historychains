@@ -1,14 +1,18 @@
 <?php
+	//HTTP Header Info
 	require("app/configs/Global_Config.php");
 	$mysqli = new Mysql_Connection();
 	$model = new Model($mysqli->getConn());
 	$view = new View($model);
 	$controller = new Controller($model, $view);
 	$model->checkUserLoggedIn();
-	d($_COOKIE);
-	d($_POST);
-	$name = (string)$_COOKIE['user'];
-	d($name);
+	$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
+						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
+						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
+						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
+						'userProfilePic' => ($model->getUserProfileImage((string)$_COOKIE['user']))
+					  );
 	
 	if (isset($_POST['apply'])) {
 		if (empty($_POST['Fname']) === FALSE) {
@@ -23,7 +27,23 @@
 		if (empty($_POST['Institution']) === FALSE) {
 		$model->updateUserInsitution((string)$_COOKIE['user'], $_POST['Institution']);
 		}
-	}	
+		header("Refresh:0");
+	}
+	
+	if (isset($_POST['upload'])) {
+		$model->uploadImage((string)$_COOKIE['user']);
+	}
+	if( isset($_POST['Logout'])) {
+	$model->logUserOut();
+	header('Refresh :0');
+	}
+	//Output starts Here
+	d($_COOKIE);
+	d($_FILES);
+	d($_POST);
+	$name = (string)$_COOKIE['user'];
+	d($name);
+	d($userData);
 ?>
 <!DOCTYPE html> 
 <html> 
@@ -69,11 +89,11 @@
 		</div>
 
 		<div id="PicDiv">
-			<form class="form" action="app/content/upload_profile_picture.php" id="profile_pic">
+			<form class="form" action="profile.php" id="profile_pic" method="POST" enctype="multipart/form-data">
 				<h3>Edit Your Profile Picture</h3>
-				<input type="file" id="File" /><br/>
+				<input type="file" name="file" id="File" accept=".jpg, .png, .gif" /><br/>
 				<br/>
-				<input type="submit" id="upload" value="Apply"/><br/>
+				<input type="submit" id="upload" name="upload" value="Apply"/><br/>
 				<br/>
 				<input type="button" id="cancel" value="Cancel"/>
 				<br/>
@@ -84,7 +104,11 @@
 			<div class="logo">
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
-							<div style="clear:both"></div>
+				<div style="clear:both"></div>
+				<span id="users_name">Logged in as <?php printf($userData['userFName']." ".$userData['userLName'] )?></span>
+				<form id="logout" method="POST" action="profile.php">
+					<input type="submit" value="Logout" name="Logout" />
+				</form>
 			</div>
 			
 			<nav>
@@ -97,16 +121,15 @@
 			</nav>
 			
 			<aside class="UserInfo">
-				<div class="Image"> <img src="resources/images/profile.jpg"/> </div>
+				<div class="Image"> <img src="<?php printf($userData['userProfilePic'])?>"/> </div>
 				<div class="Info"> 
 					<button id="edit_picture">Edit Profile Picture</button>
 					<button id="edit_profile">Edit Profile</button>
 					<h1>Info</h1>
-					<p>Angus Payne</p>
-					<p>28/04/96</p>
-					<p>University of Queensland</p>
-					<p>Rep: 9001</p>
-					<p>Chains: 10</p>
+					<p><?php printf($userData['userFName']." ".$userData['userLName'] )?></p>
+					<p><?php printf($userData['userDOB'])?></p>
+					<p><?php printf($userData['userInstitution'])?></p>
+					<p>Reputation: <?php printf($userData['userRep']) ?></p>
 				</div>
 			</aside>
 			

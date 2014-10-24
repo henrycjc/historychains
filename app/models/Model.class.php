@@ -1,7 +1,4 @@
-<?php
-
-
-	
+<?php	
 
 class Model {
 	
@@ -116,76 +113,99 @@ class Model {
 		$this->mysqli->close();
 	}
 	
-	public function checkIfUserExists($username) {
-		$queryStr = "SELECT username 
-					FROM user
-					WHERE username ="."'".$username."';";
-		if ($this->mysqli->query($queryStr) !== TRUE) {
-			return TRUE;
-		} else {
-			echo("invalid user");
-			return FALSE;
-		}
-	}
-	
-	public function checkIfValidPassword($username, $password) {
-		$queryStr = "SELECT password
-						FROM user
-						WHERE 'username' =".$username. "AND 'password =".$password;
-			if ($this->mysqli->query($queryStr) !== TRUE) {
-				return TRUE;
-			} else {
-				echo("invalid password");
-				return FALSE;
-			}
-	}
-	
-	public function getUserInfo($username) {
-		$queryStr = "SELECT * 
-					 FROM user 
-					 WHERE `username`= '".$username."'";
-		$result = $this->mysqli->query($queryStr);
-		if ($result === FALSE) {
-			return NULL;
-		} else {
-    		$user = $result->fetch_assoc();
-    	}
-    	$result->close();
-		/*
-		$user_Array[1] = "'".$this->mysqli->query("SELECT username FROM user WHERE username =".$_COOKIE['user'])."'";
-		$user_Array[2] = "'".$this->mysqli->query("SELECT fname FROM user WHERE username =".$_COOKIE['user'])."'";
-		$user_Array[3] = "'".$this->mysqli->query("SELECT lname FROM user WHERE username =".$_COOKIE['user'])."'";
-		$user_Array[4] = "'".$this->mysqli->query("SELECT dob FROM user WHERE username =".$_COOKIE['user'])."'";
-		$user_Array[5] = "'".$this->mysqli->query("SELECT password FROM user WHERE username =".$_COOKIE['user'])."'";
-		*/
-		return $user;
-	}
-	
-	public function logUserIn($username, $password) {
-		if ($this->checkIfUserExists($username) === TRUE) {
-			if ($this->checkIfValidPassword($username, $password) == TRUE) {
-				header('Location : index.php');
-				setcookie("user_logged_in", 'true', time() + (86400 * 30), "/"); // extends cookies life by a month
-				setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
-			} else {
-				echo("invalid password");
-			}
-		} else {
-			echo("invalid username");
-		}
-	}
-
 	public function checkUserLoggedIn() {
-
-		if ($_COOKIE["user_logged_in"] !== "TRUE") {
+		if ($_COOKIE["user_logged_in"] !== "true") {
+			setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
+			setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
 			header('Location: splash.php');
 		}
 	}
 	
-	public function splashCheckUserLoggedIn() {
-		$cookie_name = "user_logged_in";
-		if ($_COOKIE[$cookie_name] == "true") {
-			header('Location: index.php');
+	public function checkUserCredentials($username, $password) {
+		$queryStr = "SELECT username, password
+					 FROM user
+					 WHERE username ='".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		if ($result['username'] === $username && $result['password'] === $password) {
+			$this->logUserIn($username);
+			header('Refresh:0');
+		} else {
+			echo('invalid username or password');
+		}
+	}
+	
+	public function logUserIn($username) {
+		setcookie("user_logged_in", 'true', time() + (86400 * 30), "/"); // extends cookies life by a month
+		setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+	}
+	
+	public function logUserOut() {
+		setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
+		setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
+		header('Location : splash.php');
+	}
+	
+	public function getUserFName($username) {
+		$queryStr = "SELECT fname
+					FROM user
+					WHERE username= '".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		if ($result['fname'] === NULL) {
+			return 'There is no first name';
+		} else {
+			return $result['fname'];
+		}
+	}
+	
+	public function getUserLName($username) {
+		$queryStr = "SELECT lname
+					FROM user
+					WHERE username= '".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		return $result['lname'];
+	}
+	
+	public function getUserDOB($username) {
+		$queryStr = "SELECT dob
+					FROM user
+					WHERE username= '".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		return $result['dob'];
+	}
+	
+	public function getUserInsitution($username) {
+		$queryStr = "SELECT institution
+					FROM user
+					WHERE username= '".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		if ($result['institution'] === NULL){
+			return "Appranently you don't go to a school... what a pleb!";
+		} else {
+			return $result['institution'];
+		}
+	}
+	
+	public function getUserRep($username) {
+		$queryStr = "SELECT rep
+					FROM user
+					WHERE username= '".$username."'";
+		$result = $this->mysqli->query($queryStr)->fetch_assoc();
+		if ($result['rep'] === NULL){
+			return 'You have no reputation';
+		} else {
+			return $result['rep'];
+		}
+	}
+	
+		public function getUserProfileImage($username) {
+		$queryStr = "SELECT img
+					FROM user
+					WHERE username= '".$username."'";
+		$link = $this->mysqli->query($queryStr)->fetch_assoc();
+		if ($link['img'] === NULL){
+			return "resources/images/profile.jpg";
+		} else {
+			return $link['img'];
 		}
 	}
 		
@@ -193,22 +213,16 @@ class Model {
 		return  $_COOKIE[$cookie_name] ;
 	}
 	
-	public function addUserToDB($userData) {
-
-		foreach($userData as $item) {
-			$item = stripslashes(trim($item));
-		}
-		$queryStr = "INSERT INTO user (`username`, `password`, `fname`, `lname`, `dob`)
-					VALUES ('".$userData['username']."','".$userData['password']."','".$userData['fname']."','".
-						$userData['lname']."','".$userData['dob']."')";
-		//$username = $user->getUsername();
+	public function addUserToDB($fname, $lname, $dob, $username, $password) {
+		$queryStr = "INSERT INTO user (fname, lname, dob, username, password)
+					VALUES ('".$fname."', '".$lname."', '".$dob."', '".$username."', '".$password."')";
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			return FALSE;
-			//echo("Unsuccessful registration, please try again");
-		} else {		
+			echo("Unsuccessful registration, please try again");
+		} else {
+			header('location = index.php');
 			setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
-			setcookie("user", $userData, time() + (86400 * 30), "/");  // extends cookies life by a month
-			return TRUE;
+			setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
 		}
 	}
 	
@@ -216,7 +230,7 @@ class Model {
 		$queryStr = "UPDATE user
 					SET fname= '". $fname."'
 					 WHERE username ='".$username."'";
-		echo($fname);
+		
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unable to change data, please try again");
 		}
@@ -226,7 +240,6 @@ class Model {
 		$queryStr = "UPDATE user
 					SET lname= '". $lname."'
 					 WHERE username ='".$username."'";
-		echo($lname);
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unable to change data, please try again");
 		}
@@ -236,7 +249,6 @@ class Model {
 		$queryStr = "UPDATE user
 					SET dob= '". $dob."'
 					 WHERE username ='".$username."'";
-		echo($dob);
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unable to change data, please try again");
 		}
@@ -246,9 +258,38 @@ class Model {
 		$queryStr = "UPDATE user
 					SET institution= '". $institution."'
 					 WHERE username ='".$username."'";
-		echo($institution);
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unable to change data, please try again");
+		}
+	}
+	
+	public function checkUpload($username) {
+		$target = "resources/images/user_profile_pics/";
+		$target = $target . basename($_FILES['file']['name']);
+		
+		if ((file_exists($target. $_FILES['file']["name"])=== TRUE) && ($_FILES['file']["size"] > 500000)) {
+		echo "Sorry there was a problem with your upload.
+				Either your file already exists, is too larger
+				or it's not in the right format (GIF, JPEG or PNG) ";
+		} else {
+			return TRUE;
+		}
+	}
+	
+	public function uploadImage($username) {
+		$target = "resources/images/user_profile_pics/";
+		$target = $target . basename($_FILES['file']['name']);
+		if($this->checkUpload($username) === TRUE && (move_uploaded_file($_FILES['file']['tmp_name'], $target))) {
+			$queryStr = "UPDATE user
+					SET img= '".$target."'
+					 WHERE username ='".$username."'";
+			header("Refresh:0");
+			echo($target);
+			if ($this->mysqli->query($queryStr) !== TRUE) {
+			echo("Something is wrong with the query");
+		}
+		} else {
+			echo "Sorry, there was a problem uploading your file.";
 		}
 	}
 }

@@ -412,9 +412,29 @@ nav ul li a:hover{
 	margin-left: 2.5%
 }
 
+#logout {
+margin-top: 10px;
+float: left;
+width: 100px;
+margin-bottom: 5px;
+}
+
+#logout input{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	padding: 5px;
+	width: 75px;
+	border: 2px solid #02A2EF;
+	font-family: 'Raleway', sans-serif;
+	font-size: 10px;
+	text-align: center; 
+}
+
 #users_name {
 	font-size: 12pt;
 	float: right;
+	margin-top: 10px;
 }
 
 

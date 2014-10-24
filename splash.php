@@ -1,31 +1,23 @@
 <?php
-//ob_start();
 require("app/configs/Global_Config.php");
-
 
 $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
-$controller = new Controller($model, $view);
-
-//$model->checkUserLoggedIn();
-
-
+$controller = new Controller($model, $view);;
 if (isset($_POST['SubmitSU'])) {
-	$success = $controller->handleLogin($_POST);
-	
-	//$model->addUserToDB($_POST[], );
-	//TODO: user feedback if their sign up was successful
+	$model->addUserToDB($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
 }
-
+if($_COOKIE["user_logged_in"] === "true") {
+	header('location: index.php');
+}
 if (isset($_POST['SubmitSI'])) {
-	$model->logUserIn($_POST['UName'], $_POST['Password']);
-	$model->getUserInfo($_POST['UName']);
-}
+	$model->checkUserCredentials($_POST['UName'], $_POST['Password']);
 
+}
+// OUTPUT STARTS HERE
 d($_POST);
 d($_COOKIE);
-d($_GET);
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,8 +25,7 @@ d($_GET);
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script>
-			$(document).ready(function(){
-				$(".search").hide(); 
+			$(document).ready(function(){ 
 				$("#sign_up").hide();
 				$("#login").hide();
 				$("#sign_up_link").click(function(){
@@ -115,7 +106,7 @@ d($_GET);
 			<form action="splash.php" method="POST">
 				<h2>Login</h2>
 				<input type="text" name="UName" placeholder="Username"/>
-				<input type="text" name="Password" placeholder="Password"/>
+				<input type="password" name="Password" placeholder="Password"/>
 				<input type="submit" value="Submit" name="SubmitSI"/>
 			</form>
 		</div>
