@@ -61,11 +61,6 @@ $chain->setTitle("world war 2");
 						$("#mkChainForm").submit()
 					}
 				});
-				
-				$(".apply").click(function(){
-					$('.buffer').html($("#beskeder_vis").html());
-				}); 
-
 					
 			});
 		</script>	
@@ -172,7 +167,6 @@ $chain->setTitle("world war 2");
 
 			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
-				<p>All Rights Reserved</p>
 			</footer>
 		</div>
 		
@@ -183,9 +177,9 @@ $chain->setTitle("world war 2");
 				<hr/><br/>
 				<p>Make sure to comment on reliability and how it helped you!</p>
 				<br/>
-				<input type="text" id="Tags" placeholder="Tags"/><br/>
+				<input type="text" id="tags" placeholder="Tags"/><br/>
 				<br/>
-				<h3>Your Comment</h3><br/>
+				<h3 id="test">Your Comment</h3><br/>
 				<br/>
 				<textarea rows="6" cols="36"></textarea><br/>
 				<br/>
@@ -195,9 +189,6 @@ $chain->setTitle("world war 2");
 			</form>
 		</div>
 		
-		<div class="Output"> 
-			<p class="tags"></p>
-		</div>
 		
 	</body>
 </html> 
