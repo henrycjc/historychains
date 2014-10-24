@@ -4,6 +4,6 @@ include_once("../models/Mysql_Connection.class.php");
 
 $mysqli = new Mysql_Connection();
 
-
+d($_POST);
 $mysqli->getConn()->query("INSERT INTO user_chain
                             VALUES (1,'".$_POST['troveid']."', 'itworked')");

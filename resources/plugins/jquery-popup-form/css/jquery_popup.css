@@ -1,23 +1,22 @@
 
 @font-face {
     font-family: 'sousesregular';
-    src: url('../fonts/souses-webfont.eot');
-    src: url('../fonts/souses-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/souses-webfont.woff2') format('woff2'),
-         url('../fonts/souses-webfont.woff') format('woff'),
-         url('../fonts/souses-webfont.ttf') format('truetype'),
-         url('../fonts/souses-webfont.svg#sousesregular') format('svg');
+    src: url('../../../fonts/souses-webfont.eot');
+    src: url('../../../fonts/souses-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../fonts/souses-webfont.woff2') format('woff2'),
+         url('../../../fonts/souses-webfont.woff') format('woff'),
+         url('../../../fonts/souses-webfont.ttf') format('truetype'),
+         url('../../../fonts/souses-webfont.svg#sousesregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 h2{
     margin-left: 65px;
-    text-shadow:1px 0px 3px gray;}
+}
 h3{
     font-size:18px;
     text-align:center;
-    text-shadow:1px 0px 3px gray;
 }
 
 .form{

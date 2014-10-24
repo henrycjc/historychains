@@ -43,7 +43,7 @@ d($chain->getChainSources("world war 2"));
         // Disabled form elements will not be serialized.
         $inputs.prop("disabled", true);
 
-        // fire off the request to /form.php
+        // fire off the request
         request = $.ajax({
             url: "ajaxpost.php",
             type: "post",
@@ -52,7 +52,7 @@ d($chain->getChainSources("world war 2"));
 
         // callback handler that will be called on success
         request.done(function (response, textStatus, jqXHR){
-            console.log("Hooray, it worked!");
+            console.log(response);
         });
 
         // callback handler that will be called on failure
@@ -65,7 +65,7 @@ d($chain->getChainSources("world war 2"));
         // if the request failed or succeeded
         request.always(function () {
         // reenable the inputs
-        $inputs.prop("disabled", false);
+            $inputs.prop("disabled", false);
         });
 
         // prevent default posting of form

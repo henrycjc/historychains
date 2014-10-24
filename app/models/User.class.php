@@ -102,12 +102,12 @@ class User extends Model {
 		// Creating Which User Logged In Cookie
 		setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
 
-        $data = parent::getUserInfo($username);
-        
+        //$data = parent::getUserInfo($username);
+        /*
 		$this->fname = $data['fname'];
 		$this->lname = $data['lname'];
 		$this->dob = $data['dob'];
 		$this->username = $data['username'];
-		$this->password = $data['password'];
+		$this->password = $data['password']; */
 	}
 }

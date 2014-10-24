@@ -57,7 +57,6 @@ $chain->setTitle("world war 2");
 					$(".ListedChains").toggle("slow");
 					$(".CreateNew").hide("slow");
 				});
-
 				$("#mkChain").click(function(){
 					valid = true;
 					if($("#title").val() =="") {
@@ -72,33 +71,27 @@ $chain->setTitle("world war 2");
 						$("#mkChainForm").submit()
 					}
 				});
-				
 				$(".apply").click(function(){
 					$('.buffer').html($("#beskeder_vis").html());
-				}); 
+				});
 
-					
 			});
-		</script>	
-		<script>
+		</script>
+        <script>
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "createchain_mobile.php";
 			}
 		</script>
 	</head>
 	<body>
-
-	
     <div class="wrap">
 			<div class="logo">
-
 				<h1 id="header_title">History Chains</h1>
 				<img class="lim" src="resources/images/logo.png" width="100px" />
 				<div style="clear:both"></div>
-				<span id="users_name">Logged in as <? if ($_COOKIE['user_logged_in'] == "true") { echo $user->getFname() . " " . $user->getLname();}?>
+				<span id="users_name">Logged in as <?php if ($_COOKIE['user_logged_in'] == "true") { echo $user->getFname() . " " . $user->getLname(); }?>
 				</span>
 			</div>
-			
 			<nav class="nav1">
 				<ul> 
 					<li><a href="index.php">Home</a> </li>
@@ -107,9 +100,8 @@ $chain->setTitle("world war 2");
 					<li><a href="about.php">About</a> </li>
 				</ul>
 			</nav>
-			
 			<div class="CreateChain">
-				<h2>Let's Get Started!</h2>
+				<h2>Step 1: Create or Edit Existing!</h2>
 				<button type="button" class="New_Chain_Link">Create a Chain</button>
 				<button type="button" class="Exist_Link">Edit a Chain</button>
 				<form id="mkChainForm" class="CreateNew" action="createchain.php" method="post">
@@ -139,13 +131,11 @@ $chain->setTitle("world war 2");
 					</form>
 				</div>
 			</div>
-			
-						<div style="clear:both"></div>
-			
+			<div style="clear:both"></div>
 			<div class="app">
 				<section class="Search CreateChainSearch">
 					<div class="SearchWrap">
-						<h2>Search</h2>
+						<h2>Step 2: Research</h2>
 						<form action="createchain.php" method="GET" id="searchTrove">
 							<input type="text" id="q" name="q" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
 							<button type="submit" id="searchbtn">Search</button>
@@ -163,14 +153,13 @@ $chain->setTitle("world war 2");
 			                            } else {
 			                            	$view->printMessage("Start searching so we can show you some results!");
 			                            }
-
 									?>
 									</table>
                         		</div>
 						</article>
 					</div>
 				</section>
-				
+
 						
 		<section class="TopChain CreateChainTimeline">
 			<h2><?php $controller->getActiveChain($user); ?></h2>
@@ -187,26 +176,66 @@ $chain->setTitle("world war 2");
 				<p>All Rights Reserved</p>
 			</footer>
 		</div>
-		
-			
+    <script>
+    </script>
+
 		<div id="Comment">
-			<form class="form" action="#" id="info">	
-				<h3>Add Comment</h3>
-				<hr/><br/>
-				<p>Make sure to comment on reliability and how it helped you!</p>
+			<form id="info">
+				<h3>Add Source to Chain</h3>
+				<p>Keywords</p>
+                <textarea name="keywords" id="keywords" rows="1" cols="36" placeholder="Comma, separated, keywords"></textarea><br/>
+                <p>Notes</p>
+				<textarea name="notes" id="notes" rows="6" cols="36" placeholder="Very helpful for criteria #1..."></textarea><br/>
 				<br/>
-				<input type="text" id="Tags" placeholder="Tags"/><br/>
-				<br/>
-				<h3>Your Comment</h3><br/>
-				<br/>
-				<textarea rows="6" cols="36"></textarea><br/>
-				<br/>
-				<input type="button" id="apply" value="Apply"/>
+				<button id="apply" value="Apply">Apply</button>
 				<input type="button" id="cancel" value="Cancel"/>
 				<br/>
 			</form>
 		</div>
-		
+		<script>
+            $(document).ready(function(){
+                var request;
+                $("#info").submit(function(event){
+                    if (request) {
+                        request.abort();
+                    }
+
+                    var $form = $(this);
+                    var $inputs = $form.find("input, textarea, button");
+                    var serializedData = $("#info").serialize();
+                    console.log($form);
+
+                    $inputs.prop("disabled", true);
+
+                    request = $.ajax({
+                        url: "addsource.php",
+                        type: "post",
+                        data: serializedData,
+                        success: function(data, status) {
+                            $(document.body).append(data);
+                            console.log("Status: " + status + "Data: " +data);
+                        }
+                    });
+
+
+                    request.done(function (response, textStatus, jqXHR){
+                        console.log("Posted to addsource.php.");
+                    });
+
+
+                    request.fail(function (jqXHR, textStatus, errorThrown){
+                        // log the error to the console
+                        console.error("The following error occured: "+ textStatus, errorThrown);
+                    });
+
+                    request.always(function () {
+                        // reenable the inputs
+                        $inputs.prop("disabled", false);
+                    });
+                    event.preventDefault();
+                });
+            });
+		</script>
 		<div class="Output"> 
 			<p class="tags"></p>
 		</div>
