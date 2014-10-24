@@ -22,6 +22,7 @@ if( isset($_POST['Logout'])) {
 d($_COOKIE);
 d($userData);
 ?>
+
 <!DOCTYPE html>
 <html> 
 	<head>
@@ -79,9 +80,41 @@ d($userData);
 				</div>
 			</section>
 			
+			
 			<section class="TopChain">
 				<h2>Top Chains</h2>
+				<div class = "Top_Result">
+					<div class="result_number">
+					<p>1</p>
+					</div>
+					<div class="reputation">
+						<p>1000</p>
+					</div>
+					<div class="Top_info">
+						<h3 class="title">Title of the Chain</h3>
+						<p class="author">Author</p>
+						<p class="date">Date & Time</p>
+					</div>
+					<button type="submit" class="View_Chain">View Chain</button>
+				</div>
+				
+				<div class = "Top_Result">
+					<div class="result_number">
+					<p>2</p>
+					</div>
+					<div class="reputation">
+						<p>1000</p>
+					</div>
+					<div class="Top_info">
+						<h3 class="title">Title of the Chain</h3>
+						<p class="author">Author</p>
+						<p class="date">Date & Time</p>
+					</div>
+					<button type="submit" class="View_Chain">View Chain</button>
+				</div>
 			</section>
+			
+			
 			
 			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>

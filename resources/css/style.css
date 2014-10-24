@@ -34,8 +34,9 @@ p{
 	background: #02A2EF;
 	max-width: 100%; 
 	padding: 20px; 
-	margin-top: 30px;
+	margin-top: 20px;
 	text-align: center; 
+	height: 100px; 
 }
 
 .logo{
@@ -337,14 +338,14 @@ nav ul li a:hover{
 	
 }
 
-#Tags, #apply_btn ,#searchbtn, #sortBy, #edit_profile, #edit_picture{
+#Tags, #apply_btn ,#searchbtn, #sortBy, #edit_profile, #edit_picture, .View_Chain{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
 	padding: 5px;
 	width: 200px;
 	display: block;
-	border: 2px solid #02A2EF;
+	border: 2px solid Black;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
 	text-align: center; 
@@ -357,7 +358,7 @@ nav ul li a:hover{
 	padding: 5px;
 	width: 200px;
 	display: block;
-	border: 2px solid #F17822;
+	border: 2px solid Black;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
 	text-align: center; 
@@ -386,7 +387,7 @@ nav ul li a:hover{
 
 .TableButton{
 	padding: 2px;
-	border: 2px solid #02A2EF;
+	border: 2px solid #F17822;
 	font-family: 'Raleway', sans-serif;
 	font-size: 12px;
 	text-align: center; 
@@ -394,6 +395,8 @@ nav ul li a:hover{
 
 .result_cell{
 	width: 16%;
+	color: black; 
+	font-family: 'Raleway', sans-serif;
 }
 
 .CreateChainSearch {
@@ -401,7 +404,8 @@ nav ul li a:hover{
 	float: left;
 	width: 47.5%;
 	padding: 1%;
-	margin-right: 2.5%
+	margin-right: 2.5%; 
+	height: 570px; 
 }
 
 .CreateChainTimeline {
@@ -409,7 +413,8 @@ nav ul li a:hover{
 	float: right;
 	width: 47.5%;
 	padding: 1%;
-	margin-left: 2.5%
+	margin-left: 2.5%; 
+	height: 570px; 
 }
 
 #logout {
@@ -438,6 +443,47 @@ margin-bottom: 5px;
 }
 
 
+
+
+
+
+
+
+
+.Top_Result{
+	background: white; 
+	height: 200px;
+	border: 2px solid #02A2EF; 
+	max-height: 73px; 
+	padding: 1px; 
+	margin: 18px; 
+}
+
+.result_number, .reputation, .Top_info, .title, .date, .author{
+	float: left; 
+	margin-left: 20px; 
+	margin-right: 20px; 
+	padding-left: 10px; 
+	padding-right: 10px; 
+	height: 100%; 
+	text-align: center; 
+}
+
+.result_number{
+	background: #d3d3d3;
+	min-height: 100%; 
+}
+
+.Top_info{
+	background: #F3FAFE; 
+}
+
+.View_Chain{
+	float: left; 
+	margin-top: 15px; 
+	margin-left: 30px; 
+	border: 1px solid black; 
+}
 
 
 
