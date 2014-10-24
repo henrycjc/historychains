@@ -13,7 +13,7 @@
 						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
 						'userProfilePic' => ($model->getUserProfileImage((string)$_COOKIE['user']))
 					  );
-	
+
 	if (isset($_POST['apply'])) {
 		if (empty($_POST['Fname']) === FALSE) {
 		$model->updateUserFName((string)$_COOKIE['user'], $_POST['Fname']);
@@ -29,7 +29,7 @@
 		}
 		header("Refresh:0");
 	}
-	
+
 	if (isset($_POST['upload'])) {
 		$model->uploadImage((string)$_COOKIE['user']);
 	}
@@ -45,9 +45,11 @@
 	d($name);
 	d($userData);
 ?>
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
 	<head>
+		<link rel="icon" href="resources/images/logo.png">
+		<title>HC > Profile</title>
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> <!-- Jquery Library-->
 		<link rel="stylesheet" href="resources/plugins/jquery-popup-form/css/jquery_popup.css" /><!-- Popup Window Stlyesheet-->
@@ -59,11 +61,11 @@
 			};
 		</script>
 	</head>
-	
+
 	<body>
 		<!-- JQUERY POPUP FORM STARTS HERE-->
 		<div id="InfoDiv">
-			<form class="form" action="profile.php" method="POST" id="info">	
+			<form class="form" action="profile.php" method="POST" id="info">
 				<h3>Edit Your Details</h3>
 				<hr/><br/>
 				<label>First Name</label>
@@ -98,7 +100,7 @@
 				<input type="button" id="cancel" value="Cancel"/>
 				<br/>
 			</form>
-		</div>		
+		</div>
 		<!-- JQUERY POPUP FORM ENDS HERE -->
 		<div class="wrap">
 			<div class="logo">
@@ -110,19 +112,19 @@
 					<input type="submit" value="Logout" name="Logout" />
 				</form>
 			</div>
-			
+
 			<nav>
-				<ul> 
+				<ul>
 					<li> <a href="index.php">Home</a> </li><li>
-					<a href="createchain.php">Create Chain</a> </li><li class="current_page"> 
+					<a href="createchain.php">Create Chain</a> </li><li class="current_page">
 					<a href="profile.php">Profile</a> </li><li>
 					<a href="about.php">About</a> </li>
 				</ul>
 			</nav>
-			
+
 			<aside class="UserInfo">
 				<div class="Image"> <img src="<?php printf($userData['userProfilePic'])?>"/> </div>
-				<div class="Info"> 
+				<div class="Info">
 					<button id="edit_picture">Edit Profile Picture</button>
 					<button id="edit_profile">Edit Profile</button>
 					<h1>Info</h1>
@@ -132,14 +134,14 @@
 					<p>Reputation: <?php printf($userData['userRep']) ?></p>
 				</div>
 			</aside>
-			
 
-			
+
+
 			<div class="ChainInfo">
 				<div class="Published">
 					<h2>Published Chains</h2>
 				</div>
-				
+
 				<div class="Collab">
 						<h2>Collabritive Chains</h2>
 				</div>
@@ -152,4 +154,4 @@
 			</footer>
 		</div>
 	</body>
-</html> 
+</html>

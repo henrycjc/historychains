@@ -24,8 +24,10 @@ d($userData);
 ?>
 
 <!DOCTYPE html>
-<html> 
+<html>
 	<head>
+		<link rel="icon" href="resources/images/logo.png">
+		<title>HC > Home</title>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<script type="text/javascript">
@@ -34,7 +36,7 @@ d($userData);
 			};
 		</script>
 	</head>
-	
+
 	<body>
 		<div class="wrap">
 			<div class="logo">
@@ -46,16 +48,16 @@ d($userData);
 					<input type="submit" value="Logout" name="Logout" />
 				</form>
 			</div>
-			
+
 			<nav>
-				<ul> 
+				<ul>
 					<li class="current_page"> <a href="index.php">Home</a> </li><li>
 					<a href="createchain.php">Create Chain</a> </li> <li>
 					<a href="profile.php">Profile</a> </li> <li>
 					<a href="about.php">About</a> </li>
 				</ul>
 			</nav>
-			
+
 			<section class="Search">
 				<div class="SearchWrap">
 					<h2>Search</h2>
@@ -79,8 +81,8 @@ d($userData);
 					</article>
 				</div>
 			</section>
-			
-			
+
+
 			<section class="TopChain">
 				<h2>Top Chains</h2>
 				<div class = "Top_Result">
@@ -97,7 +99,7 @@ d($userData);
 					</div>
 					<button type="submit" class="View_Chain">View Chain</button>
 				</div>
-				
+
 				<div class = "Top_Result">
 					<div class="result_number">
 					<p>2</p>
@@ -113,13 +115,13 @@ d($userData);
 					<button type="submit" class="View_Chain">View Chain</button>
 				</div>
 			</section>
-			
-			
-			
+
+
+
 			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
 				<p>All Rights Reserved</p>
 			</footer>
 		</div>
 	</body>
-</html> 
+</html>

@@ -29,8 +29,10 @@ d($userData);
 ?>
 
 <!DOCTYPE html>
-<html> 
+<html>
 	<head>
+		<link rel="icon" href="resources/images/logo.png">
+		<title>HC > Create Chain</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>History Chains > Create Chain</title>
@@ -51,12 +53,12 @@ d($userData);
         </style>
 		<script>
 			$(document).ready(function(){
-				$(".CreateNew").hide(); 
-				$(".ListedChains").hide(); 
+				$(".CreateNew").hide();
+				$(".ListedChains").hide();
 				$(".New_Chain_Link").click(function(){
 					$(".CreateNew").toggle("slow");
 					$(".ListedChains").hide("slow");
-				}); 
+				});
 				$(".Exist_Link").click(function(){
 					$(".ListedChains").toggle("slow");
 					$(".CreateNew").hide("slow");
@@ -67,7 +69,7 @@ d($userData);
 						alert ("That is not a valid title for a chain.");
 						event.preventDefault();
 					}
-					else if ($("#topic").val() ==""){					
+					else if ($("#topic").val() ==""){
 						alert ("They are not valid tags for a chain.");
 						event.preventDefault();
 					}
@@ -99,7 +101,7 @@ d($userData);
 				</form>
 			</div>
 			<nav class="nav1">
-				<ul> 
+				<ul>
 					<li><a href="index.php">Home</a> </li>
 					<li class="current_page"><a href="createchain.php">Create Chain</a> </li>
 					<li><a href="profile.php">Profile</a> </li>
@@ -166,7 +168,7 @@ d($userData);
 					</div>
 				</section>
 
-						
+
 		<section class="TopChain CreateChainTimeline">
 			<h2><?php $controller->getActiveChain($user); ?></h2>
 			<section id="cd-timeline" class="cd-container">
@@ -234,7 +236,7 @@ d($userData);
                             $("#ResGood").show();
                             $("#cd-timeline").hide();
                             <?php
-                                
+
                             ?>
                         }
                         console.log("Posted to addsource.php.");
@@ -250,6 +252,6 @@ d($userData);
                 });
             });
 		</script>
-		
+
 	</body>
-</html> 
+</html>
