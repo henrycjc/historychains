@@ -49,6 +49,8 @@ class View {
         }
     }
 
+
+
     public function showChain($sources) {
 
         if ($sources == NULL) {
@@ -70,6 +72,20 @@ class View {
         // source_id, comment, timestamp, type, troveid
         }
         echo '</section>';
+    }
+
+    public function addSourceToChainView($source) {
+        echo '<div class="cd-timeline-block">';
+            echo '<div class="cd-timeline-img cd-picture">';
+                echo '<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">';
+            echo '</div>';
+            echo '<div class="cd-timeline-content">';
+            echo '<h2>'.$source['comment'].'</h2>';
+            echo '<p>'."HOLY SHIT THIS IS NEW".'</p>';
+            echo '<a href="#0" class="cd-read-more">Read more</a>';
+            echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
+            echo '</div>';
+        echo '</div>';
     }
     public function showUsersChains($results) {
         

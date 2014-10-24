@@ -112,7 +112,10 @@ class Model {
 	public function closeMysqli() {
 		$this->mysqli->close();
 	}
-	
+
+    public function addSourceToChain($user, $chain, $keywords, $notes) {
+
+    }
 	public function checkUserLoggedIn() {
 		if ($_COOKIE["user_logged_in"] !== "true") {
 			setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
@@ -209,8 +212,8 @@ class Model {
 		}
 	}
 		
-	public function getUserLoggedIN() {
-		return  $_COOKIE[$cookie_name] ;
+	public function getUserLoggedIn() {
+		return  $_COOKIE['name'] ;
 	}
 	
 	public function addUserToDB($fname, $lname, $dob, $username, $password) {
@@ -277,7 +280,7 @@ class Model {
 	}
 	
 	public function uploadImage($username) {
-		$target = "resources/images/user_profile_pics/";
+		$target = "resources/images/user_profile_pics";
 		$target = $target . basename($_FILES['file']['name']);
 		if($this->checkUpload($username) === TRUE && (move_uploaded_file($_FILES['file']['tmp_name'], $target))) {
 			$queryStr = "UPDATE user

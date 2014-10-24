@@ -12,7 +12,7 @@ $userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE[
 						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
 						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
 					  );
-
+$user = new User("test", "test", "test", "Test", "Test");
 $chain = new Chain($mysqli->getConn());
 if( isset($_POST['Logout'])) {
 	$model->logUserOut();
@@ -188,24 +188,32 @@ d($userData);
 		<div id="Comment">
 			<form id="info">
 				<h3>Add Source to Chain</h3>
+                <div id="ResGood"><p>Source Added To Chain!</p></div>
+                <input type="hidden" id="AddUser" name="AddUser" value="<?php if(isset($_COOKIE['user'])) { echo $_COOKIE['user'];} ?>"/>
+                <input type="hidden" id="AddSource" name="AddSource" value=""/>
+                <input type="hidden" id="AddChain" name="AddChain" value="<?php $controller->getActiveChain($user); ?>" />
 				<p>Keywords</p>
-                <textarea name="keywords" id="keywords" rows="1" cols="36" placeholder="Comma, separated, keywords"></textarea><br/>
+                <textarea name="AddKeywords" id="AddKeywords" rows="1" cols="36" placeholder="Comma, separated, keywords"></textarea><br/>
                 <p>Notes</p>
-				<textarea name="notes" id="notes" rows="6" cols="36" placeholder="Very helpful for criteria #1..."></textarea><br/>
+				<textarea name="AddNotes" id="AddNotes" rows="6" cols="36" placeholder="Very helpful for criteria #1..."></textarea><br/>
 				<br/>
 				<button id="apply" value="Apply">Apply</button>
 				<input type="button" id="cancel" value="Cancel"/>
 				<br/>
 			</form>
 		</div>
+        <script>
+
+        </script>
 		<script>
             $(document).ready(function(){
                 var request;
+                $("#ResGood").hide();
                 $("#info").submit(function(event){
                     if (request) {
                         request.abort();
                     }
-
+                    $("#usrname").val(<?php echo '"'.$user->getFname().'"' ?>);
                     var $form = $(this);
                     var $inputs = $form.find("input, textarea, button");
                     var serializedData = $("#info").serialize();
@@ -222,18 +230,19 @@ d($userData);
                             console.log("Status: " + status + "Data: " +data);
                         }
                     });
-
-
                     request.done(function (response, textStatus, jqXHR){
+                        if (response === "SUCCESS") {
+                            $("#ResGood").show();
+                            $("#cd-timeline").hide();
+                            <?php
+                                
+                            ?>
+                        }
                         console.log("Posted to addsource.php.");
                     });
-
-
                     request.fail(function (jqXHR, textStatus, errorThrown){
-                        // log the error to the console
                         console.error("The following error occured: "+ textStatus, errorThrown);
                     });
-
                     request.always(function () {
                         // reenable the inputs
                         $inputs.prop("disabled", false);

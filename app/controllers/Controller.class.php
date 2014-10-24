@@ -72,7 +72,7 @@ class Controller {
         $userData['lname'] = $post['LName'];
         $userData['dob'] = $post['DOB'];
         $userData['password'] = $post['Password'];
-        if ($response = $model->addUserToDB($userData)) {
+        if ($response = $this->model->addUserToDB($userData)) {
             $this->view->printMessage("Successfully signed up you better fucking properly implement me.");
         } else {
             $this->view->printMessage($response);

@@ -8,8 +8,15 @@ $(document).ready(function() {
     });
 	
 	$("[id^=add_comment]").click(function() {
-        console.log("add comment button");
+        $("#ResGood").hide();
+        console.log("Click on add comment button. Id: " + $(this).attr('id'));
         $("#Comment").css({"display": "block", "height" : $( document ).height()});
+        $("#AddSource").val($("#SourceId" + $(this).attr('id').substring(11)).attr('value'));
+        //$("#AddSource").val($(this).attr('id').substring(11));
+        /*)
+        $("#SourceIdX").val();
+        $("[id^=SourceId]").attr('id').substring(11)
+        $("#srcid").val($(")); */
     });
 
     $("#info #cancel").click(function() {

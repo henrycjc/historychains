@@ -47,7 +47,7 @@ class Chain extends Model {
 
     }
 
-    public function addItem($user, $troveid) {
+    public function addItem($user, $chain, $troveid, $keywords, $notes) {
 
     }
 
