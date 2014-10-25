@@ -43,8 +43,10 @@ d($userData);
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700" />
 		<link rel="stylesheet" type="text/css" href="resources/plugins/vertical-timeline/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="resources/plugins/jquery-cookie/jquery.cookie.js"></script>
 		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="resources/plugins/validation/jquery.validate.js"></script>
 		<link rel="stylesheet" href="resources/plugins/jquery-popup-form/css/jquery_popup.css" /><!-- Popup Window Stlyesheet-->
         <script src="resources/plugins/jquery-popup-form/jquery_popup.js"></script><!-- Popup Window JS File-->
@@ -78,6 +80,10 @@ d($userData);
 				$(".apply").click(function(){
 					$('.buffer').html($("#beskeder_vis").html());
 				});
+
+                if ($.cookie('current_chain') === 'undefined') {
+
+                }
 			});
 		</script>
         <script>
@@ -124,8 +130,12 @@ d($userData);
 				if (isset($_POST['Chains']) && isset($_POST['del'])) {
 					$controller->handleDeleteChain($_POST['Chains']);
 				}
-				?>
-				<div class="ListedChains">
+
+                if (isset($_POST['Chains']) && isset($_POST['edit'])) {
+
+                }
+                ?>
+                <div class="ListedChains">
 					<h2>Edit Your Chains</h2>
 					<form action="createchain.php" method="post">
 						<select name="Chains" id="sortBy">
@@ -143,16 +153,23 @@ d($userData);
 				<section class="Search CreateChainSearch">
 					<div class="SearchWrap">
 						<h2>Step 2: Research</h2>
-						<form action="createchain.php" method="GET" id="searchTrove">
-							<input type="text" id="q" name="q" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
-							<button type="submit" id="searchbtn">Search</button>
+						<form id="searchTroveForm" name="searchTroveForm">
+							<input type="text" id="searchTroveInput" name="searchTroveInput" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
+							<button id="searchTroveBtn" name="searchTroveBtn">Search</button>
 						</form>
 						<article class="SearchResults">
 								<div id="output">
 									<table id="results_table">
+                                        <script>
+                                            $(document).ready(function(){
+
+                                            });
+
+                                        </script>
 									<?php
-			                            if (isset($_GET['q'])) {
-			                                if ($_GET['q'] === "") {
+                                    /*
+			                            if (isset($_GET['searchTroveInput'])) {
+			                                if ($_GET['searchTroveInput'] === "") {
 			                                	$view->printMessage("Please enter a valid search term!");
 			                                } else {
 			                                    $controller->handleSearch($_GET['q']);
@@ -160,6 +177,7 @@ d($userData);
 			                            } else {
 			                            	$view->printMessage("Start searching so we can show you some results!");
 			                            }
+                                    */
 									?>
 									</table>
                         		</div>
@@ -169,7 +187,7 @@ d($userData);
 
 
 		<section class="TopChain CreateChainTimeline">
-			<h2><?php $controller->getActiveChain($user); ?></h2>
+			<h2> <script> document.write($.cookie('current_chain')); </script> <?php $controller->getActiveChain($user); ?></h2>
 			<section id="cd-timeline" class="cd-container">
                 <?php $controller->updateCurrentChain($user, $chain); ?>
 			</section> <!-- cd-timeline -->
@@ -203,10 +221,7 @@ d($userData);
 			</form>
 		</div>
 
-		
-        <script>
 
-        </script>
 		<script>
             $(document).ready(function(){
                 var request;
@@ -251,6 +266,45 @@ d($userData);
                     });
                     event.preventDefault();
                 });
+
+                $("#searchTroveForm").submit(function(event) {
+                    if (request) {
+                        request.abort();
+                    }
+                    var $form = $(this);
+                    var $inputs = $form.find("input, button");
+                    var serializedData = $("#searchTroveForm").serialize();
+                    $inputs.prop("disabled", true);
+
+                    request = $.ajax({
+                        url: "ajax.php",
+                        type: "get",
+                        data: serializedData,
+                        success: function(data, status) {
+                            document.getElementById("results_table").innerHTML = data;
+                        }
+                    });
+                    request.done(function (response, textStatus, jqXHR){
+                        if (response === "FAIL") {
+                            document.write("SHITS FUCKED YO");
+                        }
+                    });
+                    request.fail(function (jqXHR, textStatus, errorThrown){
+                        console.error("The following error occured: "+ textStatus, errorThrown);
+                    });
+                    request.always(function () {
+                        // reenable the inputs
+                        $inputs.prop("disabled", false);
+                    });
+                    event.preventDefault();
+                    $("[id^=add_comment]").click(function() {
+                        $("#ResGood").hide();
+                        console.log("Click on add comment button. Id: " + $(this).attr('id'));
+                        $("#Comment").css({"display": "block", "height" : $( document ).height()});
+                        $("#AddSource").val($("#SourceId" + $(this).attr('id').substring(11)).attr('value'));
+                    });
+                });
+
             });
 		</script>
 

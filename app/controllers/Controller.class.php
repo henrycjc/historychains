@@ -31,7 +31,7 @@ class Controller {
     public function handleSearch($q) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');
-        $this->view->showTroveResults($bookResults);
+        return $this->view->showTroveResults($bookResults);
     }
 
     public function handleEditChains($user) {
