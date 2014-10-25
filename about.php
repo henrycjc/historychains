@@ -79,7 +79,6 @@ d($userData);
 
 			<footer class="footer">
 				<p>Co-founders: Elliot Randall, Henry Chladil, Alek Thompson, Gary Myles and Angus Payne</p>
-				<p>All Rights Reserved</p>
 			</footer>
 		</div>
 	</body>

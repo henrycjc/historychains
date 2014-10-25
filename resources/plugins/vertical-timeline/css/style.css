@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -15,7 +15,6 @@ html * {
 }
 
 body {
-  font-size: 100%;
   background-color: #e9f0f5;
 }
 
@@ -30,7 +29,7 @@ img {
 }
 
 
-/* -------------------------------- 
+/* --------------------------------
 
 Modules - reusable parts of our design
 
@@ -48,9 +47,9 @@ Modules - reusable parts of our design
   clear: both;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main components 
+Main components
 
 -------------------------------- */
 

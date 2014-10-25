@@ -15,83 +15,87 @@ body{
 	font-family: 'sousesregular', sans-serif;;
 }
 
+h2, h3{
+  font-family: 'Raleway', sans-serif;
+}
+
 p{
 	font-family: 'Raleway', sans-serif;
-	font-size: 20px; 
+	font-size: 20px;
 }
 
 .wrap{
-	width: 1200px; 
-	margin: auto; 
+	width: 1200px;
+	margin: auto;
 }
 
 .SearchWrap p{
-	color: #000; 
+	color: #000;
 }
 
 .footer{
 	color: #FFFFFF;
 	background: #02A2EF;
-	max-width: 100%; 
-	padding: 20px; 
+	max-width: 100%;
+	padding: 20px;
 	margin-top: 20px;
-	text-align: center; 
-	height: 100px; 
+	text-align: center;
+	height: 100px;
 }
 
 .logo{
 	background-color: #000;
 	color: #FFFFFF;
-	padding: 10px; 
-	margin-bottom: 20px; 
-	text-align: center; 
-	font-size: 25px; 
-	overflow: hidden; 
+	padding: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 25px;
+	overflow: hidden;
 }
 
 .Search{
-	background-color: #F3FAFE; 
+	background-color: #F3FAFE;
 	border: 2px solid #02A2EF;
-	margin-top: 20px; 
+	margin-top: 20px;
 }
 
 .SearchWrap{
 	padding: 20px;
-	color: #02A2EF; 
+	color: #02A2EF;
 }
 
 .SearchWrap input{
 	border: 2px solid #02A2EF;
-	border-radius: 10px; 
-	height: 30px; 
-	width: 100%; 
-	font-family: 'Raleway', sans-serif; 
-	text-align: center; 
+	border-radius: 10px;
+	height: 30px;
+	width: 100%;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
 }
 
 .SearchResults{
-	width: 100%; 
-	height: 300px; 
-	max-height: 500px; 
-	border: 2px solid #02A2EF; 
-	margin-top: 20px; 
-	background-color: #FFFFF; 
-	text-align: center; 
-	background: #FFFFFF; 
-	color: #D3D3D3; 
+	width: 100%;
+	height: 300px;
+	max-height: 500px;
+	border: 2px solid #02A2EF;
+	margin-top: 20px;
+	background-color: #FFFFF;
+	text-align: center;
+	background: #FFFFFF;
+	color: #D3D3D3;
 	overflow: auto;
 }
 
 .TopChain{
 	max-width: 100%;
-	border: 2px solid #02A2EF; 
-	margin-top: 20px; 
-	max-height: 100%; 
-	height: 500px; 
-	background-color: #F3FAFE; 
-	padding: 5px; 
-	color: #02A2EF; 
-	overflow: auto; 
+	border: 2px solid #02A2EF;
+	margin-top: 20px;
+	max-height: 100%;
+	height: 500px;
+	background-color: #F3FAFE;
+	padding: 20px;
+	color: #02A2EF;
+	overflow: auto;
 }
 
 /*Navigation Bar*/
@@ -110,17 +114,17 @@ nav.nav1 ul li a {
 }
 
 nav ul{
-	list-style-type: none; 
-	padding: 0; 
+	list-style-type: none;
+	padding: 0;
 	margin: 0;
 	border: 2px solid #02A2EF;
-	color: #FFFFFF; 
+	color: #FFFFFF;
 }
 
 
 nav ul li{
-	display: inline-block; 
-	color: #FFFFFF; 
+	display: inline-block;
+	color: #FFFFFF;
 }
 
 nav ul li:hover{
@@ -135,14 +139,14 @@ nav ul li:hover{
 
 nav ul li a,visited{
 	color: #FFFFFF;
-	display: block; 
-	padding: 15px 50px; 
-	text-decoration: none; 
+	display: block;
+	padding: 15px 50px;
+	text-decoration: none;
 }
 
 nav ul li a:hover{
-	color: white; 
-	text-decoration: none; 
+	color: white;
+	text-decoration: none;
 }
 
 /*Navigation Bar*/
@@ -151,25 +155,25 @@ nav ul li a:hover{
 
 .Welcome{
 	text-align: center;
-	font-size: 70px; 
+	font-size: 70px;
 }
 
 .aboutgraphic{
-	max-height: 100%; 
-	max-width: 100%;  
-	margin: auto; 
-	width: 1300px; 
-	height: 1000px; 
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+	width: 1300px;
+	height: 1000px;
 }
 
 #sign_up{
 	margin-left :  auto;
 	margin-top: 20px;
 	padding: 10px;
-	background-color: #F3FAFE; 
+	background-color: #F3FAFE;
 	border: 2px solid #02A2EF;
 	color: #02A2EF;
-	text-align: center; 
+	text-align: center;
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -183,93 +187,93 @@ nav ul li a:hover{
 	border: 2px solid #02A2EF;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
-	
+
 }
 
 /*Profile Page VVVV*/
 
 .UserInfo{
-	max-width: 300px; 
+	max-width: 300px;
 	width: 400px;
-	float: left; 
-	border-right: 2px solid #02A2EF; 
+	float: left;
+	border-right: 2px solid #02A2EF;
 	margin-top: 20px;
 }
 
 .Image{
-	border: 2px solid #02A2EF; 
-	height: 200px; 
-	width: 200px; 
-	overflow: hidden; 
+	border: 2px solid #02A2EF;
+	height: 200px;
+	width: 200px;
+	overflow: hidden;
 	border-radius: 50%;
 	margin: auto;
-	margin-top: 20px; 
+	margin-top: 20px;
 }
 
 .Image img{
-	width: 200px; 
-	height: 200px; 
+	width: 200px;
+	height: 200px;
 	margin: auto;
 }
 
 .Info{
-	text-align: center; 
+	text-align: center;
 }
 
 .ChainInfo{
-	float: right; 
-	margin: auto; 
+	float: right;
+	margin: auto;
 	min-width: 70%;
-	max-width: 70%; 
-	margin: auto; 
+	max-width: 70%;
+	margin: auto;
 }
 
 .Published{
-	max-height: 500px; 
-	height: 300px; 
-	background-color: #F3FAFE; 
-	border: 2px solid #02A2EF; 
-	margin-top: 20px; 
-	padding: 20px; 
-	color: #02A2EF; 
-	
+	max-height: 500px;
+	height: 300px;
+	background-color: #F3FAFE;
+	border: 2px solid #02A2EF;
+	margin-top: 20px;
+	padding: 20px;
+	color: #02A2EF;
+
 }
 
 .Collab{
-	max-height: 500px; 
-	height: 300px; 
+	max-height: 500px;
+	height: 300px;
 	background-color: #F3FAFE;
-	border: 2px solid #02A2EF; 
-	margin-top: 20px; 
-	padding: 20px; 
-	color: #02A2EF; 
+	border: 2px solid #02A2EF;
+	margin-top: 20px;
+	padding:5px;
+	color: #02A2EF;
 }
 
 .lim{
-	float: left; 
+	float: left;
 }
 
 .CreateChain{
-	background-color: #F3FAFE; 
+	background-color: #F3FAFE;
 	border: 2px solid #02A2EF;
-	margin-top: 20px; 
+	margin-top: 20px;
 	padding: 20px;
-	max-height: 100%; 
-	overflow: hidden; 
+	max-height: 100%;
+	overflow: hidden;
 	color: #02A2EF
 }
 
 .CreateNew{
-	color: #02A2EF; 
-	text-align: center; 
-	margin-top: 80px; 
+	color: #02A2EF;
+	text-align: center;
+	margin-top: 80px;
 }
 
 .ListedChains{
-	color: #02A2EF; 
-	margin: auto; 
-	text-align: center; 
-	margin-top: 80px; 
+	color: #02A2EF;
+	margin: auto;
+	text-align: center;
+	margin-top: 80px;
 }
 
 .CreateNew input, .ListedChains input{
@@ -282,7 +286,7 @@ nav ul li a:hover{
 	border: 2px solid #02A2EF;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
-	
+
 }
 
 .ErrorInput {
@@ -318,10 +322,10 @@ nav ul li a:hover{
 	margin-left :  auto;
 	margin-top: 20px;
 	padding: 10px;
-	background-color: #F3FAFE; 
+	background-color: #F3FAFE;
 	border: 2px solid #02A2EF;
 	color: #02A2EF;
-	text-align: center; 
+	text-align: center;
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -335,7 +339,7 @@ nav ul li a:hover{
 	border: 2px solid #02A2EF;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
-	
+
 }
 
 #Tags, #apply_btn ,#searchbtn, #sortBy, #edit_profile, #edit_picture, .View_Chain{
@@ -348,7 +352,7 @@ nav ul li a:hover{
 	border: 2px solid Black;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
-	text-align: center; 
+	text-align: center;
 }
 
 #addtochain {
@@ -361,7 +365,7 @@ nav ul li a:hover{
 	border: 2px solid Black;
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px;
-	text-align: center; 
+	text-align: center;
 }
 
 #results_table{
@@ -390,12 +394,12 @@ nav ul li a:hover{
 	border: 2px solid #F17822;
 	font-family: 'Raleway', sans-serif;
 	font-size: 12px;
-	text-align: center; 
+	text-align: center;
 }
 
 .result_cell{
 	width: 16%;
-	color: black; 
+	color: black;
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -404,8 +408,8 @@ nav ul li a:hover{
 	float: left;
 	width: 47.5%;
 	padding: 1%;
-	margin-right: 2.5%; 
-	height: 570px; 
+	margin-right: 2.5%;
+	height: 570px;
 }
 
 .CreateChainTimeline {
@@ -413,8 +417,8 @@ nav ul li a:hover{
 	float: right;
 	width: 47.5%;
 	padding: 1%;
-	margin-left: 2.5%; 
-	height: 570px; 
+	margin-left: 2.5%;
+	height: 570px;
 }
 
 #logout {
@@ -433,7 +437,7 @@ margin-bottom: 5px;
 	border: 2px solid #02A2EF;
 	font-family: 'Raleway', sans-serif;
 	font-size: 10px;
-	text-align: center; 
+	text-align: center;
 }
 
 #users_name {
@@ -451,40 +455,36 @@ margin-bottom: 5px;
 
 
 .Top_Result{
-	background: white; 
+	background: white;
 	height: 200px;
-	border: 2px solid #02A2EF; 
-	max-height: 73px; 
-	padding: 1px; 
-	margin: 18px; 
+	border: 2px solid #02A2EF;
+	max-height: 73px;
+	padding: 1px;
+	margin: 18px;
 }
 
 .result_number, .reputation, .Top_info, .title, .date, .author{
-	float: left; 
-	margin-left: 20px; 
-	margin-right: 20px; 
-	padding-left: 10px; 
-	padding-right: 10px; 
-	height: 100%; 
-	text-align: center; 
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 100%;
+	text-align: center;
 }
 
 .result_number{
 	background: #d3d3d3;
-	min-height: 100%; 
+	min-height: 100%;
 }
 
 .Top_info{
-	background: #F3FAFE; 
+	background: #F3FAFE;
 }
 
 .View_Chain{
-	float: left; 
-	margin-top: 15px; 
-	margin-left: 30px; 
-	border: 1px solid black; 
+	float: left;
+	margin-top: 15px;
+	margin-left: 30px;
+	border: 1px solid black;
 }
-
-
-
-

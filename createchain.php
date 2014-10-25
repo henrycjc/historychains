@@ -41,16 +41,13 @@ d($userData);
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway" />
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700" />
 		<link rel="stylesheet" type="text/css" href="resources/plugins/vertical-timeline/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="resources/plugins/validation/jquery.validate.js"></script>
 		<link rel="stylesheet" href="resources/plugins/jquery-popup-form/css/jquery_popup.css" /><!-- Popup Window Stlyesheet-->
         <script src="resources/plugins/jquery-popup-form/jquery_popup.js"></script><!-- Popup Window JS File-->
 
-        <style>
-
-        </style>
 		<script>
 			$(document).ready(function(){
 				$(".CreateNew").hide();
@@ -203,6 +200,8 @@ d($userData);
 				<br/>
 			</form>
 		</div>
+
+		
         <script>
 
         </script>
