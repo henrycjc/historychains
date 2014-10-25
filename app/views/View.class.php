@@ -54,7 +54,8 @@ class View {
     public function showChain($sources) {
 
         if ($sources == NULL) {
-            echo "fix me lmao";
+           $this->printMessage("No sources to display yet!");
+            return;
         }
         echo '<section id="cd-timeline" class="cd-container">';
         foreach($sources as $source) {

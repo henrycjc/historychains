@@ -5,23 +5,24 @@ $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
 $model->checkUserLoggedIn();
-$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+$userData = array ('userName' => $_COOKIE['user'],
+                        'userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
 						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
 						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
 						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
 						'userRep' => $model->getUserRep((string)$_COOKIE['user']),
 						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
 					  );
-$user = new User("test", "test", "test", "Test", "Test");
-$chain = new Chain($mysqli->getConn());
-if( isset($_POST['Logout'])) {
+$user = new User($model, $userData);
+
+$chain = new Chain($mysqli->getConn(), $user);
+
+if(isset($_POST['Logout'])) {
 	$model->logUserOut();
 	header('Refresh :0');
 }
 
-
 // TODO: check cookie for current chain / last used chain
-$chain->setTitle("world war 2");
 
 //OUTPUT STARTS HERE
 d($_COOKIE);
@@ -78,7 +79,6 @@ d($userData);
 				$(".apply").click(function(){
 					$('.buffer').html($("#beskeder_vis").html());
 				});
-
 			});
 		</script>
         <script>
@@ -116,9 +116,11 @@ d($userData);
 					<p>Tags:</p><input id="topic" name="topic" type="text" placeholder="Tags" />
 					<p><input name="mkChain" id="mkChain" type="submit" value="Create Chain!" ></p>
 				</form>
-				<?php
+                <?php
+
 				if (isset($_POST['mkChain'])) {
     				$controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
+
 				}
 				if (isset($_POST['Chains']) && isset($_POST['del'])) {
 					$controller->handleDeleteChain($_POST['Chains']);

@@ -60,7 +60,7 @@ class Controller {
 
 
     public function updateCurrentChain($user, $chainObj) {
-        $sources = $chainObj->getChainSources($user->getActiveChain());
+        $sources = $this->model->getChainSources($user->getActiveChain());
         $this->view->showChain($sources);
     }
 

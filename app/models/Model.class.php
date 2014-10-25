@@ -113,9 +113,55 @@ class Model {
 		$this->mysqli->close();
 	}
 
-    public function addSourceToChain($user, $chain, $keywords, $notes) {
+    public function addSourceToChain($userid, $chain, $keywords, $notes, $troveid) {
+        $queryStr = "INSERT INTO `sources` (comment, keywords, type, troveid, user_id, chain_title)
+                     VALUES ('".$notes."', '".$keywords."', '".'book'."', '".$troveid."', '".$userid ."', '" .$chain ."')";
+        $result = $this->mysqli->query($queryStr);
+
+        if ($result === FALSE) {
+            echo "SOME ERROR WITH MYSQL " . $this->mysqli->error;
+            return FALSE;
+        } else {
+            return TRUE;
+        }
 
     }
+
+    public function getChainSources($chain) {
+        $queryStr = "SELECT *
+                     FROM `sources1`
+                     WHERE `chain_title` =  '$chain')";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+            $chains[] = $row;
+            $count++;
+        }
+        if ($count === 0) {
+            return NULL;
+        }
+        $result->close();
+        return $chains;
+    }
+
+
+    public function getUserId($username) {
+        $queryStr = "SELECT `id`
+                     FROM `user`
+                     WHERE `username` = '".$username."'";
+        $result = $this->mysqli->query($queryStr)->fetch_assoc();
+
+        if ($result === NULL) {
+            return FALSE;
+        } else {
+            return $result['id'];
+        }
+    }
+
 	public function checkUserLoggedIn() {
 		if ($_COOKIE["user_logged_in"] !== "true") {
 			setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
@@ -220,8 +266,8 @@ class Model {
 		$queryStr = "INSERT INTO user (fname, lname, dob, username, password)
 					VALUES ('".$fname."', '".$lname."', '".$dob."', '".$username."', '".$password."')";
 		if ($this->mysqli->query($queryStr) !== TRUE) {
+            echo("Unsuccessful registration, please try again");
 			return FALSE;
-			echo("Unsuccessful registration, please try again");
 		} else {
 			header('location = index.php');
 			setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
@@ -280,7 +326,7 @@ class Model {
 	}
 	
 	public function uploadImage($username) {
-		$target = "resources/images/user_profile_pics";
+		$target = "resources/images/user_profile_pics/";
 		$target = $target . basename($_FILES['file']['name']);
 		if($this->checkUpload($username) === TRUE && (move_uploaded_file($_FILES['file']['tmp_name'], $target))) {
 			$queryStr = "UPDATE user
