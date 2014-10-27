@@ -301,7 +301,7 @@ nav ul li a:hover{
 	font-size: 20px;
 }
 
-.CreateChain button{
+.CreateChain button, #searchTroveBtn, #mkChain{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 20px;
