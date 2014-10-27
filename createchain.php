@@ -249,6 +249,11 @@ if(isset($_POST['Logout'])) {
 
                 });
 
+                  $('#apply').click(function(){
+                    $("#Comment").fadeOut(1000);
+                  });
+
+
 
 
             });
