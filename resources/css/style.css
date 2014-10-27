@@ -447,6 +447,12 @@ margin-bottom: 5px;
 }
 
 
+#AddKeywords, #AddNotes{
+  margin: auto;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  border: 1px solid #02A2EF; 
+}
 
 
 
@@ -487,4 +493,9 @@ margin-bottom: 5px;
 	margin-top: 15px;
 	margin-left: 30px;
 	border: 1px solid black;
+}
+
+#Comment{
+  text-align: center;
+  padding: 20px;
 }
