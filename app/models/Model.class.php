@@ -288,7 +288,7 @@ class Model {
 					WHERE username= '".$username."'";
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
 		if ($result['institution'] === NULL){
-			return "Appranently you don't go to a school... what a pleb!";
+			return "Unknown Institute!";
 		} else {
 			return $result['institution'];
 		}
