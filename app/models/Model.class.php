@@ -23,8 +23,8 @@ class Model {
 
     public function createNewChain($user, $title, $topic) {
 
-        $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`)
-                     VALUES ('".$user."', '".$title."', '".$topic."')";
+        $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`, `active`)
+                     VALUES ('".$user."', '".$title."', '".$topic."', 0)";
         if ($this->mysqli->query($queryStr) !== TRUE) {
             return $this->mysqli->error;
         } else {
@@ -111,14 +111,19 @@ class Model {
     }
 
     public function setActiveChain($user, $chain) {
-        d($user);
-        d($chain);
         $queryStr = "UPDATE user_chain
+                      SET active = 0
+                      WHERE id = " . $user->getId();
+
+        $result = $this->mysqli->query($queryStr);
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        $queryStr2 = "UPDATE user_chain
                      SET active=1
                      WHERE id = " . $user->getId() . " AND title = '" . $chain. "'";
 
-        $result = $this->mysqli->query($queryStr);
-        d($result);
+        $result = $this->mysqli->query($queryStr2);
 
         return $result;
     }
@@ -129,10 +134,11 @@ class Model {
                      FROM `user_chain`
                      WHERE `active` = 1 AND
                            `id` = ".$user->getId();
-        $chain = "No chains yet!";
+        $chain = NULL;
         $result = $this->mysqli->query($queryStr);
 
         if ($result === FALSE) {
+            d($result);
             return FALSE;
         }
         while ($row = $result->fetch_assoc()) {
@@ -167,12 +173,13 @@ class Model {
 	}
 
     public function addSourceToChain($userid, $chain, $keywords, $notes, $troveid) {
-        $queryStr = "INSERT INTO `sources` (comment, keywords, type, troveid, user_id, chain_title)
-                     VALUES ('".$notes."', '".$keywords."', '".'book'."', '".$troveid."', '".$userid ."', '" .$chain ."')";
+
+        $queryStr = "INSERT INTO `sources1` (comment, keywords, type, troveid, user_id, chain_title)
+                     VALUES ('".$notes."', '".$keywords."', '".'book'."', '".$troveid."', ".$userid .", '" .$chain ."')";
         $result = $this->mysqli->query($queryStr);
 
         if ($result === FALSE) {
-            echo "SOME ERROR WITH MYSQL " . $this->mysqli->error;
+            echo "MySQL error: " . $this->mysqli->error;
             return FALSE;
         } else {
             return TRUE;

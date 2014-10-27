@@ -20,7 +20,7 @@ class Controller {
         if (!$chain) {
             $this->view->printMessage("No chain selected!");
         } else {
-            $this->view->printMessage($chain);
+            echo $chain;
         }
     }
 

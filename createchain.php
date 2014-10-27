@@ -147,7 +147,7 @@ if(isset($_POST['Logout'])) {
                     if ($res) {
 
                     } else {
-                        echo "Could not get active chain";
+                        echo "Could not retrieve that chain. Sorry about that.";
                     }
                 }
                 ?>
@@ -244,13 +244,11 @@ if(isset($_POST['Logout'])) {
                         }
                     });
                     request.done(function (response, textStatus, jqXHR){
-                        if (response === "SUCCESS") {
+
+                            $("#footer").text(response);
                             $("#ResGood").show();
                             $("#cd-timeline").hide();
-                            <?php
 
-                            ?>
-                        }
                         console.log("Posted to addsource.php.");
                     });
                     request.fail(function (jqXHR, textStatus, errorThrown){
