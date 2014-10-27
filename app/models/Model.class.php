@@ -21,6 +21,13 @@ class Model {
         return FALSE;
     }
 
+    public function getTroveArticleTitle($q, $zone = 'book') {
+        $str = "http://api.trove.nla.gov.au/result?key=".$this->API_KEY."&zone=".$zone."&q=".$q."&encoding=json";
+        $file = file_get_contents($str);
+        $result = json_decode($file, TRUE);
+        return $result['response']['zone'][0]['records']['work'];
+
+    }
     public function createNewChain($user, $title, $topic) {
 
         $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`, `active`)
@@ -147,21 +154,6 @@ class Model {
         return $chain['title'];
 
     }
-
-	private function getUserCount() {
-
-		$count = -1;
-		$queryStr = "SELECT * 
-					 FROM `user`";
-
-		if ($result = $this->mysqli->query($queryStr)) {
-			$count = $result->num_rows;
-		} else {
-			return FALSE;
-		}
-		$result->close();
-		return $count;
-	}
 
     public function getMysqli() {
         return $this->mysqli;

@@ -69,15 +69,13 @@ d($_COOKIE);
 			});
 		</script>
 
-		<script type="text/javascript" /><!-- page redirect-->
+		<script>
 			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 				window.location.href = "splash_mobile.php";
 			};
 		</script>
 
 	</head>
-</html>
-
 <body>
 	<div class="wrap">
 		<div class="Welcome">
