@@ -49,7 +49,6 @@ class Model {
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
-        d($result);
         if ($result === FALSE) {
             return FALSE;
         }
@@ -66,16 +65,37 @@ class Model {
         return $chains;
     }
 
+    public function chainExists($title) {
+        $queryStr = "SELECT title
+                     FROM `user_chain`";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+            if (strpos($row['title'], $title) !== FALSE) {
+                $chains[] = $row;
+                $count++;
+            }
+        }
+        if ($count === 0) {
+            return FALSE;
+        }
+        $result->close();
+        return TRUE;
+    }
+
     public function getChainsById($user) {
 
         $queryStr = "SELECT *
                      FROM `user_chain`
                      WHERE `id` = ".$user;
-                     
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
-        d($result);
+
         if ($result === FALSE) {
             return NULL;
         }
@@ -90,6 +110,40 @@ class Model {
         return $chains;
     }
 
+    public function setActiveChain($user, $chain) {
+        $queryStr = "UPDATE user_chain
+                     SET active=1
+                     WHERE userid = " . $user->getId() . " AND title = '" . $chain. "'";
+
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        return $result;
+    }
+
+    public function getActiveChain($user) {
+
+        $queryStr = "SELECT title
+                     FROM `user_chain`
+                     WHERE `active` = 1 AND
+                           `id` = '".$user->getId()."'";
+        $chain = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        d($result);
+        if ($result->num_rows === NULL) {
+            d($result);
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+            $chains[] = $row;
+            $count++;
+        }
+        $result->close();
+        return $chain;
+
+    }
+
 	private function getUserCount() {
 
 		$count = -1;
@@ -99,7 +153,7 @@ class Model {
 		if ($result = $this->mysqli->query($queryStr)) {
 			$count = $result->num_rows;
 		} else {
-			printf("MySQL Error: %s\n", $this->mysqli->error);
+			return FALSE;
 		}
 		$result->close();
 		return $count;

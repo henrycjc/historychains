@@ -6,4 +6,8 @@ $view = new View($model);
 $controller = new Controller($model, $view);
 
 
-echo $controller->handleSearch($_GET['searchTroveInput']);
+if (isset($_POST['editChainsReq'])) {
+    if ($_POST['editChainsReq'] === "EDIT") {
+
+    }
+}

@@ -94,7 +94,7 @@ class View {
             $this->printMessage("No chains exist. Create one!");
         } else {
             foreach($results as $chain) {
-                printf('<option value="%s">%s</option>', $chain['title'], $chain['title']);
+                printf('<option id="%s" value="%s">%s</option>', $chain['title'], $chain['title'], $chain['title']);
             }
         }
     }

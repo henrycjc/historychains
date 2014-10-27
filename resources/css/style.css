@@ -342,7 +342,7 @@ nav ul li a:hover{
 
 }
 
-#Tags, #apply_btn ,#searchbtn, #sortBy, #edit_profile, #edit_picture, .View_Chain{
+#Tags, #apply_btn ,#searchbtn, #editChainsList, #edit_profile, #edit_picture, .View_Chain{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;

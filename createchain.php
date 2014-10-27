@@ -15,8 +15,6 @@ $userData = array ('userName' => $_COOKIE['user'],
 					  );
 $user = new User($model, $userData);
 
-$chain = new Chain($mysqli->getConn(), $user);
-
 if(isset($_POST['Logout'])) {
 	$model->logUserOut();
 	header('Refresh :0');
@@ -25,7 +23,8 @@ if(isset($_POST['Logout'])) {
 // TODO: check cookie for current chain / last used chain
 
 //OUTPUT STARTS HERE
-d($_COOKIE);
+//d($_COOKIE);
+d($_POST);
 d($userData);
 ?>
 
@@ -132,20 +131,25 @@ d($userData);
 				}
 
                 if (isset($_POST['Chains']) && isset($_POST['edit'])) {
-
+                    if ($model->setActiveChain($user, $_POST['editChainsList'])) {
+                    } else {
+                        echo "Could not get active chain";
+                    }
                 }
                 ?>
                 <div class="ListedChains">
 					<h2>Edit Your Chains</h2>
-					<form action="createchain.php" method="post">
-						<select name="Chains" id="sortBy">
+					<form id="editChainsForm" name="editChainsForm" method="POST" action="createchain.php">
+                        <input id="editChainsReq" name="editChainsReq"  type="hidden" value="" />
+						<select id="editChainsList" name="editChainsList">
 							<?php
-								$controller->handleEditChains($user->getId());
+								$controller->getChainsByUserId($user->getId());
 							?>
 						</select>
-						<button name="edit" type="submit" id="edit">Edit</button>
-						<button name="del" type="submit" id="del" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
+						<button id="editChainsEdtBtn" name="edit" type="submit">Edit</button>
+						<button id="editChainsDelBtn" name="del" type="submit" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
 					</form>
+
 				</div>
 			</div>
 			<div style="clear:both"></div>
@@ -160,14 +164,7 @@ d($userData);
 						<article class="SearchResults">
 								<div id="output">
 									<table id="results_table">
-                                        <script>
-                                            $(document).ready(function(){
-
-                                            });
-
-                                        </script>
 									<?php
-                                    /*
 			                            if (isset($_GET['searchTroveInput'])) {
 			                                if ($_GET['searchTroveInput'] === "") {
 			                                	$view->printMessage("Please enter a valid search term!");
@@ -177,7 +174,6 @@ d($userData);
 			                            } else {
 			                            	$view->printMessage("Start searching so we can show you some results!");
 			                            }
-                                    */
 									?>
 									</table>
                 </div>
@@ -187,9 +183,9 @@ d($userData);
 
 
 		<section class="TopChain CreateChainTimeline">
-			<h2> <script> document.write($.cookie('current_chain')); </script> <?php $controller->getActiveChain($user); ?></h2>
+			<h2 id="chainName"> <?php $controller->getActiveChain($user); ?> </h2>
 			<section id="cd-timeline" class="cd-container">
-                <?php $controller->updateCurrentChain($user, $chain); ?>
+                <?php $controller->updateCurrentChain($user, $model->getActiveChain($user)); ?>
 			</section> <!-- cd-timeline -->
 			<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
 		</section>
@@ -209,7 +205,7 @@ d($userData);
                 <div id="ResGood"><p>Source Added To Chain!</p></div>
                 <input type="hidden" id="AddUser" name="AddUser" value="<?php if(isset($_COOKIE['user'])) { echo $_COOKIE['user'];} ?>"/>
                 <input type="hidden" id="AddSource" name="AddSource" value=""/>
-                <input type="hidden" id="AddChain" name="AddChain" value="<?php $controller->getActiveChain($user); ?>" />
+                <input type="hidden" id="AddChain" name="AddChain" value="<?php echo $controller->getActiveChain($user); ?>" />
 				<p>Keywords</p>
                 <textarea name="AddKeywords" id="AddKeywords" rows="1" cols="36" placeholder="Comma, separated, keywords"></textarea><br/>
                 <p>Notes</p>
@@ -230,7 +226,7 @@ d($userData);
                     if (request) {
                         request.abort();
                     }
-                    $("#usrname").val(<?php echo '"'.$user->getFname().'"' ?>);
+                    $("#usrname").val(<?php echo '"'.$user->getUsername().'"' ?>);
                     var $form = $(this);
                     var $inputs = $form.find("input, textarea, button");
                     var serializedData = $("#info").serialize();
@@ -267,7 +263,7 @@ d($userData);
                     event.preventDefault();
                 });
 
-                $("#searchTroveForm").submit(function(event) {
+                /*$("#searchTroveForm").submit(function(event) {
                     if (request) {
                         request.abort();
                     }
@@ -303,7 +299,7 @@ d($userData);
                         $("#Comment").css({"display": "block", "height" : $( document ).height()});
                         $("#AddSource").val($("#SourceId" + $(this).attr('id').substring(11)).attr('value'));
                     });
-                });
+                }); */
 
 
             });

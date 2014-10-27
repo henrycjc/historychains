@@ -14,7 +14,15 @@ class Controller {
 
     }
 
+    public function getActiveChain($user) {
 
+        $chain = $this->model->getActiveChain($user);
+        if (!$chain) {
+            $this->view->printMessage("No chain selected!");
+        } else {
+            d($chain);
+        }
+    }
 
     public function handleDeleteChain($chain) {
         $result = $this->model->deleteChain($chain);
@@ -25,16 +33,13 @@ class Controller {
         }
     }
 
-    public function getActiveChain($user) {
-        $this->view->printMessage($user->getActiveChain());
-    }
     public function handleSearch($q) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');
         return $this->view->showTroveResults($bookResults);
     }
 
-    public function handleEditChains($user) {
+    public function getChainsByUserId($user) {
         $chains = $this->model->getChainsById($user);
         if ($chains === NULL) {
             return NULL;
