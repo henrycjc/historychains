@@ -407,7 +407,7 @@ nav ul li a:hover{
 	display: inline;
 	float: left;
 	width: 47.5%;
-	padding: 1%;
+	padding: 0px;
 	margin-right: 2.5%;
 	height: 570px;
 }
@@ -451,7 +451,7 @@ margin-bottom: 5px;
   margin: auto;
   text-align: center;
   font-family: 'Raleway', sans-serif;
-  border: 1px solid #02A2EF; 
+  border: 1px solid #02A2EF;
 }
 
 
