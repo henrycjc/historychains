@@ -180,7 +180,7 @@ d($userData);
                                     */
 									?>
 									</table>
-                        		</div>
+                </div>
 						</article>
 					</div>
 				</section>
@@ -304,6 +304,7 @@ d($userData);
                         $("#AddSource").val($("#SourceId" + $(this).attr('id').substring(11)).attr('value'));
                     });
                 });
+
 
             });
 		</script>
