@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2014 at 08:40 AM
+-- Generation Time: Oct 27, 2014 at 11:36 AM
 -- Server version: 5.5.33
 -- PHP Version: 5.4.20
 
@@ -58,15 +58,24 @@ INSERT INTO `sources` (`source_id`, `comment`, `timestamp`, `type`, `troveid`) V
 CREATE TABLE IF NOT EXISTS `sources1` (
   `source_id` int(10) NOT NULL AUTO_INCREMENT,
   `comment` varchar(100) NOT NULL,
+  `keywords` varchar(100) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` varchar(50) NOT NULL,
   `troveid` varchar(50) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `chain_title` varchar(50) NOT NULL,
-  PRIMARY KEY (`source_id`),
-  UNIQUE KEY `u_id` (`user_id`),
-  UNIQUE KEY `fk_again` (`chain_title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `user` int(10) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`source_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=235 ;
+
+--
+-- Dumping data for table `sources1`
+--
+
+INSERT INTO `sources1` (`source_id`, `comment`, `keywords`, `timestamp`, `type`, `troveid`, `user`, `title`) VALUES
+(1, 'eeeeeeeeeeee', 'eeeee', '2014-10-27 11:20:32', 'ee', 'eeeee', 0, '0'),
+(42, 'rrrr', 'rrr', '2014-10-27 11:21:08', 'rrrr', 'rrr', 0, '0'),
+(56, 'f', 'f', '2014-10-27 11:33:34', 'f', 'f', 15, 'Australian Trees'),
+(234, 'fff', 'fff', '2014-10-27 11:33:18', 'fff', 'ffff', 15, 'Austrlaian politics');
 
 -- --------------------------------------------------------
 
@@ -139,9 +148,27 @@ INSERT INTO `user_chain` (`id`, `title`, `topic`, `active`, `time_stamp`) VALUES
 (1, 'Swag', 'Elliot, DECO1800', 0, '0000-00-00 00:00:00'),
 (1, 'Test', 'vietnam', 0, '0000-00-00 00:00:00'),
 (1, 'Winstonfang', 'worlds sexist man', 0, '0000-00-00 00:00:00'),
-(1, 'world war 2', 'world war 2', 0, '0000-00-00 00:00:00'),
 (3, 'rabbit proof fence', 'what happend', 0, '0000-00-00 00:00:00'),
-(4, 'the first fleet', 'the first fleet', 0, '0000-00-00 00:00:00');
+(4, 'the first fleet', 'the first fleet', 0, '0000-00-00 00:00:00'),
+(20, 'blah blach', 'hfhehf', 1, '2014-10-27 09:51:15'),
+(20, 'world war 2', 'world war 2', 0, '2014-10-27 10:18:23');
+
+--
+-- Triggers `user_chain`
+--
+DROP TRIGGER IF EXISTS `update_trigger`;
+DELIMITER //
+CREATE TRIGGER `update_trigger` BEFORE UPDATE ON `user_chain`
+ FOR EACH ROW BEGIN
+IF NEW.`active` = 1 THEN
+UPDATE user_chain
+SET `active` = 0
+WHERE `active` = 1
+AND `id`=NEW.`id`; 
+END IF;
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -195,13 +222,6 @@ INSERT INTO `user_subject` (`id`, `subject`) VALUES
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `sources1`
---
-ALTER TABLE `sources1`
-  ADD CONSTRAINT `sources1_ibfk_1` FOREIGN KEY (`chain_title`) REFERENCES `user_chain` (`title`),
-  ADD CONSTRAINT `fk_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `user_chain`

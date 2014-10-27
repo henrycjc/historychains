@@ -8,7 +8,7 @@ class View {
         $this->model = $model;
     }
 
-    public function showTroveResults($results) {
+    public function showTroveResults($results, $user) {
         $colour = 0;
         $count = 0;
         echo '<tr>
@@ -39,7 +39,11 @@ class View {
                 echo '<td class="result_cell">
                     <form id="AddToChainForm'.$count.'" class="AddToChain">
                         <input type="hidden" class="TableButton" id="SourceId'.$count.'" value="'.$book['id'].'">
-                        <button type="button" id="add_comment'.$count.'" class="TableButton">Add</button>
+                        ';
+                if ($this->model->getActiveChain($user))
+                echo ' <button type="button" id="add_comment'.$count.'" class="TableButton">Add</button>';
+
+                echo '
                     </form>
                 </td>';
                 // <button id="AddToChainBtn'.$book['id'].'" class="TableButton">Add to Chain</button>

@@ -46,10 +46,10 @@ class Controller {
         }
     }
 
-    public function handleSearch($q) {
+    public function handleSearch($q, $user) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');
-        return $this->view->showTroveResults($bookResults);
+        return $this->view->showTroveResults($bookResults, $user);
     }
 
     public function getChainsByUserId($user) {

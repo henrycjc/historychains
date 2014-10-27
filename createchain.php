@@ -169,7 +169,7 @@ if(isset($_POST['Logout'])) {
 			                                if ($_GET['searchTroveInput'] === "") {
 			                                	$view->printMessage("Please enter a valid search term!");
 			                                } else {
-			                                    $controller->handleSearch($_GET['searchTroveInput']);
+			                                    $controller->handleSearch($_GET['searchTroveInput'], $user);
 			                                }
 			                            } else {
 			                            	$view->printMessage("Start searching so we can show you some results!");

@@ -171,10 +171,10 @@ class Model {
 	public function closeMysqli() {
 		$this->mysqli->close();
 	}
-
+    /* called by ajax addsource.php */
     public function addSourceToChain($userid, $chain, $keywords, $notes, $troveid) {
 
-        $queryStr = "INSERT INTO `sources1` (comment, keywords, type, troveid, user_id, chain_title)
+        $queryStr = "INSERT INTO `sources1` (comment, keywords, type, troveid, user, title)
                      VALUES ('".$notes."', '".$keywords."', '".'book'."', '".$troveid."', ".$userid .", '" .$chain ."')";
         $result = $this->mysqli->query($queryStr);
 
