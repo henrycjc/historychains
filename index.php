@@ -16,13 +16,7 @@ $userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE[
 if( isset($_POST['Logout'])) {
 	$model->logUserOut();
 	header('Refresh :0');
-}
-
-//Output
-/*d($_COOKIE);
-d($_GET);
-d($userData);*/
-?>
+}?>
 
 <!DOCTYPE html>
 <html>

@@ -60,7 +60,7 @@ class Controller {
     public function getChainsByUserId($user) {
         $chains = $this->model->getChainsById($user);
         if ($chains === NULL) {
-            return NULL;
+            echo "No chains yet - create one!";
         } else {
             $this->view->showUsersChains($chains);
         }

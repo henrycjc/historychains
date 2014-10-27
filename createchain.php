@@ -95,28 +95,6 @@ if(isset($_POST['Logout'])) {
 				</ul>
 			</nav>
 			<div class="CreateChain">
-				<h2>Step 1: Create or Edit Existing!</h2>
-				<button type="button" class="New_Chain_Link">Create a Chain</button>
-				<button type="button" class="Exist_Link">Edit a Chain</button>
-				<form id="mkChainForm" class="CreateNew" action="createchain.php" method="post">
-					<h2>Create a New Chain!</h2>
-					<p>Title:</p><input id="title" name="title" type="text" placeholder="Chain Title" />
-					<p>Tags:</p><input id="topic" name="topic" type="text" placeholder="Tags" />
-					<p><input name="mkChain" id="mkChain" type="submit" value="Create Chain!" ></p>
-				</form>
-                <div class="ListedChains">
-					<h2>Edit Your Chains</h2>
-					<form id="editChainsForm" name="editChainsForm" method="POST" action="createchain.php">
-                        <input id="editChainsReq" name="editChainsReq"  type="hidden" value="" />
-						<select id="editChainsList" name="editChainsList">
-							<?php
-								$controller->getChainsByUserId($user->getId());
-							?>
-						</select>
-						<button id="editChainsEdtBtn" name="editChainsEdtBtn" value="Edit" type="submit">Edit</button>
-						<button id="editChainsDelBtn" name="editChainsDelBtn" value="Delete" type="submit" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
-					</form>
-				</div>
                 <?php
 
                 if (isset($_POST['mkChain'])) {
@@ -136,6 +114,26 @@ if(isset($_POST['Logout'])) {
                     }
                 }
                 ?>
+				<h2>Step 1: Get Your Chain</h2>
+				<button type="button" class="New_Chain_Link">Create a Chain</button>
+				<button type="button" class="Exist_Link">Edit a Chain</button>
+				<form id="mkChainForm" class="CreateNew" action="createchain.php" method="post">
+
+					<p>Title</p><input id="title" name="title" type="text" placeholder="Chain Title" />
+					<p>Tags</p><input id="topic" name="topic" type="text" placeholder="Tags" />
+					<p><input name="mkChain" id="mkChain" type="submit" value="Create" ></p>
+				</form>
+                <div class="ListedChains">
+					<form id="editChainsForm" name="editChainsForm" method="POST" action="createchain.php">
+                        <input id="editChainsReq" name="editChainsReq"  type="hidden" value="" />
+                        <p>
+							<?php
+								$controller->getChainsByUserId($user->getId());
+							?>
+                        </p>
+					</form>
+				</div>
+
 			</div>
 			<div style="clear:both"></div>
 			<div class="app">
@@ -168,7 +166,8 @@ if(isset($_POST['Logout'])) {
 
 
 		<section class="TopChain CreateChainTimeline">
-			<h2 id="chainName"> <?php $controller->getActiveChain($user); ?> </h2>
+            <h2>Step 3: Study</h2>
+			<h2 id="chainName"><?php $controller->getActiveChain($user); ?> </h2>
 			<section id="cd-timeline" class="cd-container">
                 <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
 			</section> <!-- cd-timeline -->
@@ -246,13 +245,9 @@ if(isset($_POST['Logout'])) {
                         $inputs.prop("disabled", false);
                     });
                     event.preventDefault();
+                    $("#Comment").fadeOut(1000);
 
                 });
-
-
-                  $('#apply').click(function(){
-                    $("#Comment").fadeOut(1000);
-                  });
 
 
             });

@@ -11,45 +11,46 @@ class View {
     public function showTroveResults($results, $user) {
         $colour = 0;
         $count = 0;
-        echo '<tr>
-            <th class="result_cell">Title</th>
-            <th class="result_cell">Year</th>
-            <th class="result_cell">Author</th>
-            <th class="result_cell"> </th>
-            <th class="result_cell"> </th>
-             </tr>';
-        foreach($results as $book) {
+        if (!$this->model->getActiveChain($user)) {
+            echo '<p>Oops, don\'t forget to create a chain first!</p>';
+        } else {
 
-            if (isset($book['contributor']) && isset($book['issued'])) {
-                 if ($colour) {
-                    echo '<tr id="result'.$count.'" class="results_dark">';
-                    $colour = 0;
-                } else {
-                    echo '<tr id="result'.$count.'"class="results_light">';
-                    $colour = 1;
+            echo '<tr>
+                <th class="result_cell">Title</th>
+                <th class="result_cell">Year</th>
+                <th class="result_cell">Author</th>
+                <th class="result_cell"> </th>
+                <th class="result_cell"> </th>
+                 </tr>';
+            foreach($results as $book) {
+
+                if (isset($book['contributor']) && isset($book['issued'])) {
+                     if ($colour) {
+                        echo '<tr id="result'.$count.'" class="results_dark">';
+                        $colour = 0;
+                    } else {
+                        echo '<tr id="result'.$count.'"class="results_light">';
+                        $colour = 1;
+                    }
+                    echo '<td class="result_cell">'.$book["title"].'</td>';
+                    echo '<td class="result_cell">'.$book['issued'].'</td>';
+                    echo '<td class="result_cell">'.$book["contributor"][0].'</td>';
+                    echo '<td class="result_cell">
+                        <form action="'.stripslashes($book["troveUrl"]).'" target="_blank">
+                            <button id="ViewSource'.$book['id'].'" class="TableButton">View</button>
+                        </form>
+                    </td>';
+                    echo '<td class="result_cell">
+                        <form id="AddToChainForm'.$count.'" class="AddToChain">
+                            <input type="hidden" class="TableButton" id="SourceId'.$count.'" value="'.$book['id'].'">
+                        <button type="button" id="add_comment'.$count.'" class="TableButton">Add</button>
+                        </form>
+                    </td>';
+                    // <button id="AddToChainBtn'.$book['id'].'" class="TableButton">Add to Chain</button>
+                    echo '</tr>';
                 }
-                echo '<td class="result_cell">'.$book["title"].'</td>';
-                echo '<td class="result_cell">'.$book['issued'].'</td>';
-                echo '<td class="result_cell">'.$book["contributor"][0].'</td>';
-                echo '<td class="result_cell">
-                    <form action="'.stripslashes($book["troveUrl"]).'" target="_blank">
-                        <button id="ViewSource'.$book['id'].'" class="TableButton">View</button>
-                    </form>
-                </td>';
-                echo '<td class="result_cell">
-                    <form id="AddToChainForm'.$count.'" class="AddToChain">
-                        <input type="hidden" class="TableButton" id="SourceId'.$count.'" value="'.$book['id'].'">
-                        ';
-                if ($this->model->getActiveChain($user))
-                echo ' <button type="button" id="add_comment'.$count.'" class="TableButton">Add</button>';
-
-                echo '
-                    </form>
-                </td>';
-                // <button id="AddToChainBtn'.$book['id'].'" class="TableButton">Add to Chain</button>
-                echo '</tr>';
+                $count++;
             }
-            $count++;
         }
     }
 	
@@ -75,14 +76,15 @@ class View {
         }
         echo '<section id="cd-timeline" class="cd-container">';
         foreach(array_reverse($sources) as $source) {
+           // d($this->model->getTroveArticleTitle($source['troveid']));
             echo '<div class="cd-timeline-block">';
                 echo '<div class="cd-timeline-img cd-picture">';
                     echo '<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">';
                 echo '</div>';
                 echo '<div class="cd-timeline-content">';
-                    echo '<h2>'.$source['comment'].'</h2>';
-                    echo '<p>'."what goes here...".'</p>';
-                    echo '<a href="#0" class="cd-read-more">Read more</a>';
+                    echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
+                    echo '<p>'.$source['comment'].'</p>';
+                    echo '<a href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Link</a>';
                     echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
                 echo '</div>';
             echo '</div>';
@@ -109,9 +111,13 @@ class View {
         if ($results === NULL) {
             $this->printMessage("No chains exist. Create one!");
         } else {
+            echo '<select id="editChainsList" name="editChainsList">';
             foreach($results as $chain) {
                 printf('<option id="%s" value="%s">%s</option>', $chain['title'], $chain['title'], $chain['title']);
             }
+            echo '</select>';
+            echo '<button id="editChainsEdtBtn" name="editChainsEdtBtn" value="Edit" type="submit">Edit</button>
+				<button id="editChainsDelBtn" name="editChainsDelBtn" value="Delete" type="submit" onclick="return confirm(\'Are you sure you want to delete this chain?\');">Delete</button>';
         }
     }
     public function printMessage($message) {
