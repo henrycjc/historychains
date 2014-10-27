@@ -70,12 +70,12 @@ d($userData);
                             if (isset($_GET['q'])) {
                                 if ($_GET['q'] === "") {
                                 	$view->blankEntry();
-                                    $view->printMessage("swag");
+                                    $view->printMessage("You haven't searched for anything!");
                                 } else {
                                     $controller->handleChainSearch($_GET['q']);
                                 }
                             } else {
-                                $view->printMessage("Please enter a valid search term!");
+                                $view->printMessage("Search for other user's chains here!");
                             }
                         ?>
 

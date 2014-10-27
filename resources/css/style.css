@@ -499,3 +499,38 @@ margin-bottom: 5px;
   text-align: center;
   padding: 20px;
 }
+
+
+.Search_Top_Result{
+	background: white;
+	height: 200px;
+	border: 2px solid #02A2EF;
+	max-height: 73px;
+	padding: 1px;
+	margin: 18px;
+}
+
+.Search_result_number, .Search_reputation, .Search_Top_info, .Search_title, .Search_date, .Search_author{
+	float: left;
+	height: 100%;
+	text-align: center;
+}
+
+.Search_title, .Search_author{
+	width: 30%
+}
+
+.Search_date {
+	font-size: 15px;
+}
+
+.Search_result_number{
+	background: #d3d3d3;
+	min-height: 100%;
+	width: 2.5%;
+}
+
+.Search_Top_info{
+	background: #F3FAFE;
+	width: 90%;
+}
