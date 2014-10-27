@@ -3,6 +3,7 @@ require_once("app/configs/Global_Config.php");
 
 $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
+$view = new View($model);
 
 $user = "NOT SET";
 $userid = "NOT YET SET";
@@ -29,7 +30,8 @@ if (isset($_POST['AddNotes'])) {
 }
 
 if ($model->addSourceToChain($userid, $chainname, $keywords, $notes, $troveid) === TRUE) {
-    echo "SUCCESS";
+    $res = $view->showChain($model->getChainSources($_POST['AddChain']));
+    echo $res;
 } else {
     echo "FAILURE";
     //echo "userid: " .$userid . "\n chain: " .$chainname . "\n keywords: ".$keywords . "\n notes: " .$notes . "\n troveid: " .$troveid;

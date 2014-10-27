@@ -5,4 +5,11 @@ $model = new Model($mysqli->getConn());
 $view = new View($model);
 
 
-echo $view->showChain($model->getChainSources($))
+if (isset($_POST['AddUser'])) {
+
+    $res = $view->showChain($model->getChainSources($_POST['AddUser']));
+    echo $_POST['AddUser'];
+    echo "SUCCESS";
+} else {
+    echo "FAILURE";
+}

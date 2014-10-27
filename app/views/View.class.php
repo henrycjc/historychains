@@ -70,11 +70,11 @@ class View {
     public function showChain($sources) {
 
         if ($sources == NULL) {
-           $this->printMessage("No sources to display yet!");
+            $this->printMessage("No sources to display yet!");
             return;
         }
         echo '<section id="cd-timeline" class="cd-container">';
-        foreach($sources as $source) {
+        foreach(array_reverse($sources) as $source) {
             echo '<div class="cd-timeline-block">';
                 echo '<div class="cd-timeline-img cd-picture">';
                     echo '<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">';

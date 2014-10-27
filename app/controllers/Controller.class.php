@@ -68,9 +68,8 @@ class Controller {
 
 
 
-    public function updateCurrentChain($user, $chainObj) {
-        $sources = $this->model->getChainSources($user->getActiveChain());
-        $this->view->showChain($sources);
+    public function getInitialChain($chain) {
+        $this->view->showChain($this->model->getChainSources($chain));
     }
 
     public function handleLogin($post) {

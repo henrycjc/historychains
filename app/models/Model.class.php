@@ -189,10 +189,11 @@ class Model {
     public function getChainSources($chain) {
         $queryStr = "SELECT *
                      FROM `sources1`
-                     WHERE `chain_title` =  '$chain')";
+                     WHERE `title` =  '".$chain."'";
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
+
         if ($result === FALSE) {
             return FALSE;
         }

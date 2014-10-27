@@ -170,7 +170,7 @@ if(isset($_POST['Logout'])) {
 		<section class="TopChain CreateChainTimeline">
 			<h2 id="chainName"> <?php $controller->getActiveChain($user); ?> </h2>
 			<section id="cd-timeline" class="cd-container">
-                <?php $controller->updateCurrentChain($user, $model->getActiveChain($user)); ?>
+                <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
 			</section> <!-- cd-timeline -->
 			<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
 		</section>
@@ -205,8 +205,8 @@ if(isset($_POST['Logout'])) {
 
 		<script>
             $(document).ready(function(){
+
                 var request;
-                var refresh;
                 $("#ResGood").hide();
                 $("#info").submit(function(event){
                     if (request) {
@@ -216,6 +216,7 @@ if(isset($_POST['Logout'])) {
                     var $form = $(this);
                     var $inputs = $form.find("input, textarea, button");
                     var serializedData = $("#info").serialize();
+                    var serializedUser = $("#usrname").serialize();
                     console.log($form);
 
                     $inputs.prop("disabled", true);
@@ -225,12 +226,12 @@ if(isset($_POST['Logout'])) {
                         type: "post",
                         data: serializedData,
                         success: function(data, status) {
-                            if (data === "SUCCESS") {
-                                console.log("Successfully added to database.");
+                            if (data === "FAILURE") {
+                                console.log("Dicks");
                             } else {
-                                console.log("Could not add to database.");
+                               $("#cd-timeline").html(data);
+                               console.log(data);
                             }
-                            console.log("Status: " + status + "Data: " +data);
                         }
                     });
                     request.done(function (response, textStatus, jqXHR){
@@ -238,7 +239,7 @@ if(isset($_POST['Logout'])) {
                             $("#ResGood").show();
                     });
                     request.fail(function (jqXHR, textStatus, errorThrown){
-                        console.error("The following error occured: "+ textStatus, errorThrown);
+                        console.error("Error: "+ textStatus, errorThrown);
                     });
                     request.always(function () {
                         // reenable the inputs
@@ -246,14 +247,6 @@ if(isset($_POST['Logout'])) {
                     });
                     event.preventDefault();
 
-                    /*
-                    refresh = $.ajax({
-                        url: "getchains.php",
-
-                        success: function(data, status) {
-                            $("#cd-timeline").text(data);
-                        }
-                    }); */
                 });
             });
 		</script>
