@@ -84,7 +84,7 @@ class View {
                 echo '<div class="cd-timeline-content">';
                     echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
                     echo '<p>'.$source['comment'].'</p>';
-                    echo '<a href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Link</a>';
+                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Link</a>';
                     echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
                 echo '</div>';
             echo '</div>';
