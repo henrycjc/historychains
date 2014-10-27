@@ -155,7 +155,10 @@ nav ul li a:hover{
 
 .Welcome{
 	text-align: center;
-	font-size: 70px;
+	font-size: 50px;
+  display: inline;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .aboutgraphic{
