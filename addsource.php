@@ -29,9 +29,9 @@ if (isset($_POST['AddNotes'])) {
 }
 
 if ($model->addSourceToChain($userid, $chainname, $keywords, $notes, $troveid) === TRUE) {
-    return "SUCCESS";
+    echo "SUCCESS";
 } else {
-    return "FAILURE";
+    echo "FAILURE";
     //echo "userid: " .$userid . "\n chain: " .$chainname . "\n keywords: ".$keywords . "\n notes: " .$notes . "\n troveid: " .$troveid;
     //echo "FUCK";
 }

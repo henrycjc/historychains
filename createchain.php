@@ -14,20 +14,11 @@ $userData = array ('userName' => $_COOKIE['user'],
 						'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
 					  );
 $user = new User($model, $userData);
-
 if(isset($_POST['Logout'])) {
 	$model->logUserOut();
 	header('Refresh :0');
 }
-
-// TODO: check cookie for current chain / last used chain
-
-//OUTPUT STARTS HERE
-//d($_COOKIE);
-//d($_POST);
 ?>
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -50,6 +41,9 @@ if(isset($_POST['Logout'])) {
         <script src="resources/plugins/jquery-popup-form/jquery_popup.js"></script><!-- Popup Window JS File-->
 
 		<script>
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                window.location.href = "createchain_mobile.php";
+            }
 			$(document).ready(function(){
 				$(".CreateNew").hide();
 				$(".ListedChains").hide();
@@ -78,16 +72,7 @@ if(isset($_POST['Logout'])) {
 				$(".apply").click(function(){
 					$('.buffer').html($("#beskeder_vis").html());
 				});
-
-                if ($.cookie('current_chain') === 'undefined') {
-
-                }
 			});
-		</script>
-        <script>
-			if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-				window.location.href = "createchain_mobile.php";
-			}
 		</script>
 	</head>
 	<body>
@@ -221,6 +206,7 @@ if(isset($_POST['Logout'])) {
 		<script>
             $(document).ready(function(){
                 var request;
+                var refresh;
                 $("#ResGood").hide();
                 $("#info").submit(function(event){
                     if (request) {
@@ -239,17 +225,17 @@ if(isset($_POST['Logout'])) {
                         type: "post",
                         data: serializedData,
                         success: function(data, status) {
-                            $(document.body).append(data);
+                            if (data === "SUCCESS") {
+                                console.log("Successfully added to database.");
+                            } else {
+                                console.log("Could not add to database.");
+                            }
                             console.log("Status: " + status + "Data: " +data);
                         }
                     });
                     request.done(function (response, textStatus, jqXHR){
-
-                            $("#footer").text(response);
+                            console.log(response);
                             $("#ResGood").show();
-                            $("#cd-timeline").hide();
-
-                        console.log("Posted to addsource.php.");
                     });
                     request.fail(function (jqXHR, textStatus, errorThrown){
                         console.error("The following error occured: "+ textStatus, errorThrown);
@@ -259,45 +245,10 @@ if(isset($_POST['Logout'])) {
                         $inputs.prop("disabled", false);
                     });
                     event.preventDefault();
+
+
                 });
 
-                /*$("#searchTroveForm").submit(function(event) {
-                    if (request) {
-                        request.abort();
-                    }
-                    var $form = $(this);
-                    var $inputs = $form.find("input, button");
-                    var serializedData = $("#searchTroveForm").serialize();
-                    $inputs.prop("disabled", true);
-
-                    request = $.ajax({
-                        url: "ajax.php",
-                        type: "get",
-                        data: serializedData,
-                        success: function(data, status) {
-                            document.getElementById("results_table").innerHTML = data;
-                        }
-                    });
-                    request.done(function (response, textStatus, jqXHR){
-                        if (response === "FAIL") {
-                            document.write("SHITS FUCKED YO");
-                        }
-                    });
-                    request.fail(function (jqXHR, textStatus, errorThrown){
-                        console.error("The following error occured: "+ textStatus, errorThrown);
-                    });
-                    request.always(function () {
-                        // reenable the inputs
-                        $inputs.prop("disabled", false);
-                    });
-                    event.preventDefault();
-                    $("[id^=add_comment]").click(function() {
-                        $("#ResGood").hide();
-                        console.log("Click on add comment button. Id: " + $(this).attr('id'));
-                        $("#Comment").css({"display": "block", "height" : $( document ).height()});
-                        $("#AddSource").val($("#SourceId" + $(this).attr('id').substring(11)).attr('value'));
-                    });
-                }); */
 
 
             });
