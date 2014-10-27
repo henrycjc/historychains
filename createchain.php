@@ -248,6 +248,13 @@ if(isset($_POST['Logout'])) {
                     event.preventDefault();
 
                 });
+
+
+                  $('#apply').click(function(){
+                    $("#Comment").fadeOut(1000);
+                  });
+
+
             });
 		</script>
 
