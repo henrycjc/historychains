@@ -234,6 +234,7 @@ class Model {
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
 		if ($result['username'] === $username && $result['password'] === $password) {
 			$this->logUserIn($username);
+			header('Refresh:0');
 		} else {
 			echo('invalid username or password');
 		}
