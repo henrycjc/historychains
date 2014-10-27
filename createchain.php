@@ -24,8 +24,26 @@ if(isset($_POST['Logout'])) {
 
 //OUTPUT STARTS HERE
 //d($_COOKIE);
-d($_POST);
-d($userData);
+//d($_POST);
+?>
+<?php
+
+if (isset($_POST['mkChain'])) {
+    $controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
+    $model->setActiveChain($user, $_POST['title']);
+}
+if (isset($_POST['editChainsReq']) && isset($_POST['editChainsDelBtn'])) {
+    $controller->handleDeleteChain($_POST['editChainsList']);
+}
+
+if (isset($_POST['editChainsReq']) && isset($_POST['editChainsEdtBtn'])) {
+    $res = $model->setActiveChain($user, $_POST['editChainsList']);
+    if ($res) {
+
+    } else {
+        echo "Could not get active chain";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +60,6 @@ d($userData);
 		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700" />
 		<link rel="stylesheet" type="text/css" href="resources/plugins/vertical-timeline/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="resources/plugins/jquery-cookie/jquery.cookie.js"></script>
 		<script src="resources/plugins/vertical-timeline/js/modernizr.js"></script>
@@ -120,23 +137,6 @@ d($userData);
 					<p>Tags:</p><input id="topic" name="topic" type="text" placeholder="Tags" />
 					<p><input name="mkChain" id="mkChain" type="submit" value="Create Chain!" ></p>
 				</form>
-                <?php
-
-				if (isset($_POST['mkChain'])) {
-    				$controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
-
-				}
-				if (isset($_POST['Chains']) && isset($_POST['del'])) {
-					$controller->handleDeleteChain($_POST['Chains']);
-				}
-
-                if (isset($_POST['Chains']) && isset($_POST['edit'])) {
-                    if ($model->setActiveChain($user, $_POST['editChainsList'])) {
-                    } else {
-                        echo "Could not get active chain";
-                    }
-                }
-                ?>
                 <div class="ListedChains">
 					<h2>Edit Your Chains</h2>
 					<form id="editChainsForm" name="editChainsForm" method="POST" action="createchain.php">
@@ -146,8 +146,8 @@ d($userData);
 								$controller->getChainsByUserId($user->getId());
 							?>
 						</select>
-						<button id="editChainsEdtBtn" name="edit" type="submit">Edit</button>
-						<button id="editChainsDelBtn" name="del" type="submit" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
+						<button id="editChainsEdtBtn" name="editChainsEdtBtn" value="Edit" type="submit">Edit</button>
+						<button id="editChainsDelBtn" name="editChainsDelBtn" value="Delete" type="submit" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
 					</form>
 
 				</div>
@@ -169,7 +169,7 @@ d($userData);
 			                                if ($_GET['searchTroveInput'] === "") {
 			                                	$view->printMessage("Please enter a valid search term!");
 			                                } else {
-			                                    $controller->handleSearch($_GET['q']);
+			                                    $controller->handleSearch($_GET['searchTroveInput']);
 			                                }
 			                            } else {
 			                            	$view->printMessage("Start searching so we can show you some results!");

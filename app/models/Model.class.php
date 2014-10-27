@@ -111,13 +111,15 @@ class Model {
     }
 
     public function setActiveChain($user, $chain) {
+        d($user);
+        d($chain);
         $queryStr = "UPDATE user_chain
                      SET active=1
-                     WHERE userid = " . $user->getId() . " AND title = '" . $chain. "'";
+                     WHERE id = " . $user->getId() . " AND title = '" . $chain. "'";
 
-        $chains = array();
-        $count = 0;
         $result = $this->mysqli->query($queryStr);
+        d($result);
+
         return $result;
     }
 
@@ -126,21 +128,18 @@ class Model {
         $queryStr = "SELECT title
                      FROM `user_chain`
                      WHERE `active` = 1 AND
-                           `id` = '".$user->getId()."'";
-        $chain = array();
-        $count = 0;
+                           `id` = ".$user->getId();
+        $chain = "No chains yet!";
         $result = $this->mysqli->query($queryStr);
-        d($result);
-        if ($result->num_rows === NULL) {
-            d($result);
+
+        if ($result === FALSE) {
             return FALSE;
         }
         while ($row = $result->fetch_assoc()) {
-            $chains[] = $row;
-            $count++;
+            $chain = $row;
         }
         $result->close();
-        return $chain;
+        return $chain['title'];
 
     }
 

@@ -20,9 +20,22 @@ class Controller {
         if (!$chain) {
             $this->view->printMessage("No chain selected!");
         } else {
-            d($chain);
+            $this->view->printMessage($chain);
         }
     }
+
+    public function handleCreateChain($user, $title, $topic) {
+
+        $result = $this->model->createNewChain($user, $title, $topic);
+
+        if ($result === TRUE) {
+            $this->view->confirmCreateChain($title);
+        } else {
+            $this->view->printMessage($result);
+        }
+        return TRUE;
+    }
+
 
     public function handleDeleteChain($chain) {
         $result = $this->model->deleteChain($chain);
@@ -48,20 +61,6 @@ class Controller {
         }
     }
 
-    public function handleCreateChain($user, $title, $topic) {
-
-        if ($title === "" || $topic === "") {
-            return FALSE;
-        }
-        $result = $this->model->createNewChain($user, $title, $topic);
-        
-        if ($result === TRUE) {
-            printf("Created Chain: %s!", $title);
-        } else {
-            $this->view->printMessage($result);
-        }
-        return TRUE;
-    }
 
 
     public function updateCurrentChain($user, $chainObj) {
