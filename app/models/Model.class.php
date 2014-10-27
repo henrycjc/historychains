@@ -138,7 +138,6 @@ class Model {
         $result = $this->mysqli->query($queryStr);
 
         if ($result === FALSE) {
-            d($result);
             return FALSE;
         }
         while ($row = $result->fetch_assoc()) {

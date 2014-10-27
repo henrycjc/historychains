@@ -246,11 +246,15 @@ if(isset($_POST['Logout'])) {
                     });
                     event.preventDefault();
 
+                    /*
+                    refresh = $.ajax({
+                        url: "getchains.php",
 
+                        success: function(data, status) {
+                            $("#cd-timeline").text(data);
+                        }
+                    }); */
                 });
-
-
-
             });
 		</script>
 
