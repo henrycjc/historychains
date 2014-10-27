@@ -29,7 +29,7 @@ class Controller {
         $result = $this->model->createNewChain($user, $title, $topic);
 
         if ($result === TRUE) {
-            $this->view->confirmCreateChain($title);
+            $this->view->printMessage("Successfully created chain: " . $title);
         } else {
             $this->view->printMessage($result);
         }

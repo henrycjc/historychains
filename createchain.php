@@ -26,25 +26,7 @@ if(isset($_POST['Logout'])) {
 //d($_COOKIE);
 //d($_POST);
 ?>
-<?php
 
-if (isset($_POST['mkChain'])) {
-    $controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
-    $model->setActiveChain($user, $_POST['title']);
-}
-if (isset($_POST['editChainsReq']) && isset($_POST['editChainsDelBtn'])) {
-    $controller->handleDeleteChain($_POST['editChainsList']);
-}
-
-if (isset($_POST['editChainsReq']) && isset($_POST['editChainsEdtBtn'])) {
-    $res = $model->setActiveChain($user, $_POST['editChainsList']);
-    if ($res) {
-
-    } else {
-        echo "Could not get active chain";
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -149,8 +131,26 @@ if (isset($_POST['editChainsReq']) && isset($_POST['editChainsEdtBtn'])) {
 						<button id="editChainsEdtBtn" name="editChainsEdtBtn" value="Edit" type="submit">Edit</button>
 						<button id="editChainsDelBtn" name="editChainsDelBtn" value="Delete" type="submit" onclick="return confirm('Are you sure you want to delete this chain?');">Delete</button>
 					</form>
-
 				</div>
+                <?php
+
+                if (isset($_POST['mkChain'])) {
+                    $controller->handleCreateChain($user->getId(), $_POST['title'], $_POST['topic']);
+                    $model->setActiveChain($user, $_POST['title']);
+                }
+                if (isset($_POST['editChainsReq']) && isset($_POST['editChainsDelBtn'])) {
+                    $controller->handleDeleteChain($_POST['editChainsList']);
+                }
+
+                if (isset($_POST['editChainsReq']) && isset($_POST['editChainsEdtBtn'])) {
+                    $res = $model->setActiveChain($user, $_POST['editChainsList']);
+                    if ($res) {
+
+                    } else {
+                        echo "Could not get active chain";
+                    }
+                }
+                ?>
 			</div>
 			<div style="clear:both"></div>
 			<div class="app">

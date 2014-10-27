@@ -105,6 +105,10 @@ class View {
         printf("<p>Created Chain!</p>");
     }
 
+    public function confirmCreateChain($title) {
+
+    }
+
     public function showCreateChainFailure($result) {
         printf("<p>Could not create chain.</p>");
         d($result);
