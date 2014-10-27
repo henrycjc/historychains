@@ -51,6 +51,11 @@ class Controller {
         //$articleResults = $this->model->getTroveResults($q, 'article');
         return $this->view->showTroveResults($bookResults);
     }
+	
+	public function handleChainSearch($search_Term) {
+		$result = $this->model->searchChains($search_Term);
+		return $this->view->showChainResults($result);
+	}
 
     public function getChainsByUserId($user) {
         $chains = $this->model->getChainsById($user);

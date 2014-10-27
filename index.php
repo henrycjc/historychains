@@ -20,6 +20,7 @@ if( isset($_POST['Logout'])) {
 
 //Output
 d($_COOKIE);
+d($_GET);
 d($userData);
 ?>
 
@@ -61,7 +62,7 @@ d($userData);
 			<section class="Search">
 				<div class="SearchWrap">
 					<h2>Search</h2>
-					<form>
+					<form method="GET" action="index.php">
 						<input id="q" type="text" name="q" placeholder="Enter keywords, authors, public figures or events to begin your chain."/>
 					</form>
 					<article class="SearchResults">
@@ -71,7 +72,7 @@ d($userData);
                                 	$view->blankEntry();
                                     $view->printMessage("swag");
                                 } else {
-                                    $controller->handleSearch($_GET['q']);
+                                    $controller->handleChainSearch($_GET['q']);
                                 }
                             } else {
                                 $view->printMessage("Please enter a valid search term!");

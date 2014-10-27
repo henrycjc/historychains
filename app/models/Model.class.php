@@ -394,4 +394,25 @@ class Model {
 			echo "Sorry, there was a problem uploading your file.";
 		}
 	}
+	
+	public function searchChains($search_Term) {
+		$queryStr = "SELECT *
+					FROM `user_chain`;";
+		$chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+				if(strpos($row['title'], $search_Term) !== FALSE)
+				$chains[] = $row;
+                $count++;
+        }
+        if ($count === 0) {
+            return FALSE;
+        }
+        $result->close();
+        return $chains;
+    }
 }

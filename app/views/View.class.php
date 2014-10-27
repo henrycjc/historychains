@@ -48,6 +48,18 @@ class View {
             $count++;
         }
     }
+	
+	public function showChainResults($results) {
+        $count = 1;
+        foreach($results as $chain) {
+                echo '<div class = "Top_Result">';
+                echo '<div class="result_number"><p>'.$count.'</p></div>';
+                echo '<div class="Top_info"><h3 class="title">'.$chain['title'].'</h3>';
+					echo '<p class="author">'.$chain['topic'].'</p>';
+					echo '<p class="date">'.$chain['time_stamp'].'</p></div></div>';
+				$count++;
+            }
+    }
 
 
 
