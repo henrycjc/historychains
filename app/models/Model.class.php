@@ -33,7 +33,12 @@ class Model {
         $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`, `active`)
                      VALUES ('".$user."', '".$title."', '".$topic."', 0)";
         if ($this->mysqli->query($queryStr) !== TRUE) {
-            return $this->mysqli->error;
+            if (strpos($this->mysqli->error, "Duplicate entry") !== FALSE) {
+                return "A chain with the name '" . $title . "' already exists - please pick another name.";
+            } else {
+                return "Error: " . $this->mysqli->error;
+            }
+
         } else {
             return TRUE;
         }

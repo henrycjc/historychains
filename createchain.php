@@ -168,9 +168,9 @@ if(isset($_POST['Logout'])) {
 		<section class="TopChain CreateChainTimeline">
             <h2>Step 3: Study</h2>
 			<h2 id="chainName"><?php $controller->getActiveChain($user); ?> </h2>
-			<section id="cd-timeline" class="cd-container">
+            <!-- <section id="cd-timeline" class="cd-container"> -->
                 <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
-			</section> <!-- cd-timeline -->
+			<!-- </section> <!-- cd-timeline -->
 			<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
 		</section>
 	</div>
