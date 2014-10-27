@@ -19,9 +19,9 @@ if( isset($_POST['Logout'])) {
 }
 
 //Output
-d($_COOKIE);
+/*d($_COOKIE);
 d($_GET);
-d($userData);
+d($userData);*/
 ?>
 
 <!DOCTYPE html>

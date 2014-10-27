@@ -38,12 +38,12 @@
 	header('Refresh :0');
 	}
 	//Output starts Here
-	d($_COOKIE);
+	/*d($_COOKIE);
 	d($_FILES);
 	d($_POST);
 	$name = (string)$_COOKIE['user'];
 	d($name);
-	d($userData);
+	d($userData);*/
 ?>
 <!DOCTYPE html>
 <html>

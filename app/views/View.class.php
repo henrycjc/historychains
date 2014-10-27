@@ -60,7 +60,7 @@ class View {
                 echo '<div class="Search_result_number"><p>'.$count.'</p></div>';
                 echo '<div class="Search_Top_info"><h3 class="Search_title">'.$chain['title'].'</h3>';
 					echo '<p class="Search_author">'.$chain['topic'].'</p>';
-					echo '<p class="Search_date">'.$chain['time_stamp'].'</p></div></div>';
+					echo '<p class="Search_date">'.date('M j Y g:i A', strtotime($chain['time_stamp'])).'</p></div></div>';
 				$count++;
             }
     }

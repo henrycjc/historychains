@@ -237,7 +237,6 @@ class Model {
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
 		if ($result['username'] === $username && $result['password'] === $password) {
 			$this->logUserIn($username);
-			header('Refresh:0');
 		} else {
 			echo('invalid username or password');
 		}
@@ -325,13 +324,13 @@ class Model {
 	public function addUserToDB($fname, $lname, $dob, $username, $password) {
 		$queryStr = "INSERT INTO user (fname, lname, dob, username, password)
 					VALUES ('".$fname."', '".$lname."', '".$dob."', '".$username."', '".$password."')";
-		if ($this->mysqli->query($queryStr) !== TRUE) {
-            echo("Unsuccessful registration, please try again");
-			return FALSE;
-		} else {
-			header('location = index.php');
+		if ($this->mysqli->query($queryStr) === TRUE) {
 			setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
 			setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
+			header('Refresh:0');
+			
+		} else {
+			echo("Unsuccessful registration, please try again");
 		}
 	}
 	

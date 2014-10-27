@@ -18,8 +18,8 @@ if( isset($_POST['Logout'])) {
 }
 
 //Output
-d($_COOKIE);
-d($userData);
+/*d($_COOKIE);
+d($userData);*/
 ?>
 <!DOCTYPE html>
 <html>

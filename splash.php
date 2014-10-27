@@ -1,6 +1,8 @@
 <?php
+if($_COOKIE['user_logged_in'] === "true") {
+	header("Location: index.php");
+}
 require("app/configs/Global_Config.php");
-
 $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
@@ -8,16 +10,13 @@ $controller = new Controller($model, $view);;
 if (isset($_POST['SubmitSU'])) {
 	$model->addUserToDB($_POST['FName'], $_POST['LName'], $_POST['DOB'], $_POST['UName'], $_POST['Password']);
 }
-if($_COOKIE["user_logged_in"] === "true") {
-	header('location: index.php');
-}
 if (isset($_POST['SubmitSI'])) {
 	$model->checkUserCredentials($_POST['UName'], $_POST['Password']);
-
 }
+
 // OUTPUT STARTS HERE
-d($_POST);
-d($_COOKIE);
+/*d($_POST);
+d($_COOKIE);*/
 ?>
 <!DOCTYPE html>
 <html>
