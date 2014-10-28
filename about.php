@@ -51,7 +51,7 @@ d($userData);*/
 				<ul>
 					<li> <a href="index.php">Home</a> </li><li>
 					<a href="createchain.php">Create Chain</a> </li><li>
-					<a href="profile.php">Profile</a> </li><li class="current_page"> 
+					<a href="profile.php">Profile</a> </li><li class="current_page">
 					<a href="about.php">About</a> </li>
 				</ul>
 			</nav>
@@ -72,9 +72,14 @@ d($userData);*/
 				</div>
 			</section>
 
-			<section class="TopChain">
+			<section class="aboutsteps">
 				<h2>How it Works</h2>
-				<img class="aboutgraphic" src="resources/images/about_page_graphic.png" />
+				<p>Create a Chain in these few easy steps!</p>
+				<p class="black">Step 1 | Click the Create Chain Tab</p>
+				<p class="black">Step 2 | Create or Edit a chain</p>
+				<p class="black">Step 3 | Search for sources</p>
+				<p class="black">Step 4 | Add sources to your chain!</p>
+				<p class="black">Step 5 | Explore other user's chains on the home-page</p>
 			</section>
 
 			<footer class="footer">
