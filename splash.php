@@ -112,7 +112,7 @@ d($_COOKIE);*/
 		<section class="Search">
 			<div class="SearchWrap">
 				<h2>About Us</h2>
-					<p>Working Chains is a project developed by 5 undergraduate students at the University of Queensland. A source and referenced based
+					<p>History Chains is a project developed by 5 undergraduate students at the University of Queensland. A source and referenced based
 					social media of sorts, we have captured the essence of user interaction through relentless research and planning. So how will this
 					benefit you? Great Question! This referencing app is targeted towards younger students, namely that of 14-18 studying Modern Australian
 					History and other related subjects. The user will be able to search through Trove's extensive collections of artifacts, articles and mostly
