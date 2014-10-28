@@ -1,34 +1,44 @@
-* 1. User logs in
-* 1a. If chains exist, list them.
-* 2. Creates new chain
-	* 2a. Edit existing chain
-	* 3a. Go to 5.
-* 3. Inputs title, their name (pulled from profile)
-* 4. User starts searching for sources / chains
-* 5. Found sources/chains are displayed 
-* 5.1. User can add source to chain (create tree from list of sources)
-	5.1a. add to live chain at bottom of page
-	5.2a. if the source is an existing chain, add to tree 
-* 6. If not finished go to 5. If finished, go to 7..
-* 7. Publish chain.
+## TO DO 28/10
+
+* Case sensitivity for searches
+* Mysql special chars for ALL inserts
+* Safari // Firefox testing
+* Redirect quicker
+* Splash page too big
+* Chain doesn't display auto on refresh / page load
+* Edit profile sspecial chars
+* Create chain navbar
+* homepage age validation (and update profile)
+* tags, comment, delimiter ---> nice twitter style or something lmao
+* clear text areas when you apply
+* **auto resize divs**
+* timetable plugin change the camera icon to something better
+* add more than just books to chain source
+* handle large images
+* finish homepage / profile --> date layout
+* chain permalinks for home page
+* finish profile, collab chains etc
+* add sources validate the inputes and remove keywords
+* fix chain date time
+* remove source from chain options
 
 ## TO DO
-* Home page splash screen
-* Redirection for login
+* ~~Home page splash screen~~
+* ~~Redirection for login~~
 * Home page top chains
 * ~~“Create Chain” functionality~~
-* Adding source to chain
-* Drawing the chain
-* Saving state of chain
-* Load an existing chain
-* Edit an existing chain
+* ~~Adding source to chain~~
+* ~~Drawing the chain~~
+* ~~Saving state of chain~~
+* ~~Load an existing chain~~
+* ~~Edit an existing chain~~
 * ~~Visually pleasing chain workflow~~
 * ~~Visually appealing search results~~
-* User System
-* Profile page
-* Logging In/Out (cookies)
-* Rating/Rep System
-* Simple tutorial / infographic
+* ~~User System~~
+* ~~Profile page~~
+* ~~Logging In/Out (cookies)~~
+* ~~Rating/Rep System~~
+* ~~Simple tutorial / infographic~~
 
 
 
