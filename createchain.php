@@ -244,7 +244,7 @@ if(isset($_POST['Logout'])) {
                         // reenable the inputs
                         $inputs.prop("disabled", false);
                         $('#AddKeywords').val('');
-                        $('#AddNotes').val(''); 
+                        $('#AddNotes').val('');
                     });
                     event.preventDefault();
                     $("#Comment").fadeOut(1000);

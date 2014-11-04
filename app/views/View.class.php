@@ -53,7 +53,7 @@ class View {
             }
         }
     }
-	
+
 	public function showChainResults($results) {
         $count = 1;
         foreach($results as $chain) {
@@ -84,7 +84,9 @@ class View {
                 echo '<div class="cd-timeline-content">';
                     echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
                     echo '<p>'.$source['comment'].'</p>';
-                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Link</a>';
+                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">View</a>';
+                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Edit</a>';
+                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Delete</a>';
                     echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
                 echo '</div>';
             echo '</div>';
@@ -107,7 +109,7 @@ class View {
         echo '</div>';
     }
     public function showUsersChains($results) {
-        
+
         if ($results === NULL) {
             $this->printMessage("No chains exist. Create one!");
         } else {
