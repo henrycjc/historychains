@@ -89,7 +89,7 @@ if(isset($_POST['Logout'])) {
 			<nav class="nav1">
 				<ul>
 					<li><a href="index.php">Home</a> </li><li class="current_page">
-					<a href="createchain.php">Create Chain</a> </li><li>
+					<a href="createchain.php">Your Chains</a> </li><li>
 					<a href="profile.php">Profile</a> </li><li>
 					<a href="about.php">About</a> </li>
 				</ul>
@@ -171,7 +171,7 @@ if(isset($_POST['Logout'])) {
              <section id="cd-timeline" class="cd-container">
                 <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
 			</section>
-			<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
+
 		</section>
 	</div>
 	<div style="clear:both"></div>
@@ -248,6 +248,14 @@ if(isset($_POST['Logout'])) {
                     $("#Comment").fadeOut(1000);
 
                 });
+
+                var height = $('.cd-timeline-content').height();
+                var now = $('.cd-container').height();
+                $( "#apply" ).click(function() {
+                    $('.cd-container').height(height + now);
+                });
+
+
 
 
             });
