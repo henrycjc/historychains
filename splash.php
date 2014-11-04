@@ -78,7 +78,8 @@ d($_COOKIE);*/
 <body>
 	<div class="wrap">
 		<div class="Welcome">
-			<h1>Welcome to History Chains</h1>
+			<h1>Welcome to</h1>
+			<h1>History Chains</h1>
 		</div>
 		<nav>
 			<ul>

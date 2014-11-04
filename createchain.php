@@ -243,6 +243,8 @@ if(isset($_POST['Logout'])) {
                     request.always(function () {
                         // reenable the inputs
                         $inputs.prop("disabled", false);
+                        $('#AddKeywords').val('');
+                        $('#AddNotes').val(''); 
                     });
                     event.preventDefault();
                     $("#Comment").fadeOut(1000);
