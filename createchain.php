@@ -171,7 +171,7 @@ if(isset($_POST['Logout'])) {
              <section id="cd-timeline" class="cd-container">
                 <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
 			</section>
-			<script src="resources/plugins/vertical-timeline/js/main.js"></script> <!-- Resource jQuery -->
+
 		</section>
 	</div>
 	<div style="clear:both"></div>
@@ -248,6 +248,14 @@ if(isset($_POST['Logout'])) {
                     $("#Comment").fadeOut(1000);
 
                 });
+
+                var height = $('.cd-timeline-content').height();
+                var now = $('.cd-container').height();
+                $( "#apply" ).click(function() {
+                    $('.cd-container').height(height + now);
+                });
+
+
 
 
             });
