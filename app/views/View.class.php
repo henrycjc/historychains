@@ -62,11 +62,39 @@ class View {
                 echo '<div class="Search_Top_info"><h3 class="Search_title">'.$chain['title'].'</h3>';
 					echo '<p class="Search_author">'.$chain['topic'].'</p>';
 					echo '<p class="Search_date">'.date('M j Y g:i A', strtotime($chain['time_stamp'])).'</p></div></div>';
+                                echo '<form class="asdf" action="viewchain.php" method="GET">';
+                echo '<input type="hidden" id="title" value="'.$chain['title'].'"/>';
+                echo '<button type="submit" class="View_Chain">View Chain</button>';
+                echo '</form>';
 				$count++;
             }
     }
 
+    public function showTopChains($chains) {
 
+        $count = 1;
+        foreach($chains as $chain) {
+            echo '<div class = "Top_Result">';
+                echo '<div class="result_number">';
+                    echo '<p>'.$count.'</p>';
+                echo '</div>';
+                echo '<div class="reputation">';
+                    echo '<p>'.rand(1,50).'</p>';
+                echo '</div>';
+                echo '<div class="Top_info">';
+                    echo '<h3 class="title">'.$chain['title'].'</h3>';
+                    echo '<p class="author">'.$this->model->getUsername($chain['user']).'</p>';
+                    echo '<p class="date">'.date('M j Y g:i A', strtotime($chain['timestamp'])). '</p>';
+                echo '</div>';
+                echo '<form class="asdf" action="viewchain.php" method="GET">';
+                echo '<input type="hidden" id="title" value="'.$chain['title'].'"/>';
+                echo '<button type="submit" class="View_Chain">View Chain</button>';
+                echo '</form>';
+            echo '</div>';
+            $count++;
+        }
+            
+    }
 
     public function showChain($sources) {
 
@@ -85,7 +113,7 @@ class View {
                     echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
                     echo '<p>'.$source['comment'].'</p>';
                     echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Link</a>';
-                    echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
+                    echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['time_stamp'])).'</span>';
                 echo '</div>';
             echo '</div>';
         // source_id, comment, timestamp, type, troveid
@@ -93,19 +121,6 @@ class View {
         echo '</section>';
     }
 
-    public function addSourceToChainView($source) {
-        echo '<div class="cd-timeline-block">';
-            echo '<div class="cd-timeline-img cd-picture">';
-                echo '<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">';
-            echo '</div>';
-            echo '<div class="cd-timeline-content">';
-            echo '<h2>'.$source['comment'].'</h2>';
-            echo '<p>'."HOLY SHIT THIS IS NEW".'</p>';
-            echo '<a href="#0" class="cd-read-more">Read more</a>';
-            echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
-            echo '</div>';
-        echo '</div>';
-    }
     public function showUsersChains($results) {
         
         if ($results === NULL) {

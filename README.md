@@ -1,21 +1,21 @@
 ## TO DO 28/10
 
-* Case sensitivity for searches
-* Mysql special chars for ALL inserts
+* ~~Case sensitivity for searches~~
+* ~~Mysql special chars for ALL inserts~~
 * Safari // Firefox testing
 * Redirect quicker
-* Splash page too big
-* Chain doesn't display auto on refresh / page load
-* Edit profile sspecial chars
-* Create chain navbar
+* ~~Splash page too big~~
+* ~~Chain doesn't display auto on refresh / page load~~
+* ~~Edit profile sspecial chars~~
+* ~~Create chain navbar~~
 * homepage age validation (and update profile)
-* tags, comment, delimiter ---> nice twitter style or something lmao
-* clear text areas when you apply
+* ~~tags, comment, delimiter ---> nice twitter style or something lmao~~
+* ~~clear text areas when you apply~~
 * **auto resize divs**
-* timetable plugin change the camera icon to something better
-* add more than just books to chain source
-* handle large images
-* finish homepage / profile --> date layout
+* timetable plugin change the camera icon to something better [NOPE]
+* ~~add more than just books to chain source~~
+* handle large images [ANGUS]
+* finish homepage / profile --> date layout 
 * chain permalinks for home page
 * finish profile, collab chains etc
 * add sources validate the inputes and remove keywords

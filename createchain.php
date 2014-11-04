@@ -120,7 +120,7 @@ if(isset($_POST['Logout'])) {
 				<form id="mkChainForm" class="CreateNew" action="createchain.php" method="post">
 
 					<p>Title</p><input id="title" name="title" type="text" placeholder="Chain Title" />
-					<p>Tags</p><input id="topic" name="topic" type="text" placeholder="Tags" />
+					<p>Tags</p><input id="topic" name="topic" type="text" placeholder="Tags (comma seperated)" />
 					<p><input name="mkChain" id="mkChain" type="submit" value="Create" ></p>
 				</form>
                 <div class="ListedChains">
@@ -168,9 +168,9 @@ if(isset($_POST['Logout'])) {
 		<section class="TopChain CreateChainTimeline">
             <h2>Step 3: Study</h2>
 			<h2 id="chainName"><?php $controller->getActiveChain($user); ?> </h2>
-             <section id="cd-timeline" class="cd-container">
+            <!-- <section id="cd-timeline" class="cd-container"> -->
                 <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
-			</section>
+			<!-- </section> -->
 
 		</section>
 	</div>
@@ -251,10 +251,11 @@ if(isset($_POST['Logout'])) {
 
                 });
 
-                var height = $('.cd-timeline-content').height();
-                var now = $('.cd-container').height();
+                var height = $('.CreateChainTimeline').height();
+                var now = 200;
                 $( "#apply" ).click(function() {
-                    $('.cd-container').height(height + now);
+                	console.log("increasing height by " + now)
+                    $('.CreateChainTimeline').height(height + now);
                 });
 
 

@@ -10,7 +10,7 @@ class Model {
 	}
 
     public function getTroveResults($q, $zone) {
-        $str = "http://api.trove.nla.gov.au/result?key=".$this->API_KEY."&zone=".$zone."&q=".urlencode(strip_tags(trim($q)))."&encoding=json";
+        $str = "http://api.trove.nla.gov.au/result?key=".$this->API_KEY."&zone=book,article&q=".urlencode(strip_tags(trim($q)))."&encoding=json";
         $file = file_get_contents($str);
         $result = json_decode($file, TRUE);
         if ($result !== NULL) {
@@ -197,6 +197,27 @@ class Model {
         }
 
     }
+    public function getTopChains() {
+    	$queryStr = "SELECT DISTINCT *
+                     FROM `sources1`
+                     LIMIT 10";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+            $chains[] = $row;
+            $count++;
+        }
+        if ($count === 0) {
+            return NULL;
+        }
+        $result->close();
+        return $chains;
+    }
 
     public function getChainSources($chain) {
     	$chain = $this->mysqli->real_escape_string($chain);
@@ -237,6 +258,19 @@ class Model {
         }
     }
 
+    public function getUsername($userid) {
+
+    	$queryStr = "SELECT username 
+    				 FROM `user`
+    				 WHERE `id` = ".$userid;
+    	        $result = $this->mysqli->query($queryStr)->fetch_assoc();
+
+        if ($result === NULL) {
+            return FALSE;
+        } else {
+            return $result['username'];
+        }
+    }
 	public function checkUserLoggedIn() {
 		if ($_COOKIE["user_logged_in"] !== "true") {
 			setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month

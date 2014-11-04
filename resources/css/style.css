@@ -493,6 +493,7 @@ margin-bottom: 5px;
 	max-height: 73px;
 	padding: 1px;
 	margin: 18px;
+	overflow: hidden;
 }
 
 .result_number, .reputation, .Top_info, .title, .date, .author{
@@ -517,7 +518,7 @@ margin-bottom: 5px;
 .View_Chain{
 	float: left;
 	margin-top: 15px;
-	margin-left: 30px;
+	margin-left: 10px;
 	border: 1px solid black;
 }
 

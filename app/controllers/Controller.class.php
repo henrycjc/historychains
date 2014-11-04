@@ -11,7 +11,13 @@ class Controller {
     }
 
     public function handleShowTopChains() {
+        $chains = $this->model->getTopChains();
 
+        if (!$chains) {
+            $this->view->printMessage("No chains to display!");
+        } else {
+            $this->view->showTopChains($chains);
+        }
     }
 
     public function getActiveChain($user) {
