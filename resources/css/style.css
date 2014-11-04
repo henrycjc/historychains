@@ -14,7 +14,10 @@
   color: black;
 }
 
-
+h1{
+  padding: 0px;
+  margin: 0px; 
+}
 
 body{
 	background: url(../images/agsquare.png);
@@ -23,6 +26,10 @@ body{
 
 h2, h3{
   font-family: 'Raleway', sans-serif;
+}
+
+h1{
+
 }
 
 p{
