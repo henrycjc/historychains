@@ -30,6 +30,10 @@ class Model {
     }
     public function createNewChain($user, $title, $topic) {
 
+    	$user = $this->mysqli->real_escape_string($user);
+    	$title = $this->mysqli->real_escape_string($title);
+    	$topic = $this->mysqli->real_escape_string($topic);
+
         $queryStr = "INSERT INTO `history_chains`.`user_chain` (`id`, `title`, `topic`, `active`)
                      VALUES ('".$user."', '".$title."', '".$topic."', 0)";
         if ($this->mysqli->query($queryStr) !== TRUE) {
@@ -45,6 +49,9 @@ class Model {
     }
 
     public function deleteChain($chain) {
+
+    	$chain = $this->mysqli->real_escape_string($chain);
+
         $queryStr = "DELETE FROM user_chain
                      WHERE title = '".$chain."'";
         if ($this->mysqli->query($queryStr) !== TRUE) {
@@ -56,6 +63,8 @@ class Model {
     }
 
     public function getChainsByTitle($title) {
+
+    	$title = $this->mysqli->real_escape_string($title);
         $queryStr = "SELECT *
                      FROM `user_chain`";
         $chains = array();
@@ -65,7 +74,7 @@ class Model {
             return FALSE;
         }
         while ($row = $result->fetch_assoc()) {
-            if (strpos($row['title'], $title) !== FALSE) {
+            if (stripos($row['title'], $title) !== FALSE) {
                 $chains[] = $row;
                 $count++;
             }
@@ -78,6 +87,8 @@ class Model {
     }
 
     public function chainExists($title) {
+
+    	$title = $this->mysqli->real_escape_string($title);
         $queryStr = "SELECT title
                      FROM `user_chain`";
         $chains = array();
@@ -131,6 +142,7 @@ class Model {
         if ($result === FALSE) {
             return FALSE;
         }
+        $chain = $this->mysqli->real_escape_string($chain);
         $queryStr2 = "UPDATE user_chain
                      SET active=1
                      WHERE id = " . $user->getId() . " AND title = '" . $chain. "'";
@@ -170,6 +182,9 @@ class Model {
     /* called by ajax addsource.php */
     public function addSourceToChain($userid, $chain, $keywords, $notes, $troveid) {
 
+		$chain = $this->mysqli->real_escape_string($chain);
+		$keywords = $this->mysqli->real_escape_string($keywords);
+		$notes = $this->mysqli->real_escape_string($notes);
         $queryStr = "INSERT INTO `sources1` (comment, keywords, type, troveid, user, title)
                      VALUES ('".$notes."', '".$keywords."', '".'book'."', '".$troveid."', ".$userid .", '" .$chain ."')";
         $result = $this->mysqli->query($queryStr);
@@ -184,6 +199,7 @@ class Model {
     }
 
     public function getChainSources($chain) {
+    	$chain = $this->mysqli->real_escape_string($chain);
         $queryStr = "SELECT *
                      FROM `sources1`
                      WHERE `title` =  '".$chain."'";
@@ -207,6 +223,8 @@ class Model {
 
 
     public function getUserId($username) {
+
+    	$username = $this->mysqli->real_escape_string($username);
         $queryStr = "SELECT `id`
                      FROM `user`
                      WHERE `username` = '".$username."'";
@@ -228,6 +246,9 @@ class Model {
 	}
 	
 	public function checkUserCredentials($username, $password) {
+
+		$username = $this->mysqli->real_escape_string($username);
+		$password = $this->mysqli->real_escape_string($password);
 		$queryStr = "SELECT username, password
 					 FROM user
 					 WHERE username ='".$username."'";
@@ -409,7 +430,7 @@ class Model {
             return FALSE;
         }
         while ($row = $result->fetch_assoc()) {
-				if(strpos($row['title'], $search_Term) !== FALSE)
+				if(stripos($row['title'], $search_Term) !== FALSE)
 				$chains[] = $row;
                 $count++;
         }
