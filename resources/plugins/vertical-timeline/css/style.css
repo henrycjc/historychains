@@ -247,6 +247,7 @@ Main components
   background: #acb7c0;
   color: white;
   border-radius: 0.25em;
+  margin-left: 10px; 
 }
 .no-touch .cd-timeline-content .cd-read-more:hover {
   background-color: #bac4cb;

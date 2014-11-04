@@ -16,7 +16,7 @@
 
 h1{
   padding: 0px;
-  margin: 0px; 
+  margin: 0px;
 }
 
 body{
@@ -445,6 +445,14 @@ nav ul li a:hover{
 	padding: 1%;
 	margin-left: 2.5%;
 	height: 570px;
+}
+
+.CreateChainTimeline1 {
+  width: 47.5%;
+  padding: 1%;
+  margin: auto;
+  height: 570px;
+  margin-top: 20px; 
 }
 
 #logout {
