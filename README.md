@@ -15,7 +15,7 @@
 * timetable plugin change the camera icon to something better [NOPE]
 * ~~add more than just books to chain source~~
 * handle large images [ANGUS]
-* finish homepage / profile --> date layout 
+* ~~finish homepage / profile --> date layout ~~
 * chain permalinks for home page
 * finish profile, collab chains etc
 * add sources validate the inputes and remove keywords
