@@ -20,6 +20,16 @@ class Controller {
         }
     }
 
+    public function handleProfileChains($username) {
+
+        $chains = $this->model->getProfileChains($username);
+        if ($chains === FALSE || $chains == NULL) {
+            $this->view->printMessage("No chains yet!");
+        } else {
+            $this->view->showProfileChainResults($chains);
+        }
+    }
+
     public function getActiveChain($user) {
 
         $chain = $this->model->getActiveChain($user);
@@ -52,6 +62,14 @@ class Controller {
         }
     }
 
+    public function handleViewChain($chain) {
+        $sources = $this->model->getChainSources($chain);
+        if ($sources === FALSE) {
+            $this->view->printMessage("No chains found!");
+        } else {
+            $this->view->showViewChain($sources);
+        }
+    }
     public function handleSearch($q, $user) {
         $bookResults = $this->model->getTroveResults($q, 'book');
         //$articleResults = $this->model->getTroveResults($q, 'article');

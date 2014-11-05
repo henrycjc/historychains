@@ -4,19 +4,13 @@ $mysqli = new Mysql_Connection();
 $model = new Model($mysqli->getConn());
 $view = new View($model);
 $controller = new Controller($model, $view);
-$model->checkUserLoggedIn();
-$userData = array ('userName' => $_COOKIE['user'],
-                        'userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
-            'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
-            'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
-            'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
-            'userRep' => $model->getUserRep((string)$_COOKIE['user']),
-            'userProfilePic' => substr(($model->getUserProfileImage((string)$_COOKIE['user'])), 0, -3)
-            );
-$user = new User($model, $userData);
-if(isset($_POST['Logout'])) {
-  $model->logUserOut();
-  header('Refresh :0');
+
+$chain = "";
+if (isset($_GET['title'])) {
+    $chain = trim(stripslashes($_GET['title']));
+} else {
+    echo "<p>You are at this page by accident, go back now!</p>";
+    die();
 }
 ?>
 
@@ -38,11 +32,9 @@ if(isset($_POST['Logout'])) {
 
 
     <section class="TopChain CreateChainTimeline1">
-            <h2>Step 3: Study</h2>
-      <h2 id="chainName"><?php $controller->getActiveChain($user); ?> </h2>
+      <h2 id="chainName"> </h2>
              <section id="cd-timeline" class="cd-container">
-                <?php $controller->getInitialChain($model->getActiveChain($user)); ?>
-    </section>
-
+                <?php $controller->handleViewChain($chain); ?>
+             </section>
   </div>
 </body>

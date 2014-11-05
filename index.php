@@ -63,7 +63,6 @@ if( isset($_POST['Logout'])) {
                         <?php
                             if (isset($_GET['q'])) {
                                 if ($_GET['q'] === "") {
-                                	$view->blankEntry();
                                     $view->printMessage("You haven't searched for anything!");
                                 } else {
                                     $controller->handleChainSearch($_GET['q']);
@@ -81,7 +80,6 @@ if( isset($_POST['Logout'])) {
 			<section class="TopChain">
 				<h2>Top Chains</h2>
 				<?php $controller->handleShowTopChains(); ?>
-
 			</section>
 
 			<footer class="footer">

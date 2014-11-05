@@ -198,9 +198,9 @@ class Model {
 
     }
     public function getTopChains() {
-    	$queryStr = "SELECT DISTINCT *
+    	$queryStr = "SELECT *
                      FROM `sources1`
-                     LIMIT 10";
+                     GROUP BY title";
         $chains = array();
         $count = 0;
         $result = $this->mysqli->query($queryStr);
@@ -216,6 +216,7 @@ class Model {
             return NULL;
         }
         $result->close();
+
         return $chains;
     }
 
@@ -242,6 +243,31 @@ class Model {
         return $chains;
     }
 
+    public function getProfileChains($username) {
+
+
+        $queryStr = "SELECT *
+                     FROM `sources1`
+                     WHERE `user` = ".$this->getUserId($username)."
+                     GROUP BY title";
+        $chains = array();
+        $count = 0;
+        $result = $this->mysqli->query($queryStr);
+
+        if ($result === FALSE) {
+            return FALSE;
+        }
+        while ($row = $result->fetch_assoc()) {
+            $chains[] = $row;
+            $count++;
+        }
+        if ($count === 0) {
+            return NULL;
+        }
+        $result->close();
+
+        return $chains;
+    }
 
     public function getUserId($username) {
 

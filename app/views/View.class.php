@@ -56,6 +56,7 @@ class View {
 
 	public function showChainResults($results) {
         $count = 1;
+        d($results);
         foreach($results as $chain) {
                 echo '<div class = "Search_Top_Result">';
                 echo '<div class="Search_result_number"><p>'.$count.'</p></div>';
@@ -63,7 +64,7 @@ class View {
 					echo '<p class="Search_author">'.$chain['topic'].'</p>';
 					echo '<p class="Search_date">'.date('M j Y g:i A', strtotime($chain['time_stamp'])).'</p></div>';
                 echo '<form class="asdf" action="viewchain.php" method="GET">';
-                echo '<input type="hidden" id="title" value="'.$chain['title'].'"/>';
+                echo '<input name="title" type="hidden" id="title" value="'.$chain['title'].'"/>';
                 echo '<button type="submit" class="View_Chain2">View Chain</button>';
                 echo '</form>';
                 echo '</div>';
@@ -71,38 +72,84 @@ class View {
             }
     }
 
+    public function showProfileChainResults($results) {
+        $count = 1;
+        foreach($results as $chain) {
+            echo '<div class = "Search_Top_Result">';
+            echo '<div class="Search_result_number"><p>'.$count.'</p></div>';
+            echo '<div class="Search_Top_info"><h3 class="Search_title">'.$chain['title'].'</h3>';
+            echo '<p class="Search_author" style="overflow: auto;">'.$chain['comment'].'</p>';
+            echo '<p class="Search_date">'.date('M j Y g:i A', strtotime($chain['timestamp'])).'</p></div>';
+            echo '<form class="asdf" action="viewchain.php" method="GET">';
+            echo '<input name="title" type="hidden" id="title" value="'.$chain['title'].'"/>';
+            echo '<button type="submit" class="View_Chain2">View Chain</button>';
+            echo '</form>';
+            echo '</div>';
+            $count++;
+        }
+    }
+
     public function showTopChains($chains) {
 
         $count = 1;
+        $previous = "";
         foreach($chains as $chain) {
-            echo '<div class = "Top_Result">';
+            if ($chain === $previous) {
+                $previous = $chain;
+            } else {
+                echo '<div class = "Top_Result">';
                 echo '<div class="result_number">';
-                    echo '<p>'.$count.'</p>';
+                echo '<p>'.$count.'</p>';
                 echo '</div>';
                 echo '<div class="reputation">';
-                    echo '<p>'.rand(1,50).'</p>';
+                echo '<p>'.rand(1,50).'</p>';
                 echo '</div>';
                 echo '<div class="Top_info">';
-                    echo '<h3 class="title">'.$chain['title'].'</h3>';
-                    echo '<p class="author">'.$this->model->getUsername($chain['user']).'</p>';
-                    echo '<p class="date">'.date('M j Y g:i A', strtotime($chain['timestamp'])). '</p>';
+                echo '<h3 class="title">'.$chain['title'].'</h3>';
+                echo '<p class="author">'.$this->model->getUsername($chain['user']).'</p>';
+                echo '<p class="date">'.date('M j Y g:i A', strtotime($chain['timestamp'])). '</p>';
                 echo '</div>';
                 echo '<form class="asdf" action="viewchain.php" method="GET">';
                 echo '<input type="hidden" id="title" value="'.$chain['title'].'"/>';
                 echo '<button type="submit" class="View_Chain">View Chain</button>';
                 echo '</form>';
-            echo '</div>';
-            $count++;
+                echo '</div>';
+                $count++;
+                $previous = $chain;
+            }
+
         }
 
     }
 
+    public function showViewChain($sources) {
+
+        if ($sources == NULL) {
+            $this->printMessage("This chain has no sources.");
+            return;
+        }
+        foreach(array_reverse($sources) as $source) {
+            echo '<div class="cd-timeline-block">';
+                echo '<div class="cd-timeline-img cd-picture">';
+                    echo '<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">';
+                echo '</div>';
+                echo '<div class="cd-timeline-content">';
+                echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
+                    echo '<p>'.$source['comment'].'</p>';
+                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">View</a>';
+                    echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
+                echo '</div>';
+            echo '</div>';
+        }
+    }
     public function showChain($sources) {
 
         if ($sources == NULL) {
             $this->printMessage("No sources to display yet!");
             return;
         }
+        echo "<script>function noedit() { alert('Not implemented yet.'); }</script>";
+        echo "<script>function nodel() { alert('Not implemented yet.'); }</script>";
         echo '<section id="cd-timeline" class="cd-container">';
         foreach(array_reverse($sources) as $source) {
            // d($this->model->getTroveArticleTitle($source['troveid']));
@@ -114,7 +161,8 @@ class View {
                     echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
                     echo '<p>'.$source['comment'].'</p>';
                     echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">View</a>';
-                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Delete</a>';
+            echo '<a id="noedit" href="#" onclick="noedit(); return false;" class="cd-read-more">Edit</a> ';
+            echo '<a id="nodel" href="#" onclick="nodel(); return false;" class="cd-read-more">Del</a>';
                     echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
                 echo '</div>';
             echo '</div>';

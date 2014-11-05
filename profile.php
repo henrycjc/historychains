@@ -6,7 +6,8 @@
 	$view = new View($model);
 	$controller = new Controller($model, $view);
 	$model->checkUserLoggedIn();
-	$userData = array ('userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
+	$userData = array ('userName' => $_COOKIE['user'],
+                        'userFName' => ucfirst($model->getUserFName((string)$_COOKIE['user'])),
 						'userLName' => ucfirst($model->getUserLName((string)$_COOKIE['user'])),
 						'userDOB' => $model->getUserDOB((string)$_COOKIE['user']),
 						'userInstitution' => $model->getUserInsitution((string)$_COOKIE['user']),
@@ -37,13 +38,7 @@
 	$model->logUserOut();
 	header('Refresh :0');
 	}
-	//Output starts Here
-	/*d($_COOKIE);
-	d($_FILES);
-	d($_POST);
-	$name = (string)$_COOKIE['user'];
-	d($name);
-	d($userData);*/
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -140,10 +135,7 @@
 			<div class="ChainInfo">
 				<div class="Published">
 					<h2>Published Chains</h2>
-				</div>
-
-				<div class="Collab">
-						<h2>Collabritive Chains</h2>
+                    <?php $controller->handleProfileChains($userData['userName']); ?>
 				</div>
 			</div>
 
