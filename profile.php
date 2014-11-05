@@ -124,7 +124,7 @@
 					<button id="edit_profile">Edit Profile</button>
 					<h1>Info</h1>
 					<p><?php printf($userData['userFName']." ".$userData['userLName'] )?></p>
-					<p><?php printf($userData['userDOB'])?></p>
+					<p><?php printf(date("d-m-Y",$userData['userDOB']))?></p>
 					<p><?php printf($userData['userInstitution'])?></p>
 					<p>Reputation: <?php printf($userData['userRep']) ?></p>
 				</div>
