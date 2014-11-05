@@ -255,8 +255,7 @@ nav ul li a:hover{
 }
 
 .Published{
-	max-height: 500px;
-	height: 300px;
+	height: auto;
 	background-color: #F3FAFE;
 	border: 2px solid #02A2EF;
 	margin-top: 20px;
@@ -534,7 +533,8 @@ margin-bottom: 5px;
   margin-top: 15px;
   border: 1px solid black;
   width: 50px;
-  height: 30px;
+  height: auto;
+  padding: 2px;
 }
 
 
