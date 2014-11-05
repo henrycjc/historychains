@@ -1,7 +1,7 @@
-<?php	
+<?php
 
 class Model {
-	
+
 	protected $mysqli;
     protected $API_KEY = "6giss2nf0mavv6gk";
 
@@ -260,7 +260,7 @@ class Model {
 
     public function getUsername($userid) {
 
-    	$queryStr = "SELECT username 
+    	$queryStr = "SELECT username
     				 FROM `user`
     				 WHERE `id` = ".$userid;
     	        $result = $this->mysqli->query($queryStr)->fetch_assoc();
@@ -278,7 +278,7 @@ class Model {
 			header('Location: splash.php');
 		}
 	}
-	
+
 	public function checkUserCredentials($username, $password) {
 
 		$username = $this->mysqli->real_escape_string($username);
@@ -294,18 +294,18 @@ class Model {
 			echo('invalid username or password');
 		}
 	}
-	
+
 	public function logUserIn($username) {
 		setcookie("user_logged_in", 'true', time() + (86400 * 30), "/"); // extends cookies life by a month
 		setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
 	}
-	
+
 	public function logUserOut() {
 		setcookie("user_logged_in", 'false', time() + (86400 * 30), "/"); // extends cookies life by a month
 		setcookie("user", "none", time() + (86400 * 30), "/");  // extends cookies life by a month
 		header('Location : splash.php');
 	}
-	
+
 	public function getUserFName($username) {
 		$queryStr = "SELECT fname
 					FROM user
@@ -317,7 +317,7 @@ class Model {
 			return $result['fname'];
 		}
 	}
-	
+
 	public function getUserLName($username) {
 		$queryStr = "SELECT lname
 					FROM user
@@ -325,7 +325,7 @@ class Model {
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
 		return $result['lname'];
 	}
-	
+
 	public function getUserDOB($username) {
 		$queryStr = "SELECT dob
 					FROM user
@@ -333,7 +333,7 @@ class Model {
 		$result = $this->mysqli->query($queryStr)->fetch_assoc();
 		return $result['dob'];
 	}
-	
+
 	public function getUserInsitution($username) {
 		$queryStr = "SELECT institution
 					FROM user
@@ -345,7 +345,7 @@ class Model {
 			return $result['institution'];
 		}
 	}
-	
+
 	public function getUserRep($username) {
 		$queryStr = "SELECT rep
 					FROM user
@@ -357,7 +357,7 @@ class Model {
 			return $result['rep'];
 		}
 	}
-	
+
 		public function getUserProfileImage($username) {
 		$queryStr = "SELECT img
 					FROM user
@@ -369,11 +369,11 @@ class Model {
 			return $link['img'];
 		}
 	}
-		
+
 	public function getUserLoggedIn() {
 		return  $_COOKIE['name'] ;
 	}
-	
+
 	public function addUserToDB($fname, $lname, $dob, $username, $password) {
 		$queryStr = "INSERT INTO user (fname, lname, dob, username, password)
 					VALUES ('".$fname."', '".$lname."', '".$dob."', '".$username."', '".$password."')";
@@ -381,22 +381,22 @@ class Model {
 			setcookie("user_logged_in", "true", time() + (86400 * 30), "/"); // extends cookies life by a month
 			setcookie("user", $username, time() + (86400 * 30), "/");  // extends cookies life by a month
 			header('Refresh:0');
-			
+
 		} else {
 			echo("Unsuccessful registration, please try again");
 		}
 	}
-	
+
 	public function updateUserFName($username, $fname) {
 		$queryStr = "UPDATE user
 					SET fname= '". $fname."'
 					 WHERE username ='".$username."'";
-		
+
 		if ($this->mysqli->query($queryStr) !== TRUE) {
 			echo("Unable to change data, please try again");
 		}
 	}
-	
+
 	public function updateUserLName($username, $lname) {
 		$queryStr = "UPDATE user
 					SET lname= '". $lname."'
@@ -405,7 +405,7 @@ class Model {
 			echo("Unable to change data, please try again");
 		}
 	}
-	
+
 	public function updateUserDOB($username, $dob) {
 		$queryStr = "UPDATE user
 					SET dob= '". $dob."'
@@ -414,7 +414,7 @@ class Model {
 			echo("Unable to change data, please try again");
 		}
 	}
-	
+
 	public function updateUserInsitution($username, $institution) {
 		$queryStr = "UPDATE user
 					SET institution= '". $institution."'
@@ -423,11 +423,11 @@ class Model {
 			echo("Unable to change data, please try again");
 		}
 	}
-	
+
 	public function checkUpload($username) {
 		$target = "resources/images/user_profile_pics/";
 		$target = $target . basename($_FILES['file']['name']);
-		
+
 		if ((file_exists($target. $_FILES['file']["name"])=== TRUE) && ($_FILES['file']["size"] > 500000)) {
 		echo "Sorry there was a problem with your upload.
 				Either your file already exists, is too larger
@@ -436,7 +436,7 @@ class Model {
 			return TRUE;
 		}
 	}
-	
+
 	public function uploadImage($username) {
 		$target = "resources/images/user_profile_pics/";
 		$target = $target . basename($_FILES['file']['name']);
@@ -453,7 +453,7 @@ class Model {
 			echo "Sorry, there was a problem uploading your file.";
 		}
 	}
-	
+
 	public function searchChains($search_Term) {
 		$queryStr = "SELECT *
 					FROM `user_chain`;";

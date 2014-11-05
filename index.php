@@ -69,7 +69,7 @@ if( isset($_POST['Logout'])) {
                                     $controller->handleChainSearch($_GET['q']);
                                 }
                             } else {
-                                $view->printMessage("Search for other user's chains here!");
+                                $view->printMessage("Search for other user's chains here, or proceed to 'Your Chains' to create one!");
                             }
                         ?>
 
