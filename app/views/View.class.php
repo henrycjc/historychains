@@ -56,7 +56,6 @@ class View {
 
 	public function showChainResults($results) {
         $count = 1;
-        d($results);
         foreach($results as $chain) {
                 echo '<div class = "Search_Top_Result">';
                 echo '<div class="Search_result_number"><p>'.$count.'</p></div>';
@@ -110,7 +109,7 @@ class View {
                 echo '<p class="date">'.date('M j Y g:i A', strtotime($chain['timestamp'])). '</p>';
                 echo '</div>';
                 echo '<form class="asdf" action="viewchain.php" method="GET">';
-                echo '<input type="hidden" id="title" value="'.$chain['title'].'"/>';
+                echo '<input name="title" type="hidden" id="title" value="'.$chain['title'].'"/>';
                 echo '<button type="submit" class="View_Chain">View Chain</button>';
                 echo '</form>';
                 echo '</div>';
@@ -152,7 +151,6 @@ class View {
         echo "<script>function nodel() { alert('Not implemented yet.'); }</script>";
         echo '<section id="cd-timeline" class="cd-container">';
         foreach(array_reverse($sources) as $source) {
-           // d($this->model->getTroveArticleTitle($source['troveid']));
             echo '<div class="cd-timeline-block">';
                 echo '<div class="cd-timeline-img cd-picture">';
                     echo '<img src="resources/plugins/vertical-timeline/img/cd-icon-movie.svg" alt="Picture">';
@@ -198,7 +196,6 @@ class View {
 
     public function showCreateChainFailure($result) {
         printf("<p>Could not create chain.</p>");
-        d($result);
     }
 
 
