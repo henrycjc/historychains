@@ -61,11 +61,12 @@ class View {
                 echo '<div class="Search_result_number"><p>'.$count.'</p></div>';
                 echo '<div class="Search_Top_info"><h3 class="Search_title">'.$chain['title'].'</h3>';
 					echo '<p class="Search_author">'.$chain['topic'].'</p>';
-					echo '<p class="Search_date">'.date('M j Y g:i A', strtotime($chain['time_stamp'])).'</p></div></div>';
+					echo '<p class="Search_date">'.date('M j Y g:i A', strtotime($chain['time_stamp'])).'</p></div>';
                 echo '<form class="asdf" action="viewchain.php" method="GET">';
                 echo '<input type="hidden" id="title" value="'.$chain['title'].'"/>';
-                echo '<button type="submit" class="View_Chain">View Chain</button>';
+                echo '<button type="submit" class="View_Chain2">View Chain</button>';
                 echo '</form>';
+                echo '</div>';
 				$count++;
             }
     }
@@ -113,7 +114,6 @@ class View {
                     echo '<h2>'.$this->model->getTroveArticleTitle($source['troveid'])[0]['title'].'</h2>';
                     echo '<p>'.$source['comment'].'</p>';
                     echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">View</a>';
-                    echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Edit</a>';
                     echo '<a target="_blank" href="http://trove.nla.gov.au/work/'.$source['troveid'].'" class="cd-read-more">Delete</a>';
                     echo '<span class="cd-date">'.date('M j Y g:i A', strtotime($source['timestamp'])).'</span>';
                 echo '</div>';
@@ -152,4 +152,5 @@ class View {
         printf("<p>Could not create chain.</p>");
         d($result);
     }
+
 }
