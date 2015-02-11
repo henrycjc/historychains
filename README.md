@@ -1,58 +1,22 @@
-## TO DO 28/10
+##About
+History Chains is an academic research based social network of sorts, developed by three undergraduate students at The University of Queensland. It is targeted towards younger students, 14 to 18 years old studying Modern Australian History and other related subjects. History Chains makes extensive use of the Trove API, an intiative by the National Library of Australia to catalogue Australia's history digitally. 
 
-* ~~Case sensitivity for searches~~
-* ~~Mysql special chars for ALL inserts~~
-* Safari // Firefox testing
-* Redirect quicker
-* ~~Splash page too big~~
-* ~~Chain doesn't display auto on refresh / page load~~
-* ~~Edit profile sspecial chars~~
-* ~~Create chain navbar~~
-* homepage age validation (and update profile)
-* ~~tags, comment, delimiter ---> nice twitter style or something lmao~~
-* ~~clear text areas when you apply~~
-* **auto resize divs**
-* timetable plugin change the camera icon to something better [NOPE]
-* ~~add more than just books to chain source~~
-* handle large images [ANGUS]
-* ~~finish homepage / profile --> date layout ~~
-* chain permalinks for home page
-* finish profile, collab chains etc
-* add sources validate the inputes and remove keywords
-* fix chain date time
-* remove source from chain options
-
-## TO DO
-* ~~Home page splash screen~~
-* ~~Redirection for login~~
-* Home page top chains
-* ~~“Create Chain” functionality~~
-* ~~Adding source to chain~~
-* ~~Drawing the chain~~
-* ~~Saving state of chain~~
-* ~~Load an existing chain~~
-* ~~Edit an existing chain~~
-* ~~Visually pleasing chain workflow~~
-* ~~Visually appealing search results~~
-* ~~User System~~
-* ~~Profile page~~
-* ~~Logging In/Out (cookies)~~
-* ~~Rating/Rep System~~
-* ~~Simple tutorial / infographic~~
+The user can search through Trove's extensive library of articles, books and a number of other electronic mediums and add them to their "Chain" a collection of sources for their topic. 
 
 
+##Authors
+
+Henry Chladil - PHP, SQL, JavaScript/jQuery
+
+Angus Payne - HTML, CSS, PHP
+
+Elliot Randall - HTML, CSS, SQL
+
+##Installation
+
+History Chains requires a L*MP stack (we used nginx). 
+
+It is fairly lightweight and should work with versions of PHP 5+. 
 
 
-##Live Site
-http://deco1800-01.uqcloud.net/
-
-##PHPMyAdmin
-http://deco1800-01.uqcloud.net/phpmyadmin/
-
-##SSH
-ssh moss.labs.eait.uq.edu.au -l $USER
-
-ssh deco1800-01.zones.eait.uq.edu.au
-
-##SFTP
-deco1800-01.zones.eait.uq.edu.au
+Import a copy of the databse from `historychains/app/sql/history_chains.sql` 
