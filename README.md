@@ -3,6 +3,7 @@ History Chains is an academic research based social network of sorts, developed 
 
 The user can search through Trove's extensive library of articles, books and a number of other electronic mediums and add them to their "Chain" a collection of sources for their topic. 
 
+This was an assignment for DECO1800 but we chose to use a VCS instead of editing a live site. 
 
 ##Authors
 
@@ -20,3 +21,13 @@ It is fairly lightweight and should work with versions of PHP 5+.
 
 
 Import a copy of the databse from `historychains/app/sql/history_chains.sql` 
+
+
+##What we didn't get finished
+
+Unfortunately as it was a university assignment we were constrained by time and specification. The social network is mostly unfinished but the core functionality of creating a chain works. 
+
+* Database error checking (currently if we can't connect to the database, game over)
+* User system (hack job, needs proper OOP refactor)
+* Upload user images (currently chmod 777 is the only thing keeping it from working l0l)
+* Many more...
